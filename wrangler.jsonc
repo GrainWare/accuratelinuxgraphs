@@ -1,8 +1,15 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "accuratelinuxgraphs",
-	"compatibility_date": "2025-04-04",
-	"assets": {
-		"directory": "./dist",
-	},
-}
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "accuratelinuxgraphs",
+    "main": "./dist/_worker.js/index.js",
+    // Update to today's date
+    "compatibility_date": "2025-04-04",
+    "compatibility_flags": ["nodejs_compat"],
+    "assets": {
+      "binding": "ASSETS",
+      "directory": "./dist"
+    },
+    "observability": {
+      "enabled": true
+    }
+  }
