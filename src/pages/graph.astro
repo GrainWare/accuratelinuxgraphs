@@ -1,0 +1,25 @@
+---
+import Header from "../components/Header.astro";
+import PlotChart from "../components/PlotChart.astro";
+import Layout from "../layouts/Layout.astro";
+
+// generate random data
+const randomData = (n: number) => {
+	const data = [];
+	for (let i = 0; i < n; i++) {
+		data.push({
+			something: Math.random() * 100,
+			somethingElse: Math.random() * 100,
+		});
+	}
+	return data;
+};
+const data = randomData(100);
+---
+
+<Layout>
+	<iframe
+		src="https://stats.atl.dev"
+		class="w-full h-256 animate-ping-weird"
+		title="Stats"></iframe>
+</Layout>

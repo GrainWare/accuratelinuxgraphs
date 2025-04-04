@@ -17,6 +17,7 @@
 	--animate-vibrate2x: vibrate2x 1s linear infinite;
 	--animate-rotate: rotate 10s linear infinite;
 	--animate-ping-better: ping 1s cubic-bezier(0, 0, 0.2, 1) forwards;
+	--animate-ping-weird: rotate3d 60s linear infinite;
 	--animate-rotate3d: rotate3d 25s linear infinite;
 
 	@keyframes move {
