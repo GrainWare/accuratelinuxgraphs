@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const fizzbuzz = (n: number) => {
+	let result = [];
+	for (let i = 1; i <= n; i++) {
+		if (i % 3 === 0 && i % 5 === 0) {
+			result.push("FizzBuzz");
+		} else if (i % 3 === 0) {
+			result.push("Fizz");
+		} else if (i % 5 === 0) {
+			result.push("Buzz");
+		} else {
+			result.push(i);
+		}
+	}
+	return result;
+};
+---
+
+<Layout>
+	<Header />
+	<div class="items-center justify-center h-screen animate-widen">
+		<h2 class="text-2xl font-bold mb-4">FizzBuzz Results</h2>
+		<ul class="list-disc">
+			{
+				fizzbuzz(50).map((item) => (
+					<li
+						class="text-lg animate-rotatewidenvibrate"
+						style={{ animationDelay: `${Math.random() * 2}s` }}
+					>
+						{item}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</Layout>

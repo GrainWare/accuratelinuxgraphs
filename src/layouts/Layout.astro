@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+import { descriptions, authors } from "../ts/vars.ts";
+
+// Generate a random description on each page load
+const description =
+	descriptions[Math.floor(Math.random() * descriptions.length)];
+const author = authors[Math.floor(Math.random() * authors.length)];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/src/assets/ico/grain.png" />
+		<meta name="description" content={description} />
+		<meta name="author" content={author} />
+		<meta
+			name="keywords"
+			content="accurate,linux,graphs,accurate linux graphs,accuratelinuxgraphs,accurate number,accurate number stage 2,accurate number stage 3,superaccurategraphs,charts,chart,ubuntu,linux,allthingslinux,all things linux,kaizen,accuracy records"
+		/>
+		<meta property="og:site_name" content="accuratelinuxgraphs.com" />
+		<meta property="og:title" content="accuratelinuxgraphs.com" />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://accuratelinuxgraphs.com/" />
+		<meta
+			property="og:image"
+			content="https://accuratelinuxgraphs.com/files/img/ico/grain.png"
+		/>
+
+		<title>accuratelinuxgraphs</title>
+	</head>
+	<body
+		class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
+	>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		background-image: url("../assets/img/tux.gif");
+		background-size: 100px;
+		background-repeat: repeat;
+		background-attachment: fixed;
+		cursor: url("../assets/svg/accuracy_cursor.svg"), auto;
+		overflow-x: hidden;
+	}
+</style>

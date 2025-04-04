@@ -1,0 +1,159 @@
+---
+import { authors } from "../ts/vars";
+
+// math equation to generate the accurate number of the day
+const x = new Date().getDate();
+const y = new Date().getSeconds();
+const z = new Date().getMilliseconds();
+const accurateNumberStage1 = (x * y) / z;
+const accurateNumberStage2 =
+	accurateNumberStage1 % 1.785298349182997561289487198679829683916825689;
+const accurateNumberStage3 = accurateNumberStage2 / 1000000000000000000;
+let accuracyPercentage =
+	1.128943789237891598723789147928789152897267891237086812735653 *
+		100.5782384172874 +
+	Math.sin(accurateNumberStage2) * 10008.5782384172874;
+
+if (Math.random() < 0.1) {
+	accuracyPercentage += 500000;
+}
+
+let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: bold;`;
+const author = authors[Math.floor(Math.random() * authors.length)];
+---
+
+<script>
+	const button = document.getElementById("accuRotateBtn");
+	const credits = document.getElementById("credits");
+	const audio = document.getElementById(
+		"accuRotateAudio",
+	) as HTMLAudioElement;
+
+	if (button) {
+		button.textContent = "enable accurotate technology";
+		button.removeAttribute("disabled");
+
+		button.addEventListener("click", () => {
+			const isEnabled =
+				document.body.classList.contains("animate-rotate3d");
+
+			if (isEnabled) {
+				// Disable the accurotate technology
+				document.body.classList.remove("animate-rotate3d");
+				document.body.classList.add("animate-move");
+				button.textContent = "enable accurotate technology";
+
+				if (audio) {
+					audio.pause();
+					audio.currentTime = 0;
+				}
+
+				if (credits) {
+					credits.classList.add("invisible");
+					credits.classList.remove("animate-vibrate2x");
+				}
+			} else {
+				// Enable the accurotate technology
+				document.body.style.cursor =
+					"url('/src/assets/svg/middlefinger.svg'), auto";
+				document.body.classList.remove("animate-move");
+				document.body.classList.add("animate-rotate3d");
+				button.textContent = "disable accurotate technology";
+
+				if (audio) {
+					audio.play();
+				}
+
+				if (credits) {
+					credits.classList.remove("invisible");
+					credits.classList.add("animate-vibrate2x");
+				}
+			}
+		});
+	} else {
+		console.error('Button with id "accuRotateBtn" not found');
+	}
+</script>
+
+<header class="text-center text-white py-8">
+	<h1 class="text-4xl font-bold text-grain-text hover:animate-vibrate2x">
+		<a href="/fizzbuzz" class="hover:underline">accuratelinuxgraphs.com</a>
+		<p>sponsored by {author}</p>
+	</h1>
+
+	<p class="text-lg mt-2">
+		YOUR source for the most ACCURATE linux graphs around.
+	</p>
+
+	<div class="flex flex-col items-center lg:flex-row justify-center">
+		<img
+			id="site-icon"
+			src="/src/assets/ico/grain.png"
+			alt="Site Icon"
+			title="a project of the grain"
+			class="w-64 h-16"
+		/>
+		<p class="text-sm text-gray-400 transform-[scaleY(4)]">
+			Accurate Number: <span
+				id="accurate-number"
+				class="font-bold text-yellow-300">{accurateNumberStage3}</span
+			>
+			><br />
+			Accuracy Percentage: <span
+				id="accuracy-percentage"
+				style={accuracyStyle}
+				class="font-bold text-yellow-300">{accuracyPercentage}%</span
+			>
+		</p>
+
+		<button
+			id="accuRotateBtn"
+			class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900"
+			disabled
+		>
+			enable js you idiot
+		</button>
+
+		<audio
+			controls
+			autoplay
+			loop
+			class="mt-4 mx-auto block hover:animate-vibrate"
+		>
+			<source
+				src="/src/assets/audio/free-software-song.ogg"
+				type="audio/ogg"
+			/>
+			Your browser does not support the audio element. Seek help.
+		</audio>
+
+		<img
+			src="/src/assets/img/ad.gif"
+			alt="Ad"
+			class="w-64 h-16 mt-4 mx-auto"
+			title="Ad"
+		/>
+		<img
+			src="/src/assets/img/ad2.gif"
+			alt="Ad"
+			class="w-64 h-16 mt-4 mx-auto"
+			title="Ad"
+		/>
+	</div>
+	<audio loop id="accuRotateAudio" class="hidden">
+		<source
+			src="/src/assets/audio/extremebinarydrumandbass.mp3"
+			type="audio/mp3"
+			id="accuRotateAudio2"
+		/>
+		Your browser does not support the audio element. Seek help.
+	</audio>
+	<p class="invisible" id="credits">
+		AccuRotate Audio Credit: <a
+			href="https://opengameart.org/content/extreme-binary-dnb"
+			>Gobusto - Extreme Binary DnB</a
+		>
+	</p>
+
+	<hr class="animate-ping" />
+</header>

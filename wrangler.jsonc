@@ -1,0 +1,8 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "accuratelinuxgraphs",
+    "compatibility_date": "2025-04-04",
+    "assets": {
+      "directory": "./dist"
+    }
+}
