@@ -13,6 +13,8 @@ let accuracyPercentage =
 		100.5782384172874 +
 	Math.sin(accurateNumberStage2) * 10008.5782384172874;
 
+accuracyPercentage = accuracyPercentage + Math.random() * 100000000;
+
 if (Math.random() < 0.1) {
 	accuracyPercentage += 500000;
 }
