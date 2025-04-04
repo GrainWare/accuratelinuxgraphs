@@ -20,7 +20,7 @@ const author = authors[Math.floor(Math.random() * authors.length)];
 			name="keywords"
 			content="accurate,linux,graphs,accurate linux graphs,accuratelinuxgraphs,accurate number,accurate number stage 2,accurate number stage 3,superaccurategraphs,charts,chart,ubuntu,linux,allthingslinux,all things linux,kaizen,accuracy records"
 		/>
-		<meta property="og:site_name" content="accuratelinuxgraphs.com" />
+		<meta property="og:site_name" content={author} />
 		<meta property="og:title" content="accuratelinuxgraphs.com" />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
@@ -30,7 +30,7 @@ const author = authors[Math.floor(Math.random() * authors.length)];
 			content="https://accuratelinuxgraphs.com/files/img/ico/grain.png"
 		/>
 
-		<title>accuratelinuxgraphs</title>
+		<title>{description}</title>
 	</head>
 	<body
 		class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
