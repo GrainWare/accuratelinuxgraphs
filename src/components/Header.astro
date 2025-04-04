@@ -93,11 +93,12 @@ const author = authors[Math.floor(Math.random() * authors.length)];
 			title="a project of the grain"
 			class="w-64 h-16"
 		/>
-		<p class="text-sm text-gray-400 transform-[scaleY(4)]">
+		<p
+			class="text-sm text-gray-400 transform-[scaleZ(4)] animate-vibrate lg:animate-none lg:transform-[scaleY(4)]"
+		>
 			Accurate Number: <span
 				id="accurate-number"
 				class="font-bold text-yellow-300">{accurateNumberStage3}</span
-			>
 			><br />
 			Accuracy Percentage: <span
 				id="accuracy-percentage"
