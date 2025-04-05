@@ -1,0 +1,84 @@
+---
+// Accept an array of graph objects
+const { graphs } = Astro.props;
+
+// Function to calculate accuracy for each graph
+function calculateAccuracy() {
+	const x = new Date().getDate();
+	const y = new Date().getSeconds();
+	const z = new Date().getMilliseconds();
+	const accurateNumberStage1 = (x * y) / z;
+	const accurateNumberStage2 =
+		accurateNumberStage1 % 1.785298349182997561289487198679829683916825689;
+	const accurateNumberStage3 = accurateNumberStage2 / 1000000000000000000;
+	let accuracyPercentage =
+		1.128943789237891598723789147928789152897267891237086812735653 *
+			100.5782384172874 +
+		Math.sin(accurateNumberStage2) * 10008.5782384172874;
+
+	accuracyPercentage = accuracyPercentage + Math.random() * 100000000;
+
+	if (Math.random() < 0.1) {
+		accuracyPercentage += 500000;
+	}
+
+	return {
+		value: Math.round(accuracyPercentage),
+		style: `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: bold;`,
+	};
+}
+
+// Calculate accuracy for each graph
+const graphsWithAccuracy = graphs.map((graph: any) => {
+	const accuracy = calculateAccuracy();
+	return {
+		...graph,
+		accuracy,
+	};
+});
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+	{
+		graphsWithAccuracy.map(
+			(graph: {
+				graphImgUrl: string | URL | null | undefined;
+				caption: unknown;
+				accuracy: {
+					style:
+						| string
+						| astroHTML.JSX.CSSProperties
+						| null
+						| undefined;
+					value: unknown;
+				};
+			}) => (
+				<div class="flex flex-col items-center justify-center bg-grain-panel p-4 rounded-lg shadow-lg hover:animate-pulse3d">
+					<img
+						src={String(graph.graphImgUrl)}
+						alt={String(graph.caption)}
+						class="w-full h-auto rounded-lg shadow-lg border-8 border-grain-side hover:border-grain-side-hover hover:animate-vibrate"
+						style="animation-duration: 3s;"
+					/>
+					<p class="text-center mt-4 text-white text-xl font-bold">
+						{graph.caption}
+					</p>
+					<p class="text-center mt-2 text-white text-lg font-bold">
+						THIS GRAPH IS
+						<span style={graph.accuracy.style}>
+							{graph.accuracy.value}
+						</span>
+						% accurate
+					</p>
+					<a
+						href={graph.graphImgUrl}
+						download
+						class="graph-download-button"
+					>
+						<img src="/assets/img/download.png" alt="Download" />
+					</a>
+				</div>
+			),
+		)
+	}
+</div>

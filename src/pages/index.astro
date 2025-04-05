@@ -2,16 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Graph from "../components/Graph.astro";
+import GraphGrid from "../components/GraphGrid.astro";
+import graphsData from "../data/graphs.json";
+
+// Using the data from our JSON file
+const graphs = graphsData;
 ---
 
 <Layout>
 	<Header />
 	<div>
-		<Graph
-			graphImgUrl="/assets/graphs/accperyear.png"
-			caption="Accuracy Per Year"
-		/>
+		<GraphGrid graphs={graphs} />
 	</div>
 	<Footer />
 </Layout>

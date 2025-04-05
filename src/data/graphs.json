@@ -1,0 +1,134 @@
+[
+	{
+		"graphImgUrl": "/assets/graphs/distroswagness.jpg",
+		"caption": "distro swagness graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/osbloat.jpeg",
+		"caption": "os bloat graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/ramusage.jpeg",
+		"caption": "ram usage graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/linus.jpg",
+		"caption": "linus torvalds graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/row2.png",
+		"caption": "row 2 graph, people to this day wonder what that means"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/ubuntu.png",
+		"caption": "ubuntu graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/marketshare.jpeg",
+		"caption": "market share graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/marketshareprojected.png",
+		"caption": "market share projected graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/rms.png",
+		"caption": "ricahrd stallman graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/arch.png",
+		"caption": "arch (not loinux) graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/aod.png",
+		"caption": "linux/distro (International system unit)"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/accuracy.png",
+		"caption": "linux accuracy graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/distro-difficult.png",
+		"caption": "linux ditro easy to hurd"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/usage.png",
+		"caption": "usag of linux in plaftorms"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/money.png",
+		"caption": "money"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/openbsdbloat.jpg",
+		"caption": "openbsd bloat"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/wayland.png",
+		"caption": "wayland"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/linuxdevelopment.png",
+		"caption": "linux development"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/gamijng.png",
+		"caption": "gamijng"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/mobilead.png",
+		"caption": "mobile users rejoice"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/yearofthelinuxdesktop.png",
+		"caption": "yeaæææææææææææææææææa"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/tuxcolors.gif",
+		"caption": "tux color graph\nthis is the first fancy animated graph"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/accperyear.png",
+		"caption": "accuracy per year"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/revision-speed.png",
+		"caption": "linuxers average linuxing speed"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/distroswagness.png",
+		"caption": "distro swagness v2"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/accuratelinuxgraphs.png",
+		"caption": "accurate linux graphs is back"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/linux.png",
+		"caption": "linux"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/buy.png",
+		"caption": "BUY"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/XYZ.png",
+		"caption": "XYZ"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/LINUXPERLINUX.png",
+		"caption": "LINUXPERLINUX"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/bloatperhour.png",
+		"caption": "bloat per hour"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/compilerpercompiler.png",
+		"caption": "compiler per compiler"
+	},
+	{
+		"graphImgUrl": "/assets/graphs/fedrorusers.png",
+		"caption": "fedror users"
+	}
+]

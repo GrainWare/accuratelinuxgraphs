@@ -20,7 +20,9 @@
 				button.textContent = "stop animations";
 			} else {
 				// Disable animations
-                alert("If you do not truly NEED to disable animations, please re enable them. We worked hard on them and they are part of the experience.");
+				alert(
+					"If you do not truly NEED to disable animations, please re enable them. We worked hard on them and they are part of the experience.",
+				);
 				document.body.classList.add("animations-none");
 				document.body.style.cursor =
 					"url('/assets/svg/middlefinger.svg'), auto";
@@ -32,7 +34,9 @@
 	}
 </script>
 
-<footer class="text-center text-white py-8">
+<footer
+	class="text-center text-white py-8 flex-col items-center justify-center bg-grain-bg"
+>
 	<hr class="animate-ping" />
 
 	<div class="flex flex-col items-center lg:flex-row justify-center">
@@ -43,5 +47,20 @@
 		>
 			enable js you idiot
 		</button>
+		<img
+			src="/assets/img/hand.jpg"
+			alt="Hand"
+			class="w-64 h-64 animate-pulse"
+			style="animation-duration: 3s;"
+		/>
+		<h1 class="text-4xl font-bold mt-4">
+			we want your accuracy. we need your accuracy. we crave your accuracy.
+		</h1>
 	</div>
+	<p class="text-center mt-4 text-white text-xl font-bold">
+		We are not responsible for any damage caused by the use of this website.
+		High amounts of accuracy can cause sudden brain damage, shattering of
+		all your known notions, shock induced heart attacks, and the forbidden
+		knowledge of the universe. Use at your own risk.
+	</p>
 </footer>
