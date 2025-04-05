@@ -1,0 +1,46 @@
+---
+
+---
+
+<script>
+	const button = document.getElementById("disableAnimationsBtn");
+
+	if (button) {
+		button.textContent = "stop animations";
+		button.removeAttribute("disabled");
+
+		button.addEventListener("click", () => {
+			// Check if animations are currently disabled
+			const isDisabled =
+				document.body.classList.contains("animations-none");
+
+			if (isDisabled) {
+				// Re-enable animations
+				document.body.classList.remove("animations-none");
+				button.textContent = "stop animations";
+			} else {
+				// Disable animations
+				document.body.classList.add("animations-none");
+				document.body.style.cursor =
+					"url('/assets/svg/middlefinger.svg'), auto";
+				button.textContent = "re-enable animations (based)";
+			}
+		});
+	} else {
+		console.error('Button with id "disableAnimationsBtn" not found');
+	}
+</script>
+
+<footer class="text-center text-white py-8">
+	<hr class="animate-ping" />
+
+	<div class="flex flex-col items-center lg:flex-row justify-center">
+		<button
+			id="disableAnimationsBtn"
+			class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900"
+			disabled
+		>
+			enable js you idiot
+		</button>
+	</div>
+</footer>

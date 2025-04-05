@@ -423,3 +423,15 @@
 .graph-download-button img {
 	width: inherit;
 }
+
+/* Add this to your global.css file */
+.animations-none * {
+	animation: none !important;
+	transition: none !important;
+	transform: none !important;
+}
+
+/* Ensure that when animations are disabled, we maintain current visual state */
+.animations-none {
+	cursor: url("/assets/svg/middlefinger.svg"), auto !important;
+}
