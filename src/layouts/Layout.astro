@@ -51,3 +51,104 @@ const author = authors[Math.floor(Math.random() * authors.length)];
 		overflow-x: hidden;
 	}
 </style>
+
+<script>
+    // Run on page load to check advanced settings cookies and apply them
+    document.addEventListener('DOMContentLoaded', () => {
+        // Helper to get cookie value
+        const getCookieValue = (name: string) => {
+            const match = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(`${name}=`));
+            return match ? match.split('=')[1] : null;
+        };
+
+        // Check if advanced settings are enabled
+        const advancedEnabled = getCookieValue('toggleAdvanced') === 'true';
+        
+        if (advancedEnabled) {
+            // Check and apply animation settings
+            const animationsDisabled = getCookieValue('toggleAnimations') === 'true';
+            if (animationsDisabled) {
+                // Disable all animations except background animation
+                document.body.classList.add('animations-none');
+                document.body.style.cursor = "url('/assets/svg/middlefinger.svg'), auto";
+                console.log('Animations disabled due to user preference');
+            }
+
+            // Check and apply grain mode
+            const grainModeEnabled = getCookieValue('toggleGrain') === 'true';
+            if (grainModeEnabled) {
+                // Replace all instances of "accuracy" and "accurate" with "grain"
+                applyGrainMode();
+                console.log('Grain mode activated');
+            }
+        }
+    });
+
+    // Function to apply grain mode by replacing text
+    function applyGrainMode() {
+        // Walk through all text nodes in the document
+        const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+        );
+
+        const textNodes = [];
+        let node;
+        while ((node = walker.nextNode())) {
+            textNodes.push(node);
+        }
+
+        // Replace text in all found nodes
+        textNodes.forEach(textNode => {
+            if (textNode.nodeValue) {
+                let text = textNode.nodeValue;
+                
+                // Convert "accuracy" to "grain" (case insensitive)
+                text = text.replace(/accuracy/gi, match => {
+                    // Preserve the case pattern
+                    if (match.toLowerCase() === 'accuracy') {
+                        if (match === match.toUpperCase()) return 'GRAIN';
+                        if (match === match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()) return 'Grain';
+                        return 'grain';
+                    }
+                    return match;
+                });
+                
+                // Convert "accurate" to "grain" (case insensitive)
+                text = text.replace(/accurate/gi, match => {
+                    // Preserve the case pattern
+                    if (match.toLowerCase() === 'accurate') {
+                        if (match === match.toUpperCase()) return 'GRAIN';
+                        if (match === match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()) return 'Grain';
+                        return 'grain';
+                    }
+                    return match;
+                });
+                
+                textNode.nodeValue = text;
+            }
+        });
+
+        // Also rename the site title for extra grain goodness
+        document.title = document.title.replace(/accuracy|accurate/gi, 'grain');
+        
+        // Handle dynamically added content
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.type === 'childList') {
+                    // Re-apply grain mode to new content
+                    applyGrainMode();
+                }
+            });
+        });
+        
+        // Start observing the document for content changes
+        observer.observe(document.body, { 
+            childList: true, 
+            subtree: true 
+        });
+    }
+</script>

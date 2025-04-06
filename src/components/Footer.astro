@@ -7,7 +7,7 @@
 
 	if (button) {
 		button.textContent = "stop animations";
-		button.removeAttribute("disabled");
+		//button.removeAttribute("disabled"); // moved to advanced settings page
 
 		button.addEventListener("click", () => {
 			// Check if animations are currently disabled
@@ -42,11 +42,16 @@
 	<div class="flex flex-col items-center lg:flex-row justify-center">
 		<button
 			id="disableAnimationsBtn"
-			class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900"
+			class="mt-4 bg-grain-bg border-grain-border border-8 hover:cursor-not-allowed"
 			disabled
 		>
 			enable js you idiot
 		</button>
+		<a href="/advanced">
+			<button class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900">
+				advanced settings
+			</button>
+		</a>
 		<img
 			src="/assets/img/hand.jpg"
 			alt="Hand"
@@ -54,7 +59,8 @@
 			style="animation-duration: 3s;"
 		/>
 		<h1 class="text-4xl font-bold mt-4">
-			we want your accuracy. we need your accuracy. we crave your accuracy.
+			we want your accuracy. we need your accuracy. we crave your
+			accuracy.
 		</h1>
 	</div>
 	<p class="text-center mt-4 text-white text-xl font-bold">
