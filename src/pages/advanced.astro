@@ -29,11 +29,15 @@ const data = randomData(100);
 		).disabled = false;
 		(document.getElementById("toggleGrain") as HTMLInputElement).disabled =
 			false;
+		(document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
+			false;
 	} else {
 		(
 			document.getElementById("toggleAnimations") as HTMLInputElement
 		).disabled = true;
 		(document.getElementById("toggleGrain") as HTMLInputElement).disabled =
+			true;
+		(document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
 			true;
 	}
 
