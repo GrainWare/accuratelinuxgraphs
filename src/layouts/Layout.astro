@@ -85,8 +85,23 @@ const author = authors[Math.floor(Math.random() * authors.length)];
 				applyGrainMode();
 				console.log("Grain mode activated");
 			}
+
+			// if toggleAccuracy is true, apply accuracy mode
+			const accuracyModeEnabled =
+				getCookieValue("toggleAccuracy") === "true";
+			if (accuracyModeEnabled) {
+				// Add the class animate-vibrate2x to the body
+				applyAccuracyMode();
+				console.log("Accuracy mode activated");
+			}
 		}
 	});
+
+	// function to apply accuracy mode which adds the class animate-vibrate2x to the body
+	function applyAccuracyMode() {
+		const body = document.body;
+		body.classList.add("animate-true-widen");
+	}
 
 	// Function to apply grain mode by replacing text
 	function applyGrainMode() {

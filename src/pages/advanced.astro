@@ -20,6 +20,7 @@ const data = randomData(100);
 	// - toggleAdvanced
 	// - toggleAnimations
 	// - toggleGrain
+	// - toggleAccuracy
 
 	// check if toggleAdvanced is set, if so, enable the other two
 	if (document.cookie.includes("toggleAdvanced=true")) {
@@ -46,7 +47,15 @@ const data = randomData(100);
 	const toggleGrain = document.getElementById(
 		"toggleGrain",
 	) as HTMLInputElement;
-	for (const checkbox of [toggleAdvanced, toggleAnimations, toggleGrain]) {
+	const toggleAccuracy = document.getElementById(
+		"toggleAccuracy",
+	) as HTMLInputElement;
+	for (const checkbox of [
+		toggleAdvanced,
+		toggleAnimations,
+		toggleGrain,
+		toggleAccuracy,
+	]) {
 		const cookieValue = document.cookie
 			.split("; ")
 			.find((row) => row.startsWith(`${checkbox.id}=`))
@@ -59,7 +68,12 @@ const data = randomData(100);
 	}
 
 	// set cookie on change
-	for (const checkbox of [toggleAdvanced, toggleAnimations, toggleGrain]) {
+	for (const checkbox of [
+		toggleAdvanced,
+		toggleAnimations,
+		toggleGrain,
+		toggleAccuracy,
+	]) {
 		checkbox.addEventListener("change", () => {
 			document.cookie = `${checkbox.id}=${checkbox.checked}; path=/; max-age=31536000`;
 			if (checkbox.id === "toggleAdvanced") {
@@ -70,6 +84,11 @@ const data = randomData(100);
 				).disabled = !checkbox.checked;
 				(
 					document.getElementById("toggleGrain") as HTMLInputElement
+				).disabled = !checkbox.checked;
+				(
+					document.getElementById(
+						"toggleAccuracy",
+					) as HTMLInputElement
 				).disabled = !checkbox.checked;
 			}
 		});
@@ -98,6 +117,11 @@ const data = randomData(100);
 		<hr />
 		<input type="checkbox" id="toggleGrain" disabled />
 		<label for="toggleGrain">Enable Super Grain Mode</label>
+		<hr />
+		<input type="checkbox" id="toggleAccuracy" disabled />
+		<label for="toggleAccuracy"
+			>Enable Ultra Accurate Technology (Epilepsy Warning)</label
+		>
 	</div>
 	<p>
 		Past this line ignore any further debug information. Under penalty of
