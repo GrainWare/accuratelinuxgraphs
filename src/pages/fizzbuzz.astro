@@ -72,72 +72,89 @@ const fizzbuzz = (n: number) => {
     }, 100); // 100ms = 0.1 seconds
   });
 
-  // DVD logo bouncing animation - Fixed implementation
+  // DVD logo bouncing animation - Enhanced with more randomness
   document.addEventListener('DOMContentLoaded', () => {
     // Create a container for all logos that will be on top of everything
     const container = document.createElement('div');
     container.className = 'logo-container';
     document.body.appendChild(container);
     
-    const numLogos = 10;
+    const numLogos = 500;
     
-    // Create logos immediately instead of waiting for window load
+    // Create logos immediately
     for (let i = 0; i < numLogos; i++) {
       // Create a new DVD logo element
       const dvdLogo = document.createElement('div');
       dvdLogo.className = 'dvd-logo';
       
-      // Set random size between 60px and 120px
-      const size = Math.random() * 60 + 60;
+      const size = Math.random() * 25;
       
-      // Use inline styles to ensure all styles are applied
+      // Random rotation
+      const rotation = Math.random() * 360;
+      
+      // Random opacity for some logos
+      const opacity = Math.random() * 0.5 + 0.5; // Between 0.5 and 1.0
+      
+      // Use inline styles with more randomized properties
       dvdLogo.style.cssText = `
         position: absolute;
         width: ${size}px;
         height: ${size}px;
         z-index: 9999;
+        transform: rotate(${rotation}deg);
+        opacity: ${opacity};
       `;
       
       dvdLogo.innerHTML = `<img src="/assets/svg/middlefinger.svg" alt="Bouncing Logo" width="${size}" height="${size}" />`;
       container.appendChild(dvdLogo);
       
-      // Set initial position randomly across the viewport
-      let x = Math.random() * (window.innerWidth - size);
-      let y = Math.random() * (window.innerHeight - size);
+      // More random starting positions across the entire viewport
+      let x = Math.random() * window.innerWidth;
+      let y = Math.random() * window.innerHeight;
       
       dvdLogo.style.left = `${x}px`;
       dvdLogo.style.top = `${y}px`;
       
-      // Set random velocity (different for each logo)
-      let vx = (Math.random() * 3 + 1) * (Math.random() > 0.5 ? 1 : -1);
-      let vy = (Math.random() * 3 + 1) * (Math.random() > 0.5 ? 1 : -1);
+      // Much more random velocities - between -8 and 8 pixels per frame
+      let vx = (Math.random() * 8) * (Math.random() > 0.5 ? 1 : -1);
+      let vy = (Math.random() * 8) * (Math.random() > 0.5 ? 1 : -1);
       
-      // Start animation with a delay
-      setTimeout(() => {
-        function animate() {
-          // Update position
-          x += vx;
-          y += vy;
-          
-          // Bounce off edges
-          if (x <= 0 || x >= window.innerWidth - size) {
-            vx = -vx;
-            x = Math.max(0, Math.min(x, window.innerWidth - size));
-          }
-          if (y <= 0 || y >= window.innerHeight - size) {
-            vy = -vy;
-            y = Math.max(0, Math.min(y, window.innerHeight - size));
-          }
-          
-          // Update element position
-          dvdLogo.style.left = `${x}px`;
-          dvdLogo.style.top = `${y}px`;
-          
-          requestAnimationFrame(animate);
+      // Add random spin for some elements
+      const shouldSpin = Math.random() > 0.7;
+      const spinSpeed = (Math.random() * 3) * (Math.random() > 0.5 ? 1 : -1);
+      let currentRotation = rotation;
+      
+      // Start animation immediately - no delay
+      function animate() {
+        // Update position
+        x += vx;
+        y += vy;
+        
+        // Bounce off edges with slight velocity randomization
+        if (x <= 0 || x >= window.innerWidth - size) {
+          vx = -vx * (Math.random() * 0.2 + 0.9); // Add slight randomness to bounce
+          x = Math.max(0, Math.min(x, window.innerWidth - size));
+        }
+        if (y <= 0 || y >= window.innerHeight - size) {
+          vy = -vy * (Math.random() * 0.2 + 0.9); // Add slight randomness to bounce
+          y = Math.max(0, Math.min(y, window.innerHeight - size));
         }
         
-        animate();
-      }, i * 200); // Faster staggering (200ms)
+        // Apply rotation if this element should spin
+        if (shouldSpin) {
+          currentRotation += spinSpeed;
+          dvdLogo.style.transform = `rotate(${currentRotation}deg)`;
+        }
+        
+        // Update element position
+        dvdLogo.style.left = `${x}px`;
+        dvdLogo.style.top = `${y}px`;
+        
+        requestAnimationFrame(animate);
+      }
+      
+      // Start animation immediately
+      animate();
     }
   });
 </script>
@@ -177,6 +194,7 @@ const fizzbuzz = (n: number) => {
   .dvd-logo {
     position: absolute;
     pointer-events: none;
+    will-change: transform, left, top; /* Performance optimization */
   }
   
   .dvd-logo img {
