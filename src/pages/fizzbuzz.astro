@@ -3,39 +3,92 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 
 const fizzbuzz = (n: number) => {
-	let result = [];
-	for (let i = 1; i <= n; i++) {
-		if (i % 3 === 0 && i % 5 === 0) {
-			result.push("FizzBuzz");
-		} else if (i % 3 === 0) {
-			result.push("Fizz");
-		} else if (i % 5 === 0) {
-			result.push("Buzz");
-		} else {
-			result.push(i);
-		}
-	}
-	return result;
+    let result = [];
+    for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            result.push("FizzBuzz");
+        } else if (i % 3 === 0) {
+            result.push("Fizz");
+        } else if (i % 5 === 0) {
+            result.push("Buzz");
+        } else {
+            result.push(i);
+        }
+    }
+    return result;
 };
 ---
 
+<script>
+    // on click of anywhere on the site, spawn 10 oscillators playing droning randomized notes
+    // and play them forever
+    document.addEventListener("click", () => {
+        // Create audio context
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillators = [];
+        const gainNodes = [];
+        const types = ["sine", "square", "sawtooth", "triangle"];
+        
+        // Create 10 oscillators
+        for (let i = 0; i < 10; i++) {
+            // Create oscillator
+            const oscillator = audioContext.createOscillator();
+            
+            // Set initial frequency
+            oscillator.frequency.value = Math.random() * 400 + 100;
+            
+            // Set initial type
+            oscillator.type = types[Math.floor(Math.random() * types.length)];
+            
+            // Create gain node for volume control
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = 0.1; // Low volume to avoid being too loud
+            
+            // Connect oscillator to gain node and gain node to output
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Save references to oscillators and gain nodes
+            oscillators.push(oscillator);
+            gainNodes.push(gainNode);
+            
+            // Start oscillator
+            oscillator.start();
+        }
+        
+        // Set interval to randomize parameters every 0.1 seconds
+        setInterval(() => {
+            for (let i = 0; i < oscillators.length; i++) {
+                // Randomize frequency
+                oscillators[i].frequency.value = Math.random() * 400 + 100;
+                
+                // Randomize type
+                oscillators[i].type = types[Math.floor(Math.random() * types.length)];
+                
+                // Randomize volume slightly
+                gainNodes[i].gain.value = Math.random() * 0.08 + 0.05; // Between 0.05 and 0.13
+            }
+        }, 100); // 100ms = 0.1 seconds
+    });
+</script>
+
 <Layout>
-	<Header />
-	<div class="items-center justify-center h-screen">
-		<h2 class="text-2xl font-bold mb-4">
-			FizzBuzz Results (tornado warning)
-		</h2>
-		<ul class="list-disc">
-			{
-				fizzbuzz(50).map((item) => (
-					<li
-						class="text-lg animate-spin"
-						style={{ animationDelay: `${Math.random() * 2}s` }}
-					>
-						<span class="animate-rotatewidenvibrate">{item}</span>
-					</li>
-				))
-			}
-		</ul>
-	</div>
+    <Header />
+    <div class="items-center justify-center h-screen">
+        <h2 class="text-2xl font-bold mb-4">
+            FizzBuzz Results (tornado warning)
+        </h2>
+        <ul class="list-disc">
+            {
+                fizzbuzz(50).map((item) => (
+                    <li
+                        class="text-lg animate-spin"
+                        style={{ animationDelay: `${Math.random() * 2}s` }}
+                    >
+                        <span class="animate-rotatewidenvibrate">{item}</span>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
 </Layout>
