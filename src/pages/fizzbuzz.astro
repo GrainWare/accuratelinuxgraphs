@@ -71,6 +71,75 @@ const fizzbuzz = (n: number) => {
       }
     }, 100); // 100ms = 0.1 seconds
   });
+
+  // DVD logo bouncing animation - Fixed implementation
+  document.addEventListener('DOMContentLoaded', () => {
+    // Create a container for all logos that will be on top of everything
+    const container = document.createElement('div');
+    container.className = 'logo-container';
+    document.body.appendChild(container);
+    
+    const numLogos = 10;
+    
+    // Create logos immediately instead of waiting for window load
+    for (let i = 0; i < numLogos; i++) {
+      // Create a new DVD logo element
+      const dvdLogo = document.createElement('div');
+      dvdLogo.className = 'dvd-logo';
+      
+      // Set random size between 60px and 120px
+      const size = Math.random() * 60 + 60;
+      
+      // Use inline styles to ensure all styles are applied
+      dvdLogo.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        z-index: 9999;
+      `;
+      
+      dvdLogo.innerHTML = `<img src="/assets/svg/middlefinger.svg" alt="Bouncing Logo" width="${size}" height="${size}" />`;
+      container.appendChild(dvdLogo);
+      
+      // Set initial position randomly across the viewport
+      let x = Math.random() * (window.innerWidth - size);
+      let y = Math.random() * (window.innerHeight - size);
+      
+      dvdLogo.style.left = `${x}px`;
+      dvdLogo.style.top = `${y}px`;
+      
+      // Set random velocity (different for each logo)
+      let vx = (Math.random() * 3 + 1) * (Math.random() > 0.5 ? 1 : -1);
+      let vy = (Math.random() * 3 + 1) * (Math.random() > 0.5 ? 1 : -1);
+      
+      // Start animation with a delay
+      setTimeout(() => {
+        function animate() {
+          // Update position
+          x += vx;
+          y += vy;
+          
+          // Bounce off edges
+          if (x <= 0 || x >= window.innerWidth - size) {
+            vx = -vx;
+            x = Math.max(0, Math.min(x, window.innerWidth - size));
+          }
+          if (y <= 0 || y >= window.innerHeight - size) {
+            vy = -vy;
+            y = Math.max(0, Math.min(y, window.innerHeight - size));
+          }
+          
+          // Update element position
+          dvdLogo.style.left = `${x}px`;
+          dvdLogo.style.top = `${y}px`;
+          
+          requestAnimationFrame(animate);
+        }
+        
+        animate();
+      }, i * 200); // Faster staggering (200ms)
+    }
+  });
 </script>
 
 <Layout>
@@ -91,3 +160,28 @@ const fizzbuzz = (n: number) => {
     </ul>
   </div>
 </Layout>
+
+<style>
+  /* Container that will hold all the logos */
+  .logo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none; /* Let clicks pass through */
+    overflow: hidden;
+  }
+
+  .dvd-logo {
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .dvd-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
