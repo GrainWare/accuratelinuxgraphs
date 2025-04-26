@@ -71,103 +71,17 @@ const fizzbuzz = (n: number) => {
       }
     }, 100); // 100ms = 0.1 seconds
   });
-
-  // DVD logo bouncing animation - Enhanced with more randomness
-  document.addEventListener('DOMContentLoaded', () => {
-    // Create a container for all logos that will be on top of everything
-    const container = document.createElement('div');
-    container.className = 'logo-container';
-    document.body.appendChild(container);
-    
-    const numLogos = 100;
-    
-    // Create logos immediately
-    for (let i = 0; i < numLogos; i++) {
-      // Create a new DVD logo element
-      const dvdLogo = document.createElement('div');
-      dvdLogo.className = 'dvd-logo';
-      
-      const size = Math.random() * 50;
-      
-      // Random rotation
-      const rotation = Math.random() * 360;
-      
-      // Random opacity for some logos
-      const opacity = Math.random() * 0.5 + 0.5; // Between 0.5 and 1.0
-      
-      // Use inline styles with more randomized properties
-      dvdLogo.style.cssText = `
-        position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        z-index: 9999;
-        transform: rotate(${rotation}deg);
-        opacity: ${opacity};
-      `;
-      
-      dvdLogo.innerHTML = `<img src="/assets/svg/middlefinger.svg" alt="Bouncing Logo" width="${size}" height="${size}" />`;
-      container.appendChild(dvdLogo);
-      
-      // More random starting positions across the entire viewport
-      let x = Math.random() * window.innerWidth;
-      let y = Math.random() * window.innerHeight;
-      
-      dvdLogo.style.left = `${x}px`;
-      dvdLogo.style.top = `${y}px`;
-      
-      // Much more random velocities - between -8 and 8 pixels per frame
-      let vx = (Math.random() * 8) * (Math.random() > 0.5 ? 1 : -1);
-      let vy = (Math.random() * 8) * (Math.random() > 0.5 ? 1 : -1);
-      
-      // Add random spin for some elements
-      const shouldSpin = Math.random() > 0.7;
-      const spinSpeed = (Math.random() * 3) * (Math.random() > 0.5 ? 1 : -1);
-      let currentRotation = rotation;
-      
-      // Start animation immediately - no delay
-      function animate() {
-        // Update position
-        x += vx;
-        y += vy;
-        
-        // Bounce off edges with slight velocity randomization
-        if (x <= 0 || x >= window.innerWidth - size) {
-          vx = -vx * (Math.random() * 0.2 + 0.9); // Add slight randomness to bounce
-          x = Math.max(0, Math.min(x, window.innerWidth - size));
-        }
-        if (y <= 0 || y >= window.innerHeight - size) {
-          vy = -vy * (Math.random() * 0.2 + 0.9); // Add slight randomness to bounce
-          y = Math.max(0, Math.min(y, window.innerHeight - size));
-        }
-        
-        // Apply rotation if this element should spin
-        if (shouldSpin) {
-          currentRotation += spinSpeed;
-          dvdLogo.style.transform = `rotate(${currentRotation}deg)`;
-        }
-        
-        // Update element position
-        dvdLogo.style.left = `${x}px`;
-        dvdLogo.style.top = `${y}px`;
-        
-        requestAnimationFrame(animate);
-      }
-      
-      // Start animation immediately
-      animate();
-    }
-  });
 </script>
 
 <Layout>
   <Header />
   <div class="items-center justify-center h-screen">
-    <h2 class="text-2xl font-bold mb-4">FizzBuzz Results (tornado warning)</h2>
+    <h2 class="text-2xl font-bold mb-4">FizzBuzz Results (swag warning)</h2>
     <ul class="list-disc">
       {
         fizzbuzz(50).map((item) => (
           <li
-            class="text-lg animate-spin"
+            class="text-sm animate-ping"
             style={{ animationDelay: `${Math.random() * 2}s` }}
           >
             <span class="animate-rotatewidenvibrate">{item}</span>
@@ -177,29 +91,3 @@ const fizzbuzz = (n: number) => {
     </ul>
   </div>
 </Layout>
-
-<style>
-  /* Container that will hold all the logos */
-  .logo-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    pointer-events: none; /* Let clicks pass through */
-    overflow: hidden;
-  }
-
-  .dvd-logo {
-    position: absolute;
-    pointer-events: none;
-    will-change: transform, left, top; /* Performance optimization */
-  }
-  
-  .dvd-logo img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-</style>
