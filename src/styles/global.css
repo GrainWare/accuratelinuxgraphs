@@ -410,7 +410,7 @@
 }
 
 .graph-download-button:hover {
-  animation: download-button-swag 0.5s infinite linear;
+  animation: download-button-swag 10s infinite linear;
   animation-direction: alternate-reverse;
 }
 
