@@ -3,138 +3,131 @@ import Layout from "../layouts/Layout.astro";
 
 // generate random data
 const randomData = (n: number) => {
-	const data = [];
-	for (let i = 0; i < n; i++) {
-		data.push({
-			something: Math.random() * 100,
-			somethingElse: Math.random() * 100,
-		});
-	}
-	return data;
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    data.push({
+      something: Math.random() * 100,
+      somethingElse: Math.random() * 100,
+    });
+  }
+  return data;
 };
 const data = randomData(100);
 ---
 
 <script>
-	// cookies for each:
-	// - toggleAdvanced
-	// - toggleAnimations
-	// - toggleGrain
-	// - toggleAccuracy
+  // cookies for each:
+  // - toggleAdvanced
+  // - toggleAnimations
+  // - toggleGrain
+  // - toggleAccuracy
 
-	// check if toggleAdvanced is set, if so, enable the other two
-	if (document.cookie.includes("toggleAdvanced=true")) {
-		(
-			document.getElementById("toggleAnimations") as HTMLInputElement
-		).disabled = false;
-		(document.getElementById("toggleGrain") as HTMLInputElement).disabled =
-			false;
-		(document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
-			false;
-	} else {
-		(
-			document.getElementById("toggleAnimations") as HTMLInputElement
-		).disabled = true;
-		(document.getElementById("toggleGrain") as HTMLInputElement).disabled =
-			true;
-		(document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
-			true;
-	}
+  // check if toggleAdvanced is set, if so, enable the other two
+  if (document.cookie.includes("toggleAdvanced=true")) {
+    (document.getElementById("toggleAnimations") as HTMLInputElement).disabled =
+      false;
+    (document.getElementById("toggleGrain") as HTMLInputElement).disabled =
+      false;
+    (document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
+      false;
+  } else {
+    (document.getElementById("toggleAnimations") as HTMLInputElement).disabled =
+      true;
+    (document.getElementById("toggleGrain") as HTMLInputElement).disabled =
+      true;
+    (document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
+      true;
+  }
 
-	// adjust all checkboxes accordingly to the current cookie state
-	const toggleAdvanced = document.getElementById(
-		"toggleAdvanced",
-	) as HTMLInputElement;
-	const toggleAnimations = document.getElementById(
-		"toggleAnimations",
-	) as HTMLInputElement;
-	const toggleGrain = document.getElementById(
-		"toggleGrain",
-	) as HTMLInputElement;
-	const toggleAccuracy = document.getElementById(
-		"toggleAccuracy",
-	) as HTMLInputElement;
-	for (const checkbox of [
-		toggleAdvanced,
-		toggleAnimations,
-		toggleGrain,
-		toggleAccuracy,
-	]) {
-		const cookieValue = document.cookie
-			.split("; ")
-			.find((row) => row.startsWith(`${checkbox.id}=`))
-			?.split("=")[1];
-		if (cookieValue === "true") {
-			checkbox.checked = true;
-		} else {
-			checkbox.checked = false;
-		}
-	}
+  // adjust all checkboxes accordingly to the current cookie state
+  const toggleAdvanced = document.getElementById(
+    "toggleAdvanced",
+  ) as HTMLInputElement;
+  const toggleAnimations = document.getElementById(
+    "toggleAnimations",
+  ) as HTMLInputElement;
+  const toggleGrain = document.getElementById(
+    "toggleGrain",
+  ) as HTMLInputElement;
+  const toggleAccuracy = document.getElementById(
+    "toggleAccuracy",
+  ) as HTMLInputElement;
+  for (const checkbox of [
+    toggleAdvanced,
+    toggleAnimations,
+    toggleGrain,
+    toggleAccuracy,
+  ]) {
+    const cookieValue = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith(`${checkbox.id}=`))
+      ?.split("=")[1];
+    if (cookieValue === "true") {
+      checkbox.checked = true;
+    } else {
+      checkbox.checked = false;
+    }
+  }
 
-	// set cookie on change
-	for (const checkbox of [
-		toggleAdvanced,
-		toggleAnimations,
-		toggleGrain,
-		toggleAccuracy,
-	]) {
-		checkbox.addEventListener("change", () => {
-			document.cookie = `${checkbox.id}=${checkbox.checked}; path=/; max-age=31536000`;
-			if (checkbox.id === "toggleAdvanced") {
-				(
-					document.getElementById(
-						"toggleAnimations",
-					) as HTMLInputElement
-				).disabled = !checkbox.checked;
-				(
-					document.getElementById("toggleGrain") as HTMLInputElement
-				).disabled = !checkbox.checked;
-				(
-					document.getElementById(
-						"toggleAccuracy",
-					) as HTMLInputElement
-				).disabled = !checkbox.checked;
-			}
-		});
-	}
+  // set cookie on change
+  for (const checkbox of [
+    toggleAdvanced,
+    toggleAnimations,
+    toggleGrain,
+    toggleAccuracy,
+  ]) {
+    checkbox.addEventListener("change", () => {
+      document.cookie = `${checkbox.id}=${checkbox.checked}; path=/; max-age=31536000`;
+      if (checkbox.id === "toggleAdvanced") {
+        (
+          document.getElementById("toggleAnimations") as HTMLInputElement
+        ).disabled = !checkbox.checked;
+        (document.getElementById("toggleGrain") as HTMLInputElement).disabled =
+          !checkbox.checked;
+        (
+          document.getElementById("toggleAccuracy") as HTMLInputElement
+        ).disabled = !checkbox.checked;
+      }
+    });
+  }
 </script>
 
 <Layout>
-	<p>advanced accuracy settings</p>
-	<div class="bg-grain-bg">
-		<input type="checkbox" id="toggleAdvanced" />
-		<label for="toggleAdvanced"
-			>Enable Advanced Settings (No settings on this page will work
-			without this)</label
-		>
-		<hr />
-		<input type="checkbox" id="toggleAnimations" disabled />
-		<label for="toggleAnimations"
-			>Disable Animations (Reduces Accuracy Significantly)</label
-		>
-		<p>
-			Animations are disabled by default. If you do not truly NEED to
-			disable animations, please re-enable them. We worked hard on them
-			and they are part of the experience. To help reinforce this your
-			cursor will be changed to a middle finger.
-		</p>
-		<hr />
-		<input type="checkbox" id="toggleGrain" disabled />
-		<label for="toggleGrain">Enable Super Grain Mode</label>
-		<hr />
-		<input type="checkbox" id="toggleAccuracy" disabled />
-		<label for="toggleAccuracy"
-			>Enable Ultra Accurate Technology (Epilepsy Warning)</label
-		>
-	</div>
-	<p>
-		Past this line ignore any further debug information. Under penalty of
-		your accuracy being reduced 46.27128518888888̅%
-	</p>
-	<hr />
-	<p class="text-green-500">DEBUG: {JSON.stringify(data)}</p>
-	<p class="text-red-500">
-		DEBUG: InAccuracy Engine Successfully Loaded All Accuracy Reduced
-		Somewhere Around The Middle Percentage
-	</p>
+  <p>advanced accuracy settings</p>
+  <div class="bg-grain-bg">
+    <input type="checkbox" id="toggleAdvanced" />
+    <label for="toggleAdvanced"
+      >Enable Advanced Settings (No settings on this page will work without
+      this)</label
+    >
+    <hr />
+    <input type="checkbox" id="toggleAnimations" disabled />
+    <label for="toggleAnimations"
+      >Disable Animations (Reduces Accuracy Significantly)</label
+    >
+    <p>
+      Animations are disabled by default. If you do not truly NEED to disable
+      animations, please re-enable them. We worked hard on them and they are
+      part of the experience. To help reinforce this your cursor will be changed
+      to a middle finger.
+    </p>
+    <hr />
+    <input type="checkbox" id="toggleGrain" disabled />
+    <label for="toggleGrain">Enable Super Grain Mode</label>
+    <hr />
+    <input type="checkbox" id="toggleAccuracy" disabled />
+    <label for="toggleAccuracy"
+      >Enable Ultra Accurate Technology (Epilepsy Warning)</label
+    >
+  </div>
+  <p>
+    Past this line ignore any further debug information. Under penalty of your
+    accuracy being reduced 46.27128518888888̅%
+  </p>
+  <hr />
+  <p class="text-green-500">DEBUG: {JSON.stringify(data)}</p>
+  <p class="text-red-500">
+    DEBUG: InAccuracy Engine Successfully Loaded All Accuracy Reduced Somewhere
+    Around The Middle Percentage
+  </p>
 </Layout>

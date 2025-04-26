@@ -3,72 +3,70 @@
 ---
 
 <script>
-	const button = document.getElementById("disableAnimationsBtn");
+  const button = document.getElementById("disableAnimationsBtn");
 
-	if (button) {
-		button.textContent = "stop animations";
-		//button.removeAttribute("disabled"); // moved to advanced settings page
+  if (button) {
+    button.textContent = "stop animations";
+    //button.removeAttribute("disabled"); // moved to advanced settings page
 
-		button.addEventListener("click", () => {
-			// Check if animations are currently disabled
-			const isDisabled =
-				document.body.classList.contains("animations-none");
+    button.addEventListener("click", () => {
+      // Check if animations are currently disabled
+      const isDisabled = document.body.classList.contains("animations-none");
 
-			if (isDisabled) {
-				// Re-enable animations
-				document.body.classList.remove("animations-none");
-				button.textContent = "stop animations";
-			} else {
-				// Disable animations
-				alert(
-					"If you do not truly NEED to disable animations, please re enable them. We worked hard on them and they are part of the experience.",
-				);
-				document.body.classList.add("animations-none");
-				document.body.style.cursor =
-					"url('/assets/svg/middlefinger.svg'), auto";
-				button.textContent = "re-enable animations (based)";
-			}
-		});
-	} else {
-		console.error('Button with id "disableAnimationsBtn" not found');
-	}
+      if (isDisabled) {
+        // Re-enable animations
+        document.body.classList.remove("animations-none");
+        button.textContent = "stop animations";
+      } else {
+        // Disable animations
+        alert(
+          "If you do not truly NEED to disable animations, please re enable them. We worked hard on them and they are part of the experience.",
+        );
+        document.body.classList.add("animations-none");
+        document.body.style.cursor =
+          "url('/assets/svg/middlefinger.svg'), auto";
+        button.textContent = "re-enable animations (based)";
+      }
+    });
+  } else {
+    console.error('Button with id "disableAnimationsBtn" not found');
+  }
 </script>
 
 <footer
-	class="text-center text-white py-8 flex-col items-center justify-center bg-grain-bg"
+  class="text-center text-white py-8 flex-col items-center justify-center bg-grain-bg"
 >
-	<hr class="animate-ping" />
+  <hr class="animate-ping" />
 
-	<div class="flex flex-col items-center lg:flex-row justify-center">
-		<button
-			id="disableAnimationsBtn"
-			class="mt-4 bg-grain-bg border-grain-border border-8 hover:cursor-not-allowed"
-			disabled
-		>
-			enable js you idiot
-		</button>
-		<a href="/advanced">
-			<button
-				class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900"
-			>
-				advanced settings
-			</button>
-		</a>
-		<img
-			src="/assets/img/hand.jpg"
-			alt="Hand"
-			class="w-64 h-64 animate-pulse"
-			style="animation-duration: 3s;"
-		/>
-		<h1 class="text-4xl font-bold mt-4">
-			we want your accuracy. we need your accuracy. we crave your
-			accuracy.
-		</h1>
-	</div>
-	<p class="text-center mt-4 text-white text-xl font-bold">
-		We are not responsible for any damage caused by the use of this website.
-		High amounts of accuracy can cause sudden brain damage, shattering of
-		all your known notions, shock induced heart attacks, and the forbidden
-		knowledge of the universe. Use at your own risk.
-	</p>
+  <div class="flex flex-col items-center lg:flex-row justify-center">
+    <button
+      id="disableAnimationsBtn"
+      class="mt-4 bg-grain-bg border-grain-border border-8 hover:cursor-not-allowed"
+      disabled
+    >
+      enable js you idiot
+    </button>
+    <a href="/advanced">
+      <button
+        class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900"
+      >
+        advanced settings
+      </button>
+    </a>
+    <img
+      src="/assets/img/hand.jpg"
+      alt="Hand"
+      class="w-64 h-64 animate-pulse"
+      style="animation-duration: 3s;"
+    />
+    <h1 class="text-4xl font-bold mt-4">
+      we want your accuracy. we need your accuracy. we crave your accuracy.
+    </h1>
+  </div>
+  <p class="text-center mt-4 text-white text-xl font-bold">
+    We are not responsible for any damage caused by the use of this website.
+    High amounts of accuracy can cause sudden brain damage, shattering of all
+    your known notions, shock induced heart attacks, and the forbidden knowledge
+    of the universe. Use at your own risk.
+  </p>
 </footer>

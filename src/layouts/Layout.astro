@@ -4,178 +4,174 @@ import { descriptions, authors } from "../ts/vars.ts";
 
 // Generate a random description on each page load
 const description =
-	descriptions[Math.floor(Math.random() * descriptions.length)];
+  descriptions[Math.floor(Math.random() * descriptions.length)];
 const author = authors[Math.floor(Math.random() * authors.length)];
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/assets/ico/grain.png" />
-		<meta name="description" content={description} />
-		<meta name="author" content={author} />
-		<meta
-			name="keywords"
-			content="accurate,linux,graphs,accurate linux graphs,accuratelinuxgraphs,accurate number,accurate number stage 2,accurate number stage 3,superaccurategraphs,charts,chart,ubuntu,linux,allthingslinux,all things linux,kaizen,accuracy records"
-		/>
-		<meta property="og:site_name" content={author} />
-		<meta property="og:title" content="accuratelinuxgraphs.com" />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://accuratelinuxgraphs.com/" />
-		<meta
-			property="og:image"
-			content="https://accuratelinuxgraphs.com/files/img/ico/grain.png"
-		/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/assets/ico/grain.png" />
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <meta
+      name="keywords"
+      content="accurate,linux,graphs,accurate linux graphs,accuratelinuxgraphs,accurate number,accurate number stage 2,accurate number stage 3,superaccurategraphs,charts,chart,ubuntu,linux,allthingslinux,all things linux,kaizen,accuracy records"
+    />
+    <meta property="og:site_name" content={author} />
+    <meta property="og:title" content="accuratelinuxgraphs.com" />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://accuratelinuxgraphs.com/" />
+    <meta
+      property="og:image"
+      content="https://accuratelinuxgraphs.com/files/img/ico/grain.png"
+    />
 
-		<title>{description}</title>
-	</head>
-	<body
-		class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
-	>
-		<slot />
-	</body>
+    <title>{description}</title>
+  </head>
+  <body
+    class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
+  >
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		background-image: url("../assets/img/tux.gif");
-		background-size: 100px;
-		background-repeat: repeat;
-		background-attachment: fixed;
-		cursor: url("../assets/svg/accuracy_cursor.svg"), auto;
-		overflow-x: hidden;
-	}
+  html,
+  body {
+    margin: 0;
+    background-image: url("../assets/img/tux.gif");
+    background-size: 100px;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    cursor: url("../assets/svg/accuracy_cursor.svg"), auto;
+    overflow-x: hidden;
+  }
 </style>
 
 <script>
-	// Run on page load to check advanced settings cookies and apply them
-	document.addEventListener("DOMContentLoaded", () => {
-		// Helper to get cookie value
-		const getCookieValue = (name: string) => {
-			const match = document.cookie
-				.split("; ")
-				.find((row) => row.startsWith(`${name}=`));
-			return match ? match.split("=")[1] : null;
-		};
+  // Run on page load to check advanced settings cookies and apply them
+  document.addEventListener("DOMContentLoaded", () => {
+    // Helper to get cookie value
+    const getCookieValue = (name: string) => {
+      const match = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${name}=`));
+      return match ? match.split("=")[1] : null;
+    };
 
-		// Check if advanced settings are enabled
-		const advancedEnabled = getCookieValue("toggleAdvanced") === "true";
+    // Check if advanced settings are enabled
+    const advancedEnabled = getCookieValue("toggleAdvanced") === "true";
 
-		if (advancedEnabled) {
-			// Check and apply animation settings
-			const animationsDisabled =
-				getCookieValue("toggleAnimations") === "true";
-			if (animationsDisabled) {
-				// Disable all animations except background animation
-				document.body.classList.add("animations-none");
-				document.body.style.cursor =
-					"url('/assets/svg/middlefinger.svg'), auto";
-				console.log("Animations disabled due to user preference");
-			}
+    if (advancedEnabled) {
+      // Check and apply animation settings
+      const animationsDisabled = getCookieValue("toggleAnimations") === "true";
+      if (animationsDisabled) {
+        // Disable all animations except background animation
+        document.body.classList.add("animations-none");
+        document.body.style.cursor =
+          "url('/assets/svg/middlefinger.svg'), auto";
+        console.log("Animations disabled due to user preference");
+      }
 
-			// Check and apply grain mode
-			const grainModeEnabled = getCookieValue("toggleGrain") === "true";
-			if (grainModeEnabled) {
-				// Replace all instances of "accuracy" and "accurate" with "grain"
-				applyGrainMode();
-				console.log("Grain mode activated");
-			}
+      // Check and apply grain mode
+      const grainModeEnabled = getCookieValue("toggleGrain") === "true";
+      if (grainModeEnabled) {
+        // Replace all instances of "accuracy" and "accurate" with "grain"
+        applyGrainMode();
+        console.log("Grain mode activated");
+      }
 
-			// if toggleAccuracy is true, apply accuracy mode
-			const accuracyModeEnabled =
-				getCookieValue("toggleAccuracy") === "true";
-			if (accuracyModeEnabled) {
-				// Add the class animate-vibrate2x to the body
-				applyAccuracyMode();
-				console.log("Accuracy mode activated");
-			}
-		}
-	});
+      // if toggleAccuracy is true, apply accuracy mode
+      const accuracyModeEnabled = getCookieValue("toggleAccuracy") === "true";
+      if (accuracyModeEnabled) {
+        // Add the class animate-vibrate2x to the body
+        applyAccuracyMode();
+        console.log("Accuracy mode activated");
+      }
+    }
+  });
 
-	// function to apply accuracy mode which adds the class animate-vibrate2x to the body
-	function applyAccuracyMode() {
-		const body = document.body;
-		body.classList.add("animate-true-widen");
-	}
+  // function to apply accuracy mode which adds the class animate-vibrate2x to the body
+  function applyAccuracyMode() {
+    const body = document.body;
+    body.classList.add("animate-true-widen");
+  }
 
-	// Function to apply grain mode by replacing text
-	function applyGrainMode() {
-		// Walk through all text nodes in the document
-		const walker = document.createTreeWalker(
-			document.body,
-			NodeFilter.SHOW_TEXT,
-			null,
-		);
+  // Function to apply grain mode by replacing text
+  function applyGrainMode() {
+    // Walk through all text nodes in the document
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      null,
+    );
 
-		const textNodes = [];
-		let node;
-		while ((node = walker.nextNode())) {
-			textNodes.push(node);
-		}
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) {
+      textNodes.push(node);
+    }
 
-		// Replace text in all found nodes
-		textNodes.forEach((textNode) => {
-			if (textNode.nodeValue) {
-				let text = textNode.nodeValue;
+    // Replace text in all found nodes
+    textNodes.forEach((textNode) => {
+      if (textNode.nodeValue) {
+        let text = textNode.nodeValue;
 
-				// Convert "accuracy" to "grain" (case insensitive)
-				text = text.replace(/accuracy/gi, (match) => {
-					// Preserve the case pattern
-					if (match.toLowerCase() === "accuracy") {
-						if (match === match.toUpperCase()) return "GRAIN";
-						if (
-							match ===
-							match.charAt(0).toUpperCase() +
-								match.slice(1).toLowerCase()
-						)
-							return "Grain";
-						return "grain";
-					}
-					return match;
-				});
+        // Convert "accuracy" to "grain" (case insensitive)
+        text = text.replace(/accuracy/gi, (match) => {
+          // Preserve the case pattern
+          if (match.toLowerCase() === "accuracy") {
+            if (match === match.toUpperCase()) return "GRAIN";
+            if (
+              match ===
+              match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+            )
+              return "Grain";
+            return "grain";
+          }
+          return match;
+        });
 
-				// Convert "accurate" to "grain" (case insensitive)
-				text = text.replace(/accurate/gi, (match) => {
-					// Preserve the case pattern
-					if (match.toLowerCase() === "accurate") {
-						if (match === match.toUpperCase()) return "GRAIN";
-						if (
-							match ===
-							match.charAt(0).toUpperCase() +
-								match.slice(1).toLowerCase()
-						)
-							return "Grain";
-						return "grain";
-					}
-					return match;
-				});
+        // Convert "accurate" to "grain" (case insensitive)
+        text = text.replace(/accurate/gi, (match) => {
+          // Preserve the case pattern
+          if (match.toLowerCase() === "accurate") {
+            if (match === match.toUpperCase()) return "GRAIN";
+            if (
+              match ===
+              match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+            )
+              return "Grain";
+            return "grain";
+          }
+          return match;
+        });
 
-				textNode.nodeValue = text;
-			}
-		});
+        textNode.nodeValue = text;
+      }
+    });
 
-		// Also rename the site title for extra grain goodness
-		document.title = document.title.replace(/accuracy|accurate/gi, "grain");
+    // Also rename the site title for extra grain goodness
+    document.title = document.title.replace(/accuracy|accurate/gi, "grain");
 
-		// Handle dynamically added content
-		const observer = new MutationObserver((mutations) => {
-			mutations.forEach((mutation) => {
-				if (mutation.type === "childList") {
-					// Re-apply grain mode to new content
-					applyGrainMode();
-				}
-			});
-		});
+    // Handle dynamically added content
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === "childList") {
+          // Re-apply grain mode to new content
+          applyGrainMode();
+        }
+      });
+    });
 
-		// Start observing the document for content changes
-		observer.observe(document.body, {
-			childList: true,
-			subtree: true,
-		});
-	}
+    // Start observing the document for content changes
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }
 </script>
