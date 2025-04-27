@@ -20,27 +20,6 @@
   --animate-ping-weird: rotate3d 60s linear infinite;
   --animate-rotate3d: rotate3d 25s linear infinite;
   --animate-true-widen: vibrate 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  --animate-guh: guh 1s linear infinite;
-
-  @keyframes guh {
-    0% {
-      filter: hue-rotate(0deg) brightness(100%) blur(2px);
-    }
-    25% {
-      filter: hue-rotate(18deg) saturate(110%) brightness(105%);
-    }
-    50% {
-      filter: hue-rotate(36deg) contrast(120%) saturate(120%) blur(5px);
-    }
-    75% {
-      filter: hue-rotate(54deg) brightness(110%) sepia(10%);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0.5) rotate(90deg);
-      filter: hue-rotate(72deg) brightness(100%) blur(2px);
-    }
-  }
 
   @keyframes move {
     0% {
