@@ -73,28 +73,34 @@ const fizzbuzz = (n: number) => {
   });
 
   // DVD logo bouncing animation - Enhanced with more randomness
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Create a container for all logos that will be on top of everything
-    const container = document.createElement('div');
-    container.className = 'logo-container';
+    const container = document.createElement("div");
+    container.className = "logo-container";
     document.body.appendChild(container);
-    
+
     const numLogos = 100;
-    
+    const allLogos = []; // Store all logo data for efficient collision detection
+    const animationDelays = []; // Store animation delays
+
     // Create logos immediately
     for (let i = 0; i < numLogos; i++) {
       // Create a new DVD logo element
-      const dvdLogo = document.createElement('div');
-      dvdLogo.className = 'dvd-logo';
-      
-      const size = Math.random() * 50;
-      
+      const dvdLogo = document.createElement("div");
+      dvdLogo.className = "dvd-logo";
+
+      const size = Math.random() * 75;
+
       // Random rotation
       const rotation = Math.random() * 360;
-      
+
       // Random opacity for some logos
       const opacity = Math.random() * 0.5 + 0.5; // Between 0.5 and 1.0
       
+      // Add animation delay
+      const animDelay = Math.random() * 5;
+      animationDelays.push(animDelay);
+
       // Use inline styles with more randomized properties
       dvdLogo.style.cssText = `
         position: absolute;
@@ -103,71 +109,155 @@ const fizzbuzz = (n: number) => {
         z-index: 9999;
         transform: rotate(${rotation}deg);
         opacity: ${opacity};
+        animation-delay: ${animDelay}s;
       `;
-      
-      dvdLogo.innerHTML = `<img src="/assets/svg/middlefinger.svg" alt="Bouncing Logo" width="${size}" height="${size}" />`;
+
+      dvdLogo.innerHTML = `<img src="/assets/ico/grain.png" alt="Bouncing Logo" width="${size}" height="${size}" />`;
       container.appendChild(dvdLogo);
-      
+
       // More random starting positions across the entire viewport
       let x = Math.random() * window.innerWidth;
       let y = Math.random() * window.innerHeight;
-      
+
       dvdLogo.style.left = `${x}px`;
       dvdLogo.style.top = `${y}px`;
-      
+
       // Much more random velocities - between -8 and 8 pixels per frame
-      let vx = (Math.random() * 8) * (Math.random() > 0.5 ? 1 : -1);
-      let vy = (Math.random() * 8) * (Math.random() > 0.5 ? 1 : -1);
-      
+      let vx = Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1);
+      let vy = Math.random() * 2 * (Math.random() > 0.5 ? 1 : -1);
+
       // Add random spin for some elements
       const shouldSpin = Math.random() > 0.7;
-      const spinSpeed = (Math.random() * 3) * (Math.random() > 0.5 ? 1 : -1);
+      const spinSpeed = Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1);
       let currentRotation = rotation;
+
+      // Store logo data in the array for efficient collision handling
+      allLogos.push({
+        element: dvdLogo,
+        x, y, vx, vy, size,
+        shouldSpin, spinSpeed, currentRotation,
+        lastCollision: 0 // Timestamp of last collision to prevent stuck logos
+      });
+    }
+
+    // Efficient circle-based collision check
+    function checkCollision(logo1, logo2) {
+      // Calculate distance between centers
+      const dx = logo1.x - logo2.x;
+      const dy = logo1.y - logo2.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
       
-      // Start animation immediately - no delay
-      function animate() {
+      // Check if distance is less than combined radii
+      return distance < (logo1.size / 2 + logo2.size / 2);
+    }
+
+    // Animation function
+    function animate() {
+      const now = performance.now();
+      
+      // Update all logos
+      for (let i = 0; i < allLogos.length; i++) {
+        const logo = allLogos[i];
+        
+        // Skip animation if we're still in the delay period
+        if (now < animationDelays[i] * 1000) continue;
+        
         // Update position
-        x += vx;
-        y += vy;
-        
+        logo.x += logo.vx;
+        logo.y += logo.vy;
+
         // Bounce off edges with slight velocity randomization
-        if (x <= 0 || x >= window.innerWidth - size) {
-          vx = -vx * (Math.random() * 0.2 + 0.9); // Add slight randomness to bounce
-          x = Math.max(0, Math.min(x, window.innerWidth - size));
+        if (logo.x <= 0 || logo.x >= window.innerWidth - logo.size) {
+          logo.vx = -logo.vx * (Math.random() * 0.2 + 0.9);
+          logo.x = Math.max(0, Math.min(logo.x, window.innerWidth - logo.size));
         }
-        if (y <= 0 || y >= window.innerHeight - size) {
-          vy = -vy * (Math.random() * 0.2 + 0.9); // Add slight randomness to bounce
-          y = Math.max(0, Math.min(y, window.innerHeight - size));
+        if (logo.y <= 0 || logo.y >= window.innerHeight - logo.size) {
+          logo.vy = -logo.vy * (Math.random() * 0.2 + 0.9);
+          logo.y = Math.max(0, Math.min(logo.y, window.innerHeight - logo.size));
         }
-        
+
         // Apply rotation if this element should spin
-        if (shouldSpin) {
-          currentRotation += spinSpeed;
-          dvdLogo.style.transform = `rotate(${currentRotation}deg)`;
+        if (logo.shouldSpin) {
+          logo.currentRotation += logo.spinSpeed;
+          logo.element.style.transform = `rotate(${logo.currentRotation}deg)`;
         }
-        
+
         // Update element position
-        dvdLogo.style.left = `${x}px`;
-        dvdLogo.style.top = `${y}px`;
-        
-        requestAnimationFrame(animate);
+        logo.element.style.left = `${logo.x}px`;
+        logo.element.style.top = `${logo.y}px`;
       }
       
-      // Start animation immediately
-      animate();
+      // Check for collisions - only check every 3rd frame to improve performance
+      if (now % 3 < 1) {
+        // Only check collisions between nearby logos (simple spatial optimization)
+        for (let i = 0; i < allLogos.length; i++) {
+          const logo1 = allLogos[i];
+          
+          // Skip logos that recently collided
+          if (now - logo1.lastCollision < 200) continue;
+          
+          for (let j = i + 1; j < allLogos.length; j++) {
+            const logo2 = allLogos[j];
+            
+            // Skip logos that recently collided
+            if (now - logo2.lastCollision < 200) continue;
+            
+            // Quick distance check before actual collision test (optimization)
+            const dx = logo1.x - logo2.x;
+            const dy = logo1.y - logo2.y;
+            if (Math.abs(dx) > logo1.size + logo2.size || 
+                Math.abs(dy) > logo1.size + logo2.size) {
+              continue; // Skip detailed check if definitely not colliding
+            }
+            
+            // Detailed collision check
+            if (checkCollision(logo1, logo2)) {
+              // Handle collision
+              logo1.lastCollision = now;
+              logo2.lastCollision = now;
+              
+              // Exchange velocities with some randomness
+              [logo1.vx, logo2.vx] = [
+                logo2.vx * (Math.random() * 0.2 + 0.9),
+                logo1.vx * (Math.random() * 0.2 + 0.9)
+              ];
+              [logo1.vy, logo2.vy] = [
+                logo2.vy * (Math.random() * 0.2 + 0.9),
+                logo1.vy * (Math.random() * 0.2 + 0.9)
+              ];
+              
+              // Push logos apart slightly to prevent sticking
+              const angle = Math.atan2(logo2.y - logo1.y, logo2.x - logo1.x);
+              const pushDistance = (logo1.size + logo2.size) / 2 - Math.sqrt(dx * dx + dy * dy);
+              
+              if (pushDistance > 0) {
+                logo1.x -= Math.cos(angle) * pushDistance * 0.5;
+                logo1.y -= Math.sin(angle) * pushDistance * 0.5;
+                logo2.x += Math.cos(angle) * pushDistance * 0.5;
+                logo2.y += Math.sin(angle) * pushDistance * 0.5;
+              }
+            }
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
     }
+
+    // Start animation immediately
+    animate();
   });
 </script>
 
 <Layout>
   <Header />
   <div class="items-center justify-center h-screen">
-    <h2 class="text-2xl font-bold mb-4">FizzBuzz Results (tornado warning)</h2>
+    <h2 class="text-2xl font-bold mb-4">FizzBuzz Results (grain warning)</h2>
     <ul class="list-disc">
       {
         fizzbuzz(50).map((item) => (
           <li
-            class="text-lg animate-spin"
+            class="text-lg animate-ping"
             style={{ animationDelay: `${Math.random() * 2}s` }}
           >
             <span class="animate-rotatewidenvibrate">{item}</span>
@@ -195,11 +285,17 @@ const fizzbuzz = (n: number) => {
     position: absolute;
     pointer-events: none;
     will-change: transform, left, top; /* Performance optimization */
+    animation: fadeIn 0.5s;
   }
-  
+
   .dvd-logo img {
     display: block;
     width: 100%;
     height: 100%;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.5; }
   }
 </style>
