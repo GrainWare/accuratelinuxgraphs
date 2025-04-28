@@ -96,7 +96,7 @@ const fizzbuzz = (n: number) => {
 
       // Random opacity for some logos
       const opacity = Math.random() * 0.5 + 0.5; // Between 0.5 and 1.0
-      
+
       // Add animation delay
       const animDelay = Math.random() * 5;
       animationDelays.push(animDelay);
@@ -134,9 +134,15 @@ const fizzbuzz = (n: number) => {
       // Store logo data in the array for efficient collision handling
       allLogos.push({
         element: dvdLogo,
-        x, y, vx, vy, size,
-        shouldSpin, spinSpeed, currentRotation,
-        lastCollision: 0 // Timestamp of last collision to prevent stuck logos
+        x,
+        y,
+        vx,
+        vy,
+        size,
+        shouldSpin,
+        spinSpeed,
+        currentRotation,
+        lastCollision: 0, // Timestamp of last collision to prevent stuck logos
       });
     }
 
@@ -146,22 +152,22 @@ const fizzbuzz = (n: number) => {
       const dx = logo1.x - logo2.x;
       const dy = logo1.y - logo2.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-      
+
       // Check if distance is less than combined radii
-      return distance < (logo1.size / 2 + logo2.size / 2);
+      return distance < logo1.size / 2 + logo2.size / 2;
     }
 
     // Animation function
     function animate() {
       const now = performance.now();
-      
+
       // Update all logos
       for (let i = 0; i < allLogos.length; i++) {
         const logo = allLogos[i];
-        
+
         // Skip animation if we're still in the delay period
         if (now < animationDelays[i] * 1000) continue;
-        
+
         // Update position
         logo.x += logo.vx;
         logo.y += logo.vy;
@@ -173,7 +179,10 @@ const fizzbuzz = (n: number) => {
         }
         if (logo.y <= 0 || logo.y >= window.innerHeight - logo.size) {
           logo.vy = -logo.vy * (Math.random() * 0.2 + 0.9);
-          logo.y = Math.max(0, Math.min(logo.y, window.innerHeight - logo.size));
+          logo.y = Math.max(
+            0,
+            Math.min(logo.y, window.innerHeight - logo.size),
+          );
         }
 
         // Apply rotation if this element should spin
@@ -186,50 +195,53 @@ const fizzbuzz = (n: number) => {
         logo.element.style.left = `${logo.x}px`;
         logo.element.style.top = `${logo.y}px`;
       }
-      
+
       // Check for collisions - only check every 3rd frame to improve performance
       if (now % 3 < 1) {
         // Only check collisions between nearby logos (simple spatial optimization)
         for (let i = 0; i < allLogos.length; i++) {
           const logo1 = allLogos[i];
-          
+
           // Skip logos that recently collided
           if (now - logo1.lastCollision < 200) continue;
-          
+
           for (let j = i + 1; j < allLogos.length; j++) {
             const logo2 = allLogos[j];
-            
+
             // Skip logos that recently collided
             if (now - logo2.lastCollision < 200) continue;
-            
+
             // Quick distance check before actual collision test (optimization)
             const dx = logo1.x - logo2.x;
             const dy = logo1.y - logo2.y;
-            if (Math.abs(dx) > logo1.size + logo2.size || 
-                Math.abs(dy) > logo1.size + logo2.size) {
+            if (
+              Math.abs(dx) > logo1.size + logo2.size ||
+              Math.abs(dy) > logo1.size + logo2.size
+            ) {
               continue; // Skip detailed check if definitely not colliding
             }
-            
+
             // Detailed collision check
             if (checkCollision(logo1, logo2)) {
               // Handle collision
               logo1.lastCollision = now;
               logo2.lastCollision = now;
-              
+
               // Exchange velocities with some randomness
               [logo1.vx, logo2.vx] = [
                 logo2.vx * (Math.random() * 0.2 + 0.9),
-                logo1.vx * (Math.random() * 0.2 + 0.9)
+                logo1.vx * (Math.random() * 0.2 + 0.9),
               ];
               [logo1.vy, logo2.vy] = [
                 logo2.vy * (Math.random() * 0.2 + 0.9),
-                logo1.vy * (Math.random() * 0.2 + 0.9)
+                logo1.vy * (Math.random() * 0.2 + 0.9),
               ];
-              
+
               // Push logos apart slightly to prevent sticking
               const angle = Math.atan2(logo2.y - logo1.y, logo2.x - logo1.x);
-              const pushDistance = (logo1.size + logo2.size) / 2 - Math.sqrt(dx * dx + dy * dy);
-              
+              const pushDistance =
+                (logo1.size + logo2.size) / 2 - Math.sqrt(dx * dx + dy * dy);
+
               if (pushDistance > 0) {
                 logo1.x -= Math.cos(angle) * pushDistance * 0.5;
                 logo1.y -= Math.sin(angle) * pushDistance * 0.5;
@@ -293,9 +305,13 @@ const fizzbuzz = (n: number) => {
     width: 100%;
     height: 100%;
   }
-  
+
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 0.5; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.5;
+    }
   }
 </style>
