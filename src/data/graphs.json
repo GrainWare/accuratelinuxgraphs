@@ -130,5 +130,9 @@
   {
     "graphImgUrl": "/assets/graphs/fedrorusers.png",
     "caption": "fedror users"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/graphs.png",
+    "caption": "accuracy of all time"
   }
 ]
