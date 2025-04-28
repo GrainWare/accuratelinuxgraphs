@@ -1,0 +1,40 @@
+---
+// for each image in data/graphs.json create a route for it
+/*
+  {
+    "graphImgUrl": "/assets/graphs/graphs.png",
+    "caption": "accuracy of all time"
+  },
+  would become
+  /files/img/graphs.png and would automatically be served
+*/
+
+import { astroCalledServerError } from "astro:actions";
+import graphsData from "../../../data/graphs.json";
+
+// Using the data from our JSON file
+const graphs = graphsData;
+
+// generate a list of all graph image paths
+// and also each just image filename
+const graphImagePaths = graphs.map((graph) => {
+  const url = new URL(graph.graphImgUrl, import.meta.url);
+  return url.pathname;
+});
+const graphImageFilenames = graphs.map((graph) => {
+  const url = new URL(graph.graphImgUrl, import.meta.url);
+  return url.pathname.split("/").pop();
+});
+console.log("graphImagePaths", graphImagePaths);
+console.log("graphImageFilenames", graphImageFilenames);
+
+export function getStaticPaths() {
+  return [
+    ...graphImagePaths.map((path) => ({
+      params: { img: path.split("/").pop() },
+    })),
+  ];
+}
+
+return Astro.redirect(`/assets/graphs/${Astro.params.img}`);
+
