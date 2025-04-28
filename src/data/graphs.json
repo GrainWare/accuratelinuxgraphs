@@ -134,5 +134,9 @@
   {
     "graphImgUrl": "/assets/graphs/graphs.png",
     "caption": "accuracy of all time"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/Linux.png",
+    "caption": "contbrituions to the linus kernel"
   }
 ]
