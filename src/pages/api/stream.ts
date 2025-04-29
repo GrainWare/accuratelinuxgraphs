@@ -7,6 +7,19 @@ export const GET: APIRoute = async ({ request }) => {
       const encoder = new TextEncoder();
       let isClosed = false;
 
+      // Add heartbeat interval to keep connection alive
+      const heartbeatInterval = setInterval(() => {
+        if (!isClosed) {
+          try {
+            controller.enqueue(encoder.encode(": heartbeat\n\n"));
+          } catch (error) {
+            console.error("Error sending heartbeat:", error);
+            clearInterval(heartbeatInterval);
+            isClosed = true;
+          }
+        }
+      }, 15000); // Send heartbeat every 15 seconds
+      
       const sendEvent = (data: any) => {
         // Double protection: check flag and try-catch the operation
         if (isClosed) return;
@@ -27,6 +40,8 @@ export const GET: APIRoute = async ({ request }) => {
       request.signal.addEventListener("abort", () => {
         // Mark as closed first
         isClosed = true;
+        // Clear the heartbeat interval
+        clearInterval(heartbeatInterval);
         // Unsubscribe from new messages - doing this synchronously
         ChatController.getInstance().unsubscribe(sendEvent);
 
@@ -42,8 +57,8 @@ export const GET: APIRoute = async ({ request }) => {
   return new Response(body, {
     headers: {
       "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
-      Connection: "keep-alive",
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      "Connection": "keep-alive",
     },
   });
 };

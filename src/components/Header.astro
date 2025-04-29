@@ -80,48 +80,60 @@ const messages = ChatController.getInstance().getMessages();
     const form = document.getElementById("chat");
     const input = document.getElementById("message");
     let lastSubmittedMessage = "";
+    
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      // Save the message BEFORE clearing the input
       lastSubmittedMessage = input.value;
-
+      
       fetch("/api/chat", {
         method: "POST",
         body: JSON.stringify({ message: input.value }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
       input.value = "";
       input.focus();
     });
 
-    const eventSource = new EventSource("/api/stream");
-    eventSource.onmessage = (event) => {
-      const messages = document.getElementById("messages");
-
-      // Create the new message element first
-      const li = document.createElement("li");
-      li.className = "text-sm text-white list-none text-left";
-
-      // Compare with the saved message
-      if (lastSubmittedMessage === JSON.parse(event.data)) {
-        li.innerText = "YOU: " + JSON.parse(event.data);
-        // Clear lastSubmittedMessage after it's been matched
-        lastSubmittedMessage = "";
-      } else {
-        li.innerText = JSON.parse(event.data);
-      }
-
-      // Add the new message
-      messages.appendChild(li);
-
-      // Then check if we need to remove old messages
-      while (messages.children.length > 5) {
-        messages.removeChild(messages.firstChild);
-      }
-    };
+    function setupEventSource() {
+      const eventSource = new EventSource("/api/stream");
+      
+      eventSource.onmessage = (event) => {
+        const messages = document.getElementById("messages");
+        
+        // Ignore heartbeats (empty messages)
+        if (!event.data) return;
+        
+        // Create the new message element
+        const li = document.createElement("li");
+        li.className = "text-sm text-white list-none text-left";
+        
+        // Compare with the saved message
+        if (lastSubmittedMessage === JSON.parse(event.data)) {
+          li.innerText = "YOU: " + JSON.parse(event.data);
+          lastSubmittedMessage = "";
+        } else {
+          li.innerText = JSON.parse(event.data);
+        }
+        
+        messages.appendChild(li);
+        
+        // Remove old messages
+        while (messages.children.length > 5) {
+          messages.removeChild(messages.firstChild);
+        }
+      };
+      
+      // Handle errors and reconnect if needed
+      eventSource.onerror = () => {
+        console.log("EventSource connection failed, reconnecting...");
+        eventSource.close();
+        // Reconnect after a short delay
+        setTimeout(setupEventSource, 2000);
+      };
+    }
+    
+    // Initial setup
+    setupEventSource();
   });
 </script>
 
