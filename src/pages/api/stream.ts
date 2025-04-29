@@ -1,0 +1,49 @@
+import type { APIRoute } from "astro";
+import ChatController from "../../controllers/chat";
+
+export const GET: APIRoute = async ({ request }) => {
+  const body = new ReadableStream({
+    start(controller) {
+      const encoder = new TextEncoder();
+      let isClosed = false;
+
+      const sendEvent = (data: any) => {
+        // Double protection: check flag and try-catch the operation
+        if (isClosed) return;
+
+        try {
+          const message = `data: ${JSON.stringify(data)}\n\n`;
+          controller.enqueue(encoder.encode(message));
+        } catch (error) {
+          // If we somehow reach here with a closed controller, mark as closed
+          console.error("Error sending event:", error);
+          isClosed = true;
+        }
+      };
+
+      // Subscribe to new messages
+      ChatController.getInstance().subscribe(sendEvent);
+
+      request.signal.addEventListener("abort", () => {
+        // Mark as closed first
+        isClosed = true;
+        // Unsubscribe from new messages - doing this synchronously
+        ChatController.getInstance().unsubscribe(sendEvent);
+
+        try {
+          controller.close();
+        } catch (error) {
+          console.error("Error closing controller:", error);
+        }
+      });
+    },
+  });
+
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive",
+    },
+  });
+};

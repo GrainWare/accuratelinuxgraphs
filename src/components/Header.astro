@@ -1,5 +1,6 @@
 ---
 import { authors } from "../ts/vars";
+import ChatController from "../controllers/chat";
 
 // math equation to generate the accurate number of the day
 const x = new Date().getDate();
@@ -20,6 +21,8 @@ if (Math.random() < 0.1) {
 
 let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: bold;`;
 const author = authors[Math.floor(Math.random() * authors.length)];
+
+const messages = ChatController.getInstance().getMessages();
 ---
 
 <script>
@@ -70,6 +73,56 @@ const author = authors[Math.floor(Math.random() * authors.length)];
   } else {
     console.error('Button with id "accuRotateBtn" not found');
   }
+</script>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("chat");
+    const input = document.getElementById("message");
+    let lastSubmittedMessage = "";
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // Save the message BEFORE clearing the input
+      lastSubmittedMessage = input.value;
+
+      fetch("/api/chat", {
+        method: "POST",
+        body: JSON.stringify({ message: input.value }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      input.value = "";
+      input.focus();
+    });
+
+    const eventSource = new EventSource("/api/stream");
+    eventSource.onmessage = (event) => {
+      const messages = document.getElementById("messages");
+
+      // Create the new message element first
+      const li = document.createElement("li");
+      li.className = "text-sm text-white list-none text-left";
+
+      // Compare with the saved message
+      if (lastSubmittedMessage === JSON.parse(event.data)) {
+        li.innerText = "YOU: " + JSON.parse(event.data);
+        // Clear lastSubmittedMessage after it's been matched
+        lastSubmittedMessage = "";
+      } else {
+        li.innerText = JSON.parse(event.data);
+      }
+
+      // Add the new message
+      messages.appendChild(li);
+
+      // Then check if we need to remove old messages
+      while (messages.children.length > 5) {
+        messages.removeChild(messages.firstChild);
+      }
+    };
+  });
 </script>
 
 <header class="text-center text-white py-8">
@@ -141,21 +194,41 @@ const author = authors[Math.floor(Math.random() * authors.length)];
         title="Ad"
       /></a
     >
-  </div>
-  <audio loop id="accuRotateAudio" class="hidden">
-    <source
-      src="/assets/audio/extremebinarydrumandbass.mp3"
-      type="audio/mp3"
-      id="accuRotateAudio2"
-    />
-    Your browser does not support the audio element. Seek help.
-  </audio>
-  <p class="invisible" id="credits">
-    AccuRotate Audio Credit: <a
-      href="https://opengameart.org/content/extreme-binary-dnb"
-      >Gobusto - Extreme Binary DnB</a
-    >
-  </p>
 
-  <hr class="animate-ping" />
+    <div class="bg-grain-panel rounded-lg p-4 mt-4">
+      <h2 class="text-xl font-bold mb-2">Chat</h2>
+      <ul id="messages" class="list-disc pl-5 font-bold bg-grain-bg">
+        {
+          messages.map((message) => (
+            <li class="text-sm text-white list-none text-left">{message}</li>
+          ))
+        }
+      </ul>
+      <form id="chat">
+        <input
+          type="text"
+          id="message"
+          class="border border-gray-300 rounded px-2 py-1 w-full mt-2"
+          placeholder="Type your message here..."
+        />
+        <input type="submit" hidden />
+      </form>
+    </div>
+    <audio loop id="accuRotateAudio" class="hidden">
+      <source
+        src="/assets/audio/extremebinarydrumandbass.mp3"
+        type="audio/mp3"
+        id="accuRotateAudio2"
+      />
+      Your browser does not support the audio element. Seek help.
+    </audio>
+    <p class="invisible" id="credits">
+      AccuRotate Audio Credit: <a
+        href="https://opengameart.org/content/extreme-binary-dnb"
+        >Gobusto - Extreme Binary DnB</a
+      >
+    </p>
+
+    <hr class="animate-ping" />
+  </div>
 </header>
