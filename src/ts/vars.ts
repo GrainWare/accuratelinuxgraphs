@@ -10,6 +10,17 @@ stats.atl.dev
 atl.moe
 ARG Solutions (Alpine Regional Group)
 持續改善`,
+  "accuracy is the answer",
+  "accuracy is the question, and we are the answer",
+  'BUY OUR ALBUM "ACCURACY IS DEAD" TODAY! AVAILABLE NOW AT https://store.accuratelinuxgraphs.com/ FOR ONLY $9999.99!!!',
+  'ACCURACY MEANS BUYING OUR ALBUM "ACCURACY IS DEAD" TODAY! AVAILABLE NOW AT https://store.accuratelinuxgraphs.com/ FOR ONLY $9999.99!!!',
+  'only inaccurate idiots don\'t buy our album "ACCURACY IS DEAD" today! available now at https://store.accuratelinuxgraphs.com/ for only $9999.99!!!',
+  '$$$$ HAVE MONEY? BUY OUR ALBUM "ACCURACY IS DEAD" TODAY! AVAILABLE NOW AT https://store.accuratelinuxgraphs.com/ FOR ONLY $9999.99!!! $$$$',
+  "just buy our album already",
+  'accuratelinuxgraphs.com, buy our album "ACCURACY IS DEAD" today! available now at https://store.accuratelinuxgraphs.com/ for only $9999.99!!!',
+  "ACCURACY IS DEAD",
+  "FUCK INACCURACY",
+  "ACCURACY CERTIFIED ACCURACY FOR ONLY 5 DOLLAR",
 ];
 
 export const authors = [

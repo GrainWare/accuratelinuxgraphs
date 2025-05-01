@@ -1,11 +1,16 @@
 ---
 import "../styles/global.css";
 import { descriptions, authors } from "../ts/vars.ts";
+import graphsData from "../data/graphs.json";
+import Markov from "../ts/markov";
 
-// Generate a random description on each page load
-const description =
-  descriptions[Math.floor(Math.random() * descriptions.length)];
 const author = authors[Math.floor(Math.random() * authors.length)];
+
+const graphCaptions = graphsData.map((g) => g.caption);
+const trainingData = [...graphCaptions, ...descriptions, ...authors];
+const markov = new Markov();
+await markov.load(trainingData);
+const markovText = markov.generate(50);
 ---
 
 <!doctype html>
@@ -14,7 +19,7 @@ const author = authors[Math.floor(Math.random() * authors.length)];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/assets/ico/grain.png" />
-    <meta name="description" content={description} />
+    <meta name="description" content={markovText} />
     <meta name="author" content={author} />
     <meta
       name="keywords"
@@ -22,7 +27,7 @@ const author = authors[Math.floor(Math.random() * authors.length)];
     />
     <meta property="og:site_name" content={author} />
     <meta property="og:title" content="accuratelinuxgraphs.com" />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={markovText} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://accuratelinuxgraphs.com/" />
     <meta
@@ -30,7 +35,7 @@ const author = authors[Math.floor(Math.random() * authors.length)];
       content="https://accuratelinuxgraphs.com/files/img/ico/grain.png"
     />
 
-    <title>{description}</title>
+    <title>{markovText}</title>
   </head>
   <body
     class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
@@ -80,98 +85,64 @@ const author = authors[Math.floor(Math.random() * authors.length)];
       // Check and apply grain mode
       const grainModeEnabled = getCookieValue("toggleGrain") === "true";
       if (grainModeEnabled) {
-        // Replace all instances of "accuracy" and "accurate" with "grain"
         applyGrainMode();
         console.log("Grain mode activated");
       }
 
-      // if toggleAccuracy is true, apply accuracy mode
+      // Check and apply accuracy mode
       const accuracyModeEnabled = getCookieValue("toggleAccuracy") === "true";
       if (accuracyModeEnabled) {
-        // Add the class animate-vibrate2x to the body
         applyAccuracyMode();
         console.log("Accuracy mode activated");
       }
     }
   });
 
-  // function to apply accuracy mode which adds the class animate-vibrate2x to the body
   function applyAccuracyMode() {
-    const body = document.body;
-    body.classList.add("animate-true-widen");
+    document.body.classList.add("animate-true-widen");
   }
 
-  // Function to apply grain mode by replacing text
   function applyGrainMode() {
-    // Walk through all text nodes in the document
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_TEXT,
       null,
     );
-
     const textNodes = [];
     let node;
     while ((node = walker.nextNode())) {
       textNodes.push(node);
     }
-
-    // Replace text in all found nodes
     textNodes.forEach((textNode) => {
       if (textNode.nodeValue) {
         let text = textNode.nodeValue;
-
-        // Convert "accuracy" to "grain" (case insensitive)
         text = text.replace(/accuracy/gi, (match) => {
-          // Preserve the case pattern
-          if (match.toLowerCase() === "accuracy") {
-            if (match === match.toUpperCase()) return "GRAIN";
-            if (
-              match ===
-              match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
-            )
-              return "Grain";
-            return "grain";
-          }
-          return match;
+          if (match === match.toUpperCase()) return "GRAIN";
+          if (
+            match ===
+            match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+          )
+            return "Grain";
+          return "grain";
         });
-
-        // Convert "accurate" to "grain" (case insensitive)
         text = text.replace(/accurate/gi, (match) => {
-          // Preserve the case pattern
-          if (match.toLowerCase() === "accurate") {
-            if (match === match.toUpperCase()) return "GRAIN";
-            if (
-              match ===
-              match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
-            )
-              return "Grain";
-            return "grain";
-          }
-          return match;
+          if (match === match.toUpperCase()) return "GRAIN";
+          if (
+            match ===
+            match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+          )
+            return "Grain";
+          return "grain";
         });
-
         textNode.nodeValue = text;
       }
     });
-
-    // Also rename the site title for extra grain goodness
     document.title = document.title.replace(/accuracy|accurate/gi, "grain");
-
-    // Handle dynamically added content
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === "childList") {
-          // Re-apply grain mode to new content
-          applyGrainMode();
-        }
+        if (mutation.type === "childList") applyGrainMode();
       });
     });
-
-    // Start observing the document for content changes
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 </script>

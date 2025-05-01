@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ request }) => {
           }
         }
       }, 15000); // Send heartbeat every 15 seconds
-      
+
       const sendEvent = (data: any) => {
         // Double protection: check flag and try-catch the operation
         if (isClosed) return;
@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ request }) => {
     headers: {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache, no-store, must-revalidate",
-      "Connection": "keep-alive",
+      Connection: "keep-alive",
     },
   });
 };

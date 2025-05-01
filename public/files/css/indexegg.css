@@ -1,4 +1,4 @@
-@import url('animegg.css');
+@import url("animegg.css");
 
 header {
   animation: flash 0.5s infinite step-end;
@@ -18,16 +18,16 @@ body {
   background-color: #544b20;
   /* add files/img/tux.gif as a repeating background image at size 100px */
   /* it will also slowly move to the bottom right infinitely linearly */
-  background-image: url('../img/tux.gif');
+  background-image: url("../img/tux.gif");
   background-size: 100px;
   background-repeat: repeat;
   background-attachment: fixed;
   animation: move 2.5s infinite linear;
   color: white;
   text-align: center;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   max-width: 100vw;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .main-content {
@@ -59,17 +59,16 @@ body {
   animation-direction: alternate;
 }
 
-
 .main-content .graph .graph-download-button {
   width: 20vw;
 }
 
 .main-content .graph .graph-download-button img {
   width: 20vw;
-  animation: download-button-swag 2s infinite cubic-bezier(.79,.14,.15,.86);
+  animation: download-button-swag 2s infinite
+    cubic-bezier(0.79, 0.14, 0.15, 0.86);
   animation-direction: alternate;
 }
-
 
 .main-content .graph .graph-download-button:hover {
   animation: download-button-swag 0.5s infinite linear;
