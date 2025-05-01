@@ -19,8 +19,11 @@ ARG Solutions (Alpine Regional Group)
   "just buy our album already",
   'accuratelinuxgraphs.com, buy our album "ACCURACY IS DEAD" today! available now at https://store.accuratelinuxgraphs.com/ for only $9999.99!!!',
   "ACCURACY IS DEAD",
-  "FUCK INACCURACY",
+  "INACCURACY",
   "ACCURACY CERTIFIED ACCURACY FOR ONLY 5 DOLLAR",
+  "WHAT IS ACCURACY? NOT OUR PROBLEM",
+  'ACCURACY IS THE ONLY WAY. INACCURACY WILL CONSUME YOU UNLESS YOU BUY OUR ALBUM "ACCURACY IS DEAD" TODAY! AVAILABLE NOW AT https://store.accuratelinuxgraphs.com/ FOR ONLY $9999.99!!!',
+  "INACCURAC IS BAD",
 ];
 
 export const authors = [

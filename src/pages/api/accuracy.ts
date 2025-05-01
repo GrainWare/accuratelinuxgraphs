@@ -1,12 +1,19 @@
 import type { APIRoute } from "astro";
 import Markov from "../../ts/markov";
 import graphsData from "../../data/graphs.json";
-import { descriptions } from "../../ts/vars";
+import { descriptions, authors } from "../../ts/vars";
 
 export const GET: APIRoute = async () => {
   // Prepare training data: graph captions + descriptions
-  const captions = graphsData.map(g => g.caption);
-  const trainingData = [...captions, ...descriptions];
+  const captions = graphsData.map((g) => g.caption);
+  // include captions, descriptions, authors, and full JSON of graph entries
+  const graphJsonStrings = graphsData.map((g) => JSON.stringify(g));
+  const trainingData = [
+    ...captions,
+    ...descriptions,
+    ...authors,
+    ...graphJsonStrings,
+  ];
 
   // Initialize and load Markov model
   const markov = new Markov();
