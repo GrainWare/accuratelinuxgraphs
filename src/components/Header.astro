@@ -9,19 +9,6 @@ const trainingData = [...graphCaptions, ...descriptions, ...authors];
 const markov = new Markov();
 await markov.load(trainingData);
 const markovText = markov.generate(10);
-const markovText2 = await generateByLetter(trainingData, 50);
-
-// kind of alternate between the two to make a hybrid
-// for each word 50% of the time use markovText2
-const randomText = markovText
-  .split(" ")
-  .map((word, index) => {
-    if (Math.random() < 0.5) {
-      return markovText2.split(" ")[index] || word;
-    }
-    return word;
-  })
-  .join(" ");
 
 // math equation to generate the accurate number of the day
 const x = new Date().getDate();
@@ -162,7 +149,7 @@ const messages = ChatController.getInstance().getMessages();
 <header class="text-center text-white py-8">
   <h1 class="text-3xl font-bold text-grain-text hover:animate-vibrate2x">
     <a href="/fizzbuzz" class="hover:underline">accuratelinuxgraphs.com</a>
-    <p>{randomText}</p>
+    <p>{markovText}</p>
   </h1>
 
   <p class="text-lg mt-2">
