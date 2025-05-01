@@ -1,3 +1,4 @@
 #!/bin/bash
 npm run build
-npx wrangler deploy
+touch dist/.assetsignore
+npx wrangler deploy 
