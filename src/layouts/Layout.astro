@@ -10,7 +10,7 @@ const graphCaptions = graphsData.map((g) => g.caption);
 const trainingData = [...graphCaptions, ...descriptions, ...authors];
 const markov = new Markov();
 await markov.load(trainingData);
-const markovText = markov.generate(50);
+const markovText = markov.generate(500);
 ---
 
 <!doctype html>
