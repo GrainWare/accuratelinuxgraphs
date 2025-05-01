@@ -6,12 +6,10 @@ import { descriptions, authors } from "../../ts/vars";
 export const GET: APIRoute = async () => {
   // Prepare training data: graph captions + descriptions
   const captions = graphsData.map((g) => g.caption);
-  const imageUrls = graphsData.map((g) => g.graphImgUrl);
   const trainingData = [
     ...captions,
     ...descriptions,
     ...authors,
-    ...imageUrls,
   ];
 
   // Initialize and load Markov model
