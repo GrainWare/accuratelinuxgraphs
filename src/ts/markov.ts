@@ -47,7 +47,7 @@ export default class Markov {
   }
 
   public add(str: string): boolean {
-    const s = str.trim();
+    const s = str.trim().toLowerCase();
     if (!s) return false;
     const words = s.split(/\s+/);
     this.beginnings.push(words[0]);
