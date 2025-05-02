@@ -1,3 +1,6 @@
+import Graph from "graphology";
+import { write } from "graphology-gexf";
+
 // markov
 // this is 100% accuracy certified
 
@@ -77,6 +80,38 @@ export default class Markov {
       return this.generate(maxWords);
     this.prevString = sentence;
     return sentence;
+  }
+
+  public toDot(): string {
+    let dot = "digraph Markov {";
+    for (const [word, nexts] of Object.entries(this.mappings)) {
+      const counts: Record<string, number> = {};
+      for (const nxt of nexts) counts[nxt] = (counts[nxt] || 0) + 1;
+      for (const [nxt, count] of Object.entries(counts)) {
+        dot += `"${word}" -> "${nxt}" [label="${count}"];`;
+      }
+    }
+    dot += "}";
+    return dot;
+  }
+
+  // Add GEXF export using graphology with normalized edge chances
+  public toGEXF(): string {
+    const graph = new Graph({ type: "directed", multi: false });
+    for (const [source, nexts] of Object.entries(this.mappings)) {
+      if (!graph.hasNode(source)) graph.addNode(source);
+      // Count occurrences
+      const counts: Record<string, number> = {};
+      for (const nxt of nexts) counts[nxt] = (counts[nxt] || 0) + 1;
+      const total = nexts.length;
+      for (const [target, count] of Object.entries(counts)) {
+        if (!graph.hasNode(target)) graph.addNode(target);
+        // probability as weight
+        const weight = count / total;
+        graph.addEdge(source, target, { weight });
+      }
+    }
+    return write(graph);
   }
 }
 
