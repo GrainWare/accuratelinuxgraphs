@@ -10,6 +10,9 @@ export const GET: APIRoute = async () => {
   await markov.load(trainingData);
   const gexf = markov.toGEXF();
   return new Response(gexf, {
-    headers: { "Content-Type": "application/gexf+xml; charset=utf-8", "Access-Control-Allow-Origin": "*" },
+    headers: {
+      "Content-Type": "application/gexf+xml; charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+    },
   });
 };

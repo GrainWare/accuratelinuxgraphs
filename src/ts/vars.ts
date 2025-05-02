@@ -30,6 +30,26 @@ ARG Solutions (Alpine Regional Group)
   "ACCURACY IS life",
   "ACCURACY IS LOVE",
   "ACCURACY IS PRIORITY!!!!!!!!!!!!!!!!!!!!!",
+  `the word of the accuracy is the accuracy below
+enable accurotate technology
+YOUR source for the most ACCURATE linux graphs around. 
+Accurate Number: 1.6056338028169014e-18. Very accurate
+Accuracy Percentage: 10116.052576073647%. Very accurate
+accurate linux graph
+we want your accuracy. we need your accuracy. we crave your accuracy.
+We are not responsible for any damage caused by the use of this website. High amounts of accuracy can cause sudden brain damage, shattering of all your known notions, shock induced heart attacks, and the forbidden knowledge of the universe. Use at your own risk.
+BUY NOW! SO ACCURATE!
+BUY OUR BOOK
+BUY OUR SONG
+BUY OUR ALBUM
+Checking out... this will take a long while...
+COOL LINUX FACT!
+linux was created by linus torvalds in 1935
+click linus for more info
+FizzBuzz Results (grain warning)
+Welcome to stats.atl.dev! So accurate
+This tracks how much different users ping/reply ping each other in the All Things Linux server. The more a user pings another user, the closer they are in the graph and the thicker the line between them.
+  `,
 ];
 
 export const authors = [
