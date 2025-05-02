@@ -8,6 +8,11 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
+  server: {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
   integrations: [react()],
   adapter: cloudflare(),
   output: "server",
@@ -22,10 +27,5 @@ export default defineConfig({
         : undefined,
     },
     plugins: [tailwindcss()],
-  },
-  server: {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
   },
 });
