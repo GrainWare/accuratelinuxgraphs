@@ -99,13 +99,13 @@ export default class Markov {
   public toGEXF(): string {
     const graph = new Graph({ type: "directed", multi: false });
     for (const [source, nexts] of Object.entries(this.mappings)) {
-      if (!graph.hasNode(source)) graph.addNode(source);
+      if (!graph.hasNode(source)) graph.addNode(source, { label: source });
       // Count occurrences
       const counts: Record<string, number> = {};
       for (const nxt of nexts) counts[nxt] = (counts[nxt] || 0) + 1;
       const total = nexts.length;
       for (const [target, count] of Object.entries(counts)) {
-        if (!graph.hasNode(target)) graph.addNode(target);
+        if (!graph.hasNode(target)) graph.addNode(target, { label: target });
         // probability as weight
         const weight = count / total;
         graph.addEdge(source, target, { weight });
