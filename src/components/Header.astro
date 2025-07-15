@@ -44,6 +44,11 @@ const messages = ChatController.getInstance().getMessages();
     button.removeAttribute("disabled");
 
     button.addEventListener("click", () => {
+      if (document.cookie.includes("toggleUltraUI=true")) {
+        alert("Unfortunately, any more accuracy would instantly kill anyone. Accurotate will not be enabled for your own safety.");
+        return;
+      }
+
       const isEnabled = document.body.classList.contains("animate-rotate3d");
 
       if (isEnabled) {
@@ -82,6 +87,57 @@ const messages = ChatController.getInstance().getMessages();
   } else {
     console.error('Button with id "accuRotateBtn" not found');
   }
+
+  // Ultra UI button toggle functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const ultraUIButton = document.getElementById("toggleUltraUI");
+
+    if (ultraUIButton) {
+      // Enable the button
+      ultraUIButton.removeAttribute("disabled");
+
+      // Helper to get cookie value
+      const getCookieValue = (name: string) => {
+        const match = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith(`${name}=`));
+        return match ? match.split("=")[1] : null;
+      };
+
+      // Helper to set cookie
+      const setCookie = (name: string, value: string) => {
+        document.cookie = `${name}=${value}; path=/; max-age=${60 * 60 * 24 * 365}`;
+      };
+
+      // Check initial state and update button text
+      const updateButtonState = () => {
+        const isEnabled = getCookieValue("toggleUltraUI") === "true";
+        ultraUIButton.textContent = isEnabled
+          ? "Disable Ultra UI (Experimental)"
+          : "Enable Ultra UI (Experimental)";
+      };
+
+      // Set initial state
+      updateButtonState();
+
+      // Add click event listener
+      ultraUIButton.addEventListener("click", () => {
+        const currentState = getCookieValue("toggleUltraUI") === "true";
+        const newState = !currentState;
+
+        // Set the cookie
+        setCookie("toggleUltraUI", newState.toString());
+
+        // Update button state
+        updateButtonState();
+
+        // reload the page to apply changes
+        window.location.reload();
+
+        console.log(`Ultra UI ${newState ? "enabled" : "disabled"}`);
+      });
+    }
+  });
 </script>
 
 <script is:inline>
@@ -147,9 +203,21 @@ const messages = ChatController.getInstance().getMessages();
 </script>
 
 <header class="text-center text-white py-8">
-  <h1 class="text-3xl font-bold text-grain-text hover:animate-vibrate2x">
-    <a href="/fizzbuzz" class="hover:underline">accuratelinuxgraphs.com</a>
-    <p>{markovText}</p>
+  <h1 class="text-3xl font-bold text-grain-text">
+    <a href="/fizzbuzz" class="hover:underline hover:animate-vibrate2x"
+      >accuratelinuxgraphs.com</a
+    >
+    <p class="hover:animate-vibrate2x">{markovText}</p>
+
+    <button
+      id="toggleUltraUI"
+      class="backdrop-blur-lg rounded-2xl m-4 p-3 text-white font-light text-xl bg-white/15
+        border-2 border-gradient-to-r border-gray-500 hover:border-gray-200 transition-all duration-300
+        ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl"
+      disabled
+    >
+      <span class="relative z-10">Enable Ultra UI (Experimental)</span>
+    </button>
   </h1>
 
   <p class="text-lg mt-2">

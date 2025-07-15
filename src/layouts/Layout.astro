@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/hdr-effects.css";
 import { descriptions, authors } from "../ts/vars.ts";
 import graphsData from "../data/graphs.json";
 import Markov from "../ts/markov";
@@ -144,5 +145,19 @@ const markovText = markov.generate(500);
       });
     });
     observer.observe(document.body, { childList: true, subtree: true });
+  }
+</script>
+
+<script>
+  // HDR Image Processing - Client Side
+  import { ClientHDRProcessor } from "../ts/client-hdr.ts";
+
+  // Initialize HDR processing when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      ClientHDRProcessor.getInstance().init();
+    });
+  } else {
+    ClientHDRProcessor.getInstance().init();
   }
 </script>

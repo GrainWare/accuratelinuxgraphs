@@ -1,0 +1,108 @@
+/* HDR effect using CSS/* Ultra HDR effect - more extreme */
+.hdr-ultr/* HDR effect using CSS filters */
+.hdr-processed {
+  filter: brightness(1.5) contrast(1.2) saturate(1.3) sepia(0.1)
+    hue-rotate(5deg);
+
+  /* Add a subtle glow effect */
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark image inversion */
+.hdr-inverted {
+  filter: invert(1) brightness(1.2) contrast(1.1);
+}
+
+/* Ultra HDR effect - more extreme */
+.hdr-ultra {
+  filter: brightness(5) contrast(3) saturate(4) sepia(0.5) hue-rotate(20deg)
+    drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+
+  /* Animated glow */
+  animation: hdr-glow 3s ease-in-out infinite alternate;
+  filter: hue-rotate(5deg);
+
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark image inversion */
+.hdr-inverted {
+  filter: invert(1) brightness(1.2) contrast(1.1);
+}
+
+/* Ultra HDR effect - more extreme */
+.hdr-ultra {
+  filter: brightness(4) contrast(2.5) saturate(3) sepia(0.4) hue-rotate(20deg)
+    drop-shadow(0 0 20px rgba(255, 255, 255, 1));
+
+  /* Animated glow */
+  animation: hdr-glow 3s ease-in-out infinite alternate;
+}
+
+/* HDR effects for background images */
+.hdr-background {
+  filter: brightness(1.8) contrast(1.4) saturate(1.6) sepia(0.15)
+    hue-rotate(8deg);
+}
+
+/* Ultra HDR background effect */
+.hdr-background-ultra {
+  filter: brightness(2.2) contrast(1.6) saturate(2) sepia(0.3) hue-rotate(15deg);
+
+  animation: hdr-background-glow 4s ease-in-out infinite alternate;
+}
+
+/* Inverted HDR background effect for dark backgrounds - SUPER BRIGHT */
+.hdr-background-inverted,
+.bg-grain-bg.hdr-background-inverted {
+  filter: invert(1) brightness(6) contrast(3) saturate(4) sepia(0.5)
+    hue-rotate(25deg) drop-shadow(0 0 40px rgba(255, 255, 255, 1)) !important;
+
+  animation: hdr-background-inverted-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes hdr-glow {
+  0% {
+    filter: brightness(4) contrast(2.5) saturate(3) sepia(0.4) hue-rotate(20deg)
+      drop-shadow(0 0 20px rgba(255, 255, 255, 1));
+  }
+  100% {
+    filter: brightness(5) contrast(3) saturate(3.5) sepia(0.6) hue-rotate(30deg)
+      drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+  }
+}
+
+@keyframes hdr-background-glow {
+  0% {
+    filter: brightness(2.2) contrast(1.6) saturate(2) sepia(0.3)
+      hue-rotate(15deg);
+  }
+  100% {
+    filter: brightness(2.5) contrast(1.8) saturate(2.2) sepia(0.4)
+      hue-rotate(20deg);
+  }
+}
+
+@keyframes hdr-background-inverted-glow {
+  0% {
+    filter: invert(1) brightness(6) contrast(3) saturate(4) sepia(0.5)
+      hue-rotate(25deg) drop-shadow(0 0 40px rgba(255, 255, 255, 1));
+  }
+  100% {
+    filter: invert(1) brightness(8) contrast(4) saturate(5) sepia(0.7)
+      hue-rotate(40deg) drop-shadow(0 0 60px rgba(255, 255, 255, 1));
+  }
+}
+
+/* Ensure images transition smoothly when HDR is applied */
+img,
+body,
+html {
+  transition:
+    filter 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
