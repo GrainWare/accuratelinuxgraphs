@@ -204,12 +204,50 @@ const messages = ChatController.getInstance().getMessages();
   });
 </script>
 
+<script is:inline>
+  window.requestAnimFrame = (function () {
+    return (
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.ieRequestAnimationFrame ||
+      function (callback) {
+        window.setTimeout(callback, 1000 / 60);
+      }
+    );
+  })();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const fpsElement = document.getElementById("fps");
+    if (!fpsElement) {
+      console.warn('Element with id "fps" not found');
+      return;
+    }
+
+    let then = Date.now() / 1000;
+
+    function render() {
+      const now = Date.now() / 1000;
+      const elapsedTime = Math.max(now - then, 0.000001);
+      then = now;
+
+      const fps = 1 / elapsedTime;
+      fpsElement.textContent = "FPS: " + fps.toFixed(2);
+
+      requestAnimFrame(render);
+    }
+
+    render();
+  });
+</script>
+
 <header class="text-center text-white py-8">
   <h1 class="text-3xl font-bold text-grain-text">
     <a href="/fizzbuzz" class="hover:underline hover:animate-vibrate2x"
       >accuratelinuxgraphs.com</a
     >
     <p class="hover:animate-vibrate2x">{markovText}</p>
+    <h2 class="text-xl font-bold mb-2 animate-rainbow text-red-300" id="fps"></h2>
 
     <button
       id="toggleUltraUI"
