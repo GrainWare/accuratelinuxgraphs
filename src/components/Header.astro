@@ -1,7 +1,6 @@
 ---
 import { authors, descriptions } from "../ts/vars";
-import ChatController from "../controllers/chat";
-import Markov, { generateByLetter } from "../ts/markov";
+import Markov from "../ts/markov";
 import graphsData from "../data/graphs.json";
 
 const graphCaptions = graphsData.map((g) => g.caption);
@@ -28,8 +27,6 @@ if (Math.random() < 0.1) {
 }
 
 let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: bold;`;
-
-const messages = ChatController.getInstance().getMessages();
 ---
 
 <script>
@@ -143,68 +140,6 @@ const messages = ChatController.getInstance().getMessages();
 </script>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("chat");
-    const input = document.getElementById("message");
-    let lastSubmittedMessage = "";
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      lastSubmittedMessage = input.value;
-
-      fetch("/api/chat", {
-        method: "POST",
-        body: JSON.stringify({ message: input.value }),
-        headers: { "Content-Type": "application/json" },
-      });
-      input.value = "";
-      input.focus();
-    });
-
-    function setupEventSource() {
-      const eventSource = new EventSource("/api/stream");
-
-      eventSource.onmessage = (event) => {
-        const messages = document.getElementById("messages");
-
-        // Ignore heartbeats (empty messages)
-        if (!event.data) return;
-
-        // Create the new message element
-        const li = document.createElement("li");
-        li.className = "text-sm text-white list-none text-left";
-
-        // Compare with the saved message
-        if (lastSubmittedMessage === JSON.parse(event.data)) {
-          li.innerText = "YOU: " + JSON.parse(event.data);
-          lastSubmittedMessage = "";
-        } else {
-          li.innerText = JSON.parse(event.data);
-        }
-
-        messages.appendChild(li);
-
-        // Remove old messages
-        while (messages.children.length > 5) {
-          messages.removeChild(messages.firstChild);
-        }
-      };
-
-      // Handle errors and reconnect if needed
-      eventSource.onerror = () => {
-        console.log("EventSource connection failed, reconnecting...");
-        eventSource.close();
-        // Reconnect after a short delay
-        setTimeout(setupEventSource, 2000);
-      };
-    }
-
-    // Initial setup
-    setupEventSource();
-  });
-</script>
-
-<script is:inline>
   window.requestAnimFrame = (function () {
     return (
       window.requestAnimationFrame ||
@@ -247,7 +182,8 @@ const messages = ChatController.getInstance().getMessages();
       >accuratelinuxgraphs.com</a
     >
     <p class="hover:animate-vibrate2x">{markovText}</p>
-    <h2 class="text-xl font-bold mb-2 animate-rainbow text-red-300" id="fps"></h2>
+    <h2 class="text-xl font-bold mb-2 animate-rainbow text-red-300" id="fps">
+    </h2>
 
     <button
       id="toggleUltraUI"
@@ -339,25 +275,6 @@ const messages = ChatController.getInstance().getMessages();
       /></a
     >
 
-    <div class="bg-grain-panel rounded-lg p-4 mt-4">
-      <h2 class="text-xl font-bold mb-2">Chat</h2>
-      <ul id="messages" class="list-disc pl-5 font-bold bg-grain-bg">
-        {
-          messages.map((message) => (
-            <li class="text-sm text-white list-none text-left">{message}</li>
-          ))
-        }
-      </ul>
-      <form id="chat">
-        <input
-          type="text"
-          id="message"
-          class="border border-gray-300 rounded px-2 py-1 w-full mt-2"
-          placeholder="Type your message here..."
-        />
-        <input type="submit" hidden />
-      </form>
-    </div>
     <audio loop id="accuRotateAudio" class="hidden">
       <source
         src="/assets/audio/extremebinarydrumandbass.mp3"
