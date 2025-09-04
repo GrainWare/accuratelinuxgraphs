@@ -40,14 +40,28 @@ export default class ChatController {
     const listeners = this.emitter.listeners("message");
 
     // Only emit to listeners that aren't closed
+    const validListeners: ((...args: any[]) => void)[] = [];
     for (const listener of listeners) {
       if (!this.closedCallbacks.has(listener)) {
-        try {
-          listener(message);
-        } catch (err) {
-          console.error("Error in message listener:", err);
-        }
+        validListeners.push(listener as (...args: any[]) => void);
       }
+    }
+
+    // Emit to all valid listeners
+    for (const listener of validListeners) {
+      try {
+        listener(message);
+      } catch (err) {
+        console.error("Error in message listener:", err);
+        // If a listener fails, mark it as closed to prevent future errors
+        this.closedCallbacks.add(listener);
+        this.emitter.off("message", listener);
+      }
+    }
+
+    // Clean up closed callbacks periodically
+    if (this.closedCallbacks.size > 10) {
+      this.closedCallbacks.clear();
     }
 
     // remove messages older than 5 so it doesn't get too long

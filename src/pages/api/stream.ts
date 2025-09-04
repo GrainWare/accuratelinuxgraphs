@@ -6,51 +6,67 @@ export const GET: APIRoute = async ({ request }) => {
     start(controller) {
       const encoder = new TextEncoder();
       let isClosed = false;
+      let heartbeatInterval: NodeJS.Timeout | null = null;
+
+      // Function to safely close the connection
+      const safeClose = () => {
+        if (isClosed) return;
+        isClosed = true;
+        
+        // Clear heartbeat interval first
+        if (heartbeatInterval) {
+          clearInterval(heartbeatInterval);
+          heartbeatInterval = null;
+        }
+        
+        // Unsubscribe from new messages
+        ChatController.getInstance().unsubscribe(sendEvent);
+        
+        // Close controller
+        try {
+          controller.close();
+        } catch (error) {
+          console.error("Error closing controller:", error);
+        }
+      };
 
       // Add heartbeat interval to keep connection alive
-      const heartbeatInterval = setInterval(() => {
-        if (!isClosed) {
-          try {
-            controller.enqueue(encoder.encode(": heartbeat\n\n"));
-          } catch (error) {
-            console.error("Error sending heartbeat:", error);
+      heartbeatInterval = setInterval(() => {
+        // Double-check if closed before attempting to send
+        if (isClosed || !controller) {
+          if (heartbeatInterval) {
             clearInterval(heartbeatInterval);
-            isClosed = true;
+            heartbeatInterval = null;
           }
+          return;
+        }
+        
+        try {
+          controller.enqueue(encoder.encode(": heartbeat\n\n"));
+        } catch (error) {
+          console.error("Error sending heartbeat:", error);
+          safeClose();
         }
       }, 15000); // Send heartbeat every 15 seconds
 
       const sendEvent = (data: any) => {
-        // Double protection: check flag and try-catch the operation
-        if (isClosed) return;
+        // Check if already closed
+        if (isClosed || !controller) return;
 
         try {
           const message = `data: ${JSON.stringify(data)}\n\n`;
           controller.enqueue(encoder.encode(message));
         } catch (error) {
-          // If we somehow reach here with a closed controller, mark as closed
           console.error("Error sending event:", error);
-          isClosed = true;
+          safeClose();
         }
       };
 
       // Subscribe to new messages
       ChatController.getInstance().subscribe(sendEvent);
 
-      request.signal.addEventListener("abort", () => {
-        // Mark as closed first
-        isClosed = true;
-        // Clear the heartbeat interval
-        clearInterval(heartbeatInterval);
-        // Unsubscribe from new messages - doing this synchronously
-        ChatController.getInstance().unsubscribe(sendEvent);
-
-        try {
-          controller.close();
-        } catch (error) {
-          console.error("Error closing controller:", error);
-        }
-      });
+      // Handle client disconnect
+      request.signal.addEventListener("abort", safeClose);
     },
   });
 
