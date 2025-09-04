@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/404.astro";
+---
+
+<Layout>
+  <marquee
+    direction="down"
+    behavior="alternate"
+    scrollamount="50"
+    class="block w-screen h-screen"
+  >
+    <marquee behavior="alternate" scrollamount="50">
+      <audio controls autoplay loop class="animate-vibrate2x">
+        <source src="/assets/audio/free-software-song.ogg" type="audio/ogg" />
+        Your browser does not support the audio element. Seek help.
+      </audio>
+      <img
+        width="250"
+        height="250"
+        class="animate-vibrate"
+        src="/assets/img/404.png"
+        alt="404"
+      />
+    </marquee>
+  </marquee>
+</Layout>

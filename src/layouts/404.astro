@@ -1,0 +1,43 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/assets/ico/grain.png" />
+    <meta name="description" content="get the fuck out of here" />
+    <meta name="author" content="John Accuracy" />
+    <meta property="og:site_name" content="John Accuracy" />
+    <meta property="og:title" content="accuratelinuxgraphs.com" />
+    <meta property="og:description" content="get the fuck out of here" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://accuratelinuxgraphs.com/" />
+    <meta
+      property="og:image"
+      content="https://accuratelinuxgraphs.com/assets/ico/grain.png"
+    />
+
+    <title>what</title>
+  </head>
+  <body
+    class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
+  >
+    <slot />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    background-image: url("../assets/img/404.png");
+    background-size: 500px;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    cursor: url("../assets/svg/middlefinger.svg"), auto;
+    overflow-x: hidden;
+  }
+</style>
