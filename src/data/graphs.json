@@ -150,5 +150,9 @@
   {
     "graphImgUrl": "/assets/graphs/sfotware.png",
     "caption": "sfotware"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/markov.avif",
+    "caption": "markov graph (AVIF 100% ACCURACY 8192x8192 800KB SUPER ACCURACY (ACCURATE 5000302789698231475)) "
   }
 ]
