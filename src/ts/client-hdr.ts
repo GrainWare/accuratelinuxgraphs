@@ -132,9 +132,9 @@ export class ClientHDRProcessor {
       );
     } else {
       // Restore original background image when Ultra UI is disabled
-      document.body.style.backgroundImage = 'url("../assets/img/tux.gif")';
+      document.body.style.backgroundImage = 'url("../assets/img/tux.avif")';
       document.documentElement.style.backgroundImage =
-        'url("../assets/img/tux.gif")';
+        'url("../assets/img/tux.avif")';
 
       document.body.classList.remove(
         "hdr-background-ultra",
@@ -148,7 +148,7 @@ export class ClientHDRProcessor {
       );
 
       console.log(
-        "Restored original tux.gif background and removed all HDR background classes",
+        "Restored original tux.avif background and removed all HDR background classes",
       );
     }
 
