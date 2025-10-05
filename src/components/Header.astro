@@ -37,13 +37,13 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
   const credits = document.getElementById("credits");
 
   if (button) {
-    button.textContent = "enable accurotate technology";
+    button.textContent = "enable ACCUROTATE 2.0 technology";
     button.removeAttribute("disabled");
 
     button.addEventListener("click", () => {
       if (document.cookie.includes("toggleUltraUI=true")) {
         alert(
-          "Unfortunately, any more accuracy would instantly kill anyone. Accurotate will not be enabled for your own safety.",
+          "Unfortunately, any more accuracy would instantly kill anyone. ACCUROTATE 2.0 will not be enabled for your own safety.",
         );
         return;
       }
@@ -54,7 +54,7 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
         // Disable the accurotate technology
         document.body.classList.remove("animate-rotate3d");
         document.body.classList.add("animate-move");
-        button.textContent = "enable accurotate technology";
+        button.textContent = "enable ACCUROTATE 2.0 technology";
 
         if (audio) {
           audio.pause();
@@ -71,7 +71,6 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
           "url('/assets/svg/middlefinger.svg'), auto";
         document.body.classList.remove("animate-move");
         document.body.classList.add("animate-rotate3d");
-        button.textContent = "disable accurotate technology";
 
         if (audio) {
           audio.play();
