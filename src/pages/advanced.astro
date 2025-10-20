@@ -21,6 +21,7 @@ const data = randomData(100);
   // - toggleAnimations
   // - toggleGrain
   // - toggleAccuracy
+  // - toggleNewAccuracySong
 
   // check if toggleAdvanced is set, if so, enable the other two
   if (document.cookie.includes("toggleAdvanced=true")) {
@@ -30,6 +31,9 @@ const data = randomData(100);
       false;
     (document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
       false;
+    (
+      document.getElementById("toggleNewAccuracySong") as HTMLInputElement
+    ).disabled = false;
   } else {
     (document.getElementById("toggleAnimations") as HTMLInputElement).disabled =
       true;
@@ -37,6 +41,9 @@ const data = randomData(100);
       true;
     (document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
       true;
+    (
+      document.getElementById("toggleNewAccuracySong") as HTMLInputElement
+    ).disabled = true;
   }
 
   // adjust all checkboxes accordingly to the current cookie state
@@ -52,11 +59,15 @@ const data = randomData(100);
   const toggleAccuracy = document.getElementById(
     "toggleAccuracy",
   ) as HTMLInputElement;
+  const toggleNewAccuracySong = document.getElementById(
+    "toggleNewAccuracySong",
+  ) as HTMLInputElement;
   for (const checkbox of [
     toggleAdvanced,
     toggleAnimations,
     toggleGrain,
     toggleAccuracy,
+    toggleNewAccuracySong,
   ]) {
     const cookieValue = document.cookie
       .split("; ")
@@ -75,6 +86,7 @@ const data = randomData(100);
     toggleAnimations,
     toggleGrain,
     toggleAccuracy,
+    toggleNewAccuracySong,
   ]) {
     checkbox.addEventListener("change", () => {
       document.cookie = `${checkbox.id}=${checkbox.checked}; path=/; max-age=31536000`;
@@ -87,6 +99,9 @@ const data = randomData(100);
         (
           document.getElementById("toggleAccuracy") as HTMLInputElement
         ).disabled = !checkbox.checked;
+        (
+          document.getElementById("toggleNewAccuracySong") as HTMLInputElement
+        ).disabled = !checkbox.checked;
       }
     });
   }
@@ -98,7 +113,8 @@ const data = randomData(100);
     <input type="checkbox" id="toggleAdvanced" />
     <label for="toggleAdvanced"
       >Enable Advanced Settings (No settings on this page will work without
-      this)</label
+      this). All settings on this page are at your own risk and you should be
+      careful.</label
     >
     <hr />
     <input type="checkbox" id="toggleAnimations" disabled />
@@ -119,6 +135,9 @@ const data = randomData(100);
     <label for="toggleAccuracy"
       >Enable Ultra Accurate Technology (Epilepsy Warning)</label
     >
+    <hr />
+    <input type="checkbox" id="toggleNewAccuracySong" />
+    <label for="toggleNewAccuracySong">Enable New Accuracy Song</label>
   </div>
   <p>
     Past this line ignore any further debug information. Under penalty of your

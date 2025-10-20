@@ -175,6 +175,35 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
   });
 </script>
 
+<script is:inline>
+  // if toggleNewAccuracySong cookie is true replace the source with /assets/audio/accuracycore-audiowarning.mp3
+  document.addEventListener("DOMContentLoaded", () => {
+    const getCookieValue = (name) => {
+      const match = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${name}=`));
+      return match ? match.split("=")[1] : null;
+    };
+
+    const songElement = document.getElementById("song");
+    if (songElement) {
+      const toggleNewAccuracySong = getCookieValue("toggleNewAccuracySong");
+      if (toggleNewAccuracySong === "true") {
+        songElement.setAttribute(
+          "src",
+          "/assets/audio/accuracycore-audiowarning.mp3",
+        );
+        songElement.setAttribute("type", "audio/mpeg");
+        // Reload the audio element to pick up the new source
+        const audioElement = songElement.closest("audio");
+        if (audioElement) {
+          audioElement.load();
+        }
+      }
+    }
+  });
+</script>
+
 <header class="text-center text-white py-8">
   <h1 class="text-3xl font-bold text-grain-text">
     <a href="/fizzbuzz" class="hover:underline hover:animate-vibrate2x"
@@ -243,7 +272,11 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
       loop
       class="mt-4 mx-auto block hover:animate-vibrate"
     >
-      <source src="/assets/audio/accuracycore-audiowarning.mp3" type="audio/mp3" />
+      <source
+        id="song"
+        src="/assets/audio/free-software-song.ogg"
+        type="audio/ogg"
+      />
       Your browser does not support the audio element. Seek help.
     </audio>
 
