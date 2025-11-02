@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<script>
+  const videoPath = "/assets/graphs/accuracythegame.webm";
+
+  function handleStart() {
+    const wrapper = document.getElementById("marquee-wrapper");
+    if (!wrapper) return;
+
+    const container = document.createElement("div");
+    container.className = "h-screen w-screen flex items-center justify-center";
+
+    const videoElement = document.createElement("video");
+    videoElement.src = videoPath;
+    videoElement.autoplay = true;
+    videoElement.controls = true;
+    videoElement.loop = true;
+    videoElement.playsInline = true;
+    videoElement.style.width = "100vw";
+    videoElement.style.height = "100vh";
+    videoElement.style.maxWidth = "100%";
+    videoElement.style.maxHeight = "100%";
+    videoElement.style.objectFit = "contain";
+    videoElement.style.display = "block";
+
+    container.appendChild(videoElement);
+    wrapper.replaceWith(container);
+
+    videoElement.play && videoElement.play().catch(() => {});
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const img = document.getElementById("clicktostart");
+    if (img) img.addEventListener("click", handleStart, { once: true });
+  });
+</script>
+
+<Layout>
+  <div id="marquee-wrapper" class="h-screen w-screen flex items-center">
+    <marquee
+      direction="down"
+      behavior="alternate"
+      scrollamount="25"
+      class="block w-screen h-screen"
+    >
+      <marquee behavior="alternate" scrollamount="25">
+        <img
+          id="clicktostart"
+          width="400"
+          height="400"
+          src="/assets/img/clicktostart.png"
+          alt="Click to Start"
+          style="cursor: pointer;"
+        />
+      </marquee>
+    </marquee>
+  </div>
+</Layout>
