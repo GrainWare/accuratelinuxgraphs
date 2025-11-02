@@ -154,5 +154,13 @@
   {
     "graphImgUrl": "/assets/graphs/markov.avif",
     "caption": "markov graph (AVIF 100% ACCURACY 8192x8192 800KB SUPER ACCURACY (ACCURATE 5000302789698231475)) "
+  },
+  {
+    "graphImgUrl": "/assets/graphs/pixelspergraph.avif",
+    "caption": "pixels per graph (AVIF 100% ACCURACY 88x55 4.5KB SUPER ACCURACY (ACCURATE 5000302)) "
+  },
+  {
+    "graphImgUrl": "/assets/graphs/marketshare2.avif",
+    "caption": "market share graph v2"  
   }
 ]
