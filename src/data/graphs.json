@@ -162,5 +162,9 @@
   {
     "graphImgUrl": "/assets/graphs/marketshare2.avif",
     "caption": "market share graph v2"  
+  },
+  {
+    "graphImgUrl": "/assets/graphs/liunuxpercompany.avif",
+    "caption": "liunux per company"
   }
 ]
