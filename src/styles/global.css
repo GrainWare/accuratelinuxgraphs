@@ -29,31 +29,38 @@
     }
 
     10% {
-      transform: perspective(600px) scale(2.2) scaleX(1.05) scaleY(0.95) skew(1deg) rotate3d(1, 1, 1, 12deg);
+      transform: perspective(600px) scale(2.2) scaleX(1.05) scaleY(0.95)
+        skew(1deg) rotate3d(1, 1, 1, 12deg);
     }
 
     20% {
-      transform: perspective(600px) scale(1.9) scaleX(0.95) scaleY(1.05) skew(-1deg) rotate3d(0, 1, 1, -10deg);
+      transform: perspective(600px) scale(1.9) scaleX(0.95) scaleY(1.05)
+        skew(-1deg) rotate3d(0, 1, 1, -10deg);
     }
 
     30% {
-      transform: perspective(600px) scale(1.6) scaleX(3.2) scaleY(0.7) skew(-2deg) rotate3d(0, 1, 1, 18deg);
+      transform: perspective(600px) scale(1.6) scaleX(3.2) scaleY(0.7)
+        skew(-2deg) rotate3d(0, 1, 1, 18deg);
     }
 
     40% {
-      transform: perspective(600px) scale(1.85) scaleX(0.92) scaleY(1.08) skew(2deg) rotate3d(1, 0, 0, -15deg);
+      transform: perspective(600px) scale(1.85) scaleX(0.92) scaleY(1.08)
+        skew(2deg) rotate3d(1, 0, 0, -15deg);
     }
 
     55% {
-      transform: perspective(600px) scale(2.3) scaleX(1.1) scaleY(0.9) skew(3deg) rotate3d(0, 1, 1, 22deg);
+      transform: perspective(600px) scale(2.3) scaleX(1.1) scaleY(0.9)
+        skew(3deg) rotate3d(0, 1, 1, 22deg);
     }
 
     70% {
-      transform: perspective(600px) scale(1.4) scaleX(0.6) scaleY(3.1) skew(-3deg) rotate3d(0, 1, 1, -18deg);
+      transform: perspective(600px) scale(1.4) scaleX(0.6) scaleY(3.1)
+        skew(-3deg) rotate3d(0, 1, 1, -18deg);
     }
 
     85% {
-      transform: perspective(600px) scale(2.35) scaleX(1.12) scaleY(0.88) skew(-1deg) rotate3d(1, 1, 0, 28deg);
+      transform: perspective(600px) scale(2.35) scaleX(1.12) scaleY(0.88)
+        skew(-1deg) rotate3d(1, 1, 0, 28deg);
     }
 
     100% {
@@ -212,70 +219,80 @@
     }
 
     16% {
-      transform: scale(1.2) scaleY(0.5) rotate(-40deg) perspective(200px) rotateX(25deg);
+      transform: scale(1.2) scaleY(0.5) rotate(-40deg) perspective(200px)
+        rotateX(25deg);
       margin-left: -30%;
       border-color: yellow;
       filter: saturate(150%);
     }
 
     24% {
-      transform: scale(0.8) scaleY(1.3) rotate(45deg) skew(-15deg) translateY(20px);
+      transform: scale(0.8) scaleY(1.3) rotate(45deg) skew(-15deg)
+        translateY(20px);
       margin-left: 0%;
       border-color: green;
       filter: brightness(140%);
     }
 
     32% {
-      transform: scale(1.4) scaleY(0.6) rotate(-120deg) perspective(300px) rotateY(30deg);
+      transform: scale(1.4) scaleY(0.6) rotate(-120deg) perspective(300px)
+        rotateY(30deg);
       margin-left: -20%;
       border-color: blue;
       filter: invert(15%);
     }
 
     40% {
-      transform: scale(0.7) rotate(120deg) skew(10deg) translateX(-15px) translateY(-15px);
+      transform: scale(0.7) rotate(120deg) skew(10deg) translateX(-15px)
+        translateY(-15px);
       margin-left: 0%;
       border-color: cyan;
       filter: blur(1px);
     }
 
     48% {
-      transform: scale(1.2) scaleY(0.8) rotate(180deg) perspective(500px) rotateZ(35deg);
+      transform: scale(1.2) scaleY(0.8) rotate(180deg) perspective(500px)
+        rotateZ(35deg);
       margin-left: -5%;
       border-color: indigo;
       filter: hue-rotate(90deg);
     }
 
     56% {
-      transform: scale(0.8) scaleY(1.4) rotate(90deg) skew(20deg) translateX(25px);
+      transform: scale(0.8) scaleY(1.4) rotate(90deg) skew(20deg)
+        translateX(25px);
       margin-left: -25%;
       border-color: purple;
       filter: sepia(40%);
     }
 
     64% {
-      transform: scale(1.4) scaleY(0.5) rotate(215deg) perspective(200px) rotateX(-30deg);
+      transform: scale(1.4) scaleY(0.5) rotate(215deg) perspective(200px)
+        rotateX(-30deg);
       margin-left: 15%;
       border-color: magenta;
       filter: contrast(160%);
     }
 
     72% {
-      transform: scale(0.6) scaleY(1.1) rotate(260deg) skew(-10deg) translateY(-20px);
+      transform: scale(0.6) scaleY(1.1) rotate(260deg) skew(-10deg)
+        translateY(-20px);
       margin-left: -10%;
       border-color: hotpink;
       filter: brightness(95%);
     }
 
     80% {
-      transform: scale(1.3) scaleY(0.9) rotate(310deg) perspective(400px) rotateY(-35deg);
+      transform: scale(1.3) scaleY(0.9) rotate(310deg) perspective(400px)
+        rotateY(-35deg);
       margin-left: 10%;
       border-color: crimson;
       filter: saturate(180%);
     }
 
     90% {
-      transform: scale(0.9) scaleY(1.2) rotate(405deg) skew(8deg) translateZ(-20px);
+      transform: scale(0.9) scaleY(1.2) rotate(405deg) skew(8deg)
+        translateZ(-20px);
       margin-left: -30%;
       border-color: orangered;
       filter: hue-rotate(135deg);
@@ -395,85 +412,101 @@
     }
 
     5% {
-      transform: perspective(800px) rotate3d(0.5, 1, 0.8, 18deg) scale(1.1) translateX(10px);
-      filter: hue-rotate(18deg) saturate(110%) drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+      transform: perspective(800px) rotate3d(0.5, 1, 0.8, 18deg) scale(1.1)
+        translateX(10px);
+      filter: hue-rotate(18deg) saturate(110%)
+        drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     }
 
     10% {
-      transform: perspective(800px) rotate3d(1, 0.5, 0.5, 36deg) scale(1.2) translateZ(30px);
+      transform: perspective(800px) rotate3d(1, 0.5, 0.5, 36deg) scale(1.2)
+        translateZ(30px);
       filter: hue-rotate(36deg) contrast(120%) saturate(120%);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
     18% {
-      transform: perspective(800px) rotate3d(0.2, 1, 0.7, 65deg) scale(0.95) translateY(-10px) rotateX(15deg);
+      transform: perspective(800px) rotate3d(0.2, 1, 0.7, 65deg) scale(0.95)
+        translateY(-10px) rotateX(15deg);
       filter: hue-rotate(65deg) brightness(115%) sepia(10%);
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
     }
 
     25% {
-      transform: perspective(800px) rotate3d(1, 1, 0, 90deg) scale(0.9) translateY(-20px);
+      transform: perspective(800px) rotate3d(1, 1, 0, 90deg) scale(0.9)
+        translateY(-20px);
       filter: hue-rotate(90deg) brightness(110%) blur(0.5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     33% {
-      transform: perspective(800px) rotate3d(0.8, 0.3, 1, 120deg) scale(1.15) translateX(-15px) skew(3deg);
+      transform: perspective(800px) rotate3d(0.8, 0.3, 1, 120deg) scale(1.15)
+        translateX(-15px) skew(3deg);
       filter: hue-rotate(120deg) contrast(125%) saturate(135%);
       box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
     }
 
     40% {
-      transform: perspective(800px) rotate3d(0.5, 1, 0.5, 144deg) scale(1.1) skew(5deg);
+      transform: perspective(800px) rotate3d(0.5, 1, 0.5, 144deg) scale(1.1)
+        skew(5deg);
       filter: hue-rotate(144deg) sepia(20%) contrast(130%);
       box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
     }
 
     50% {
-      transform: perspective(800px) rotate3d(1, 1, 0, 180deg) scale(1) translateZ(50px);
+      transform: perspective(800px) rotate3d(1, 1, 0, 180deg) scale(1)
+        translateZ(50px);
       filter: hue-rotate(180deg) invert(10%) brightness(95%);
       box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
     }
 
     58% {
-      transform: perspective(800px) rotate3d(0.3, 1, 0.8, 208deg) scale(1.2) translateX(20px) rotateY(15deg);
+      transform: perspective(800px) rotate3d(0.3, 1, 0.8, 208deg) scale(1.2)
+        translateX(20px) rotateY(15deg);
       filter: hue-rotate(208deg) brightness(105%) contrast(140%);
       box-shadow: 0 18px 28px rgba(0, 0, 0, 0.45);
     }
 
     65% {
-      transform: perspective(800px) rotate3d(0.5, 0.5, 1, 234deg) scale(1.3) translateY(15px);
+      transform: perspective(800px) rotate3d(0.5, 0.5, 1, 234deg) scale(1.3)
+        translateY(15px);
       filter: hue-rotate(234deg) saturate(150%) contrast(110%);
       box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
     }
 
     70% {
-      transform: perspective(800px) rotate3d(0.8, 0.8, 0.2, 252deg) scale(1.1) translateZ(40px) skew(-2deg);
-      filter: hue-rotate(252deg) brightness(90%) drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.3));
+      transform: perspective(800px) rotate3d(0.8, 0.8, 0.2, 252deg) scale(1.1)
+        translateZ(40px) skew(-2deg);
+      filter: hue-rotate(252deg) brightness(90%)
+        drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.3));
       box-shadow: 0 12px 22px rgba(0, 0, 0, 0.35);
     }
 
     75% {
-      transform: perspective(800px) rotate3d(1, 1, 0, 270deg) scale(0.8) skew(-3deg);
+      transform: perspective(800px) rotate3d(1, 1, 0, 270deg) scale(0.8)
+        skew(-3deg);
       filter: hue-rotate(270deg) brightness(120%) blur(1px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
 
     83% {
-      transform: perspective(800px) rotate3d(0.5, 0.2, 1, 298deg) scale(1.05) translateY(-5px) rotateZ(10deg);
+      transform: perspective(800px) rotate3d(0.5, 0.2, 1, 298deg) scale(1.05)
+        translateY(-5px) rotateZ(10deg);
       filter: hue-rotate(298deg) saturate(140%) sepia(15%);
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
     }
 
     90% {
-      transform: perspective(800px) rotate3d(1, 0.5, 0.5, 324deg) scale(1.2) translateZ(-20px);
+      transform: perspective(800px) rotate3d(1, 0.5, 0.5, 324deg) scale(1.2)
+        translateZ(-20px);
       filter: hue-rotate(324deg) contrast(150%) saturate(130%);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     95% {
-      transform: perspective(800px) rotate3d(0.2, 1, 0.3, 342deg) scale(1.1) translateX(-10px) rotateX(-15deg);
+      transform: perspective(800px) rotate3d(0.2, 1, 0.3, 342deg) scale(1.1)
+        translateX(-10px) rotateX(-15deg);
       filter: hue-rotate(342deg) brightness(110%) contrast(115%);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
     }
@@ -505,7 +538,8 @@
 
 .graph-download-button img {
   width: 20vw;
-  animation: download-button-swag 5s infinite cubic-bezier(0.79, 0.14, 0.15, 0.86);
+  animation: download-button-swag 5s infinite
+    cubic-bezier(0.79, 0.14, 0.15, 0.86);
   animation-direction: alternate;
 }
 
