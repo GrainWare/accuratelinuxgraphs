@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 // Accept an array of graph objects
 const { graphs } = Astro.props;
 
@@ -49,7 +51,7 @@ const graphsWithAccuracy = graphs.map((graph: any) => {
           value: unknown;
         };
       }) => (
-        <div class="flex flex-col items-center justify-center bg-grain-panel p-4 rounded-lg shadow-lg hover:animate-pulse3d">
+        <div class="flex flex-col items-center justify-center bg-grain-panel p-4 rounded-lg shadow-lg">
           <img
             src={String(graph.graphImgUrl)}
             alt={String(graph.caption)}
@@ -64,7 +66,12 @@ const graphsWithAccuracy = graphs.map((graph: any) => {
             accurate
           </p>
           <a href={graph.graphImgUrl} download class="graph-download-button">
-            <img src="/assets/img/download.png" alt="Download" />
+            <Image
+              height={262}
+              width={800}
+              src="/assets/img/download.png"
+              alt="Download"
+            />
           </a>
         </div>
       ),

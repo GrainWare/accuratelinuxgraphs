@@ -14,5 +14,58 @@ const graphs = graphsData;
   <div>
     <GraphGrid graphs={graphs} />
   </div>
+
+  <div
+    class="bg-grain-border m-auto mt-[20px] border-2 border-black p-[10px] w-fit rounded-2xl text-2xl"
+  >
+    <h3 class="font-bold">COOL LINUX FACT!</h3>
+    <p>
+      linux was created by linus torvalds in 1935<br />click linus for more info
+    </p>
+    <br />
+    <img
+      class="torvalds"
+      src="/assets/img/linux-torvald.jpg"
+      width="500px"
+      height="500px"
+      onclick="h()"
+    />
+  </div>
+
+  <div
+    class="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg"
+  >
+    <a onclick="h()" download class="graph-download-button"
+      ><img src="/assets/img/download.png" alt="Download" /></a
+    >
+  </div>
+
   <Footer />
 </Layout>
+
+<script is:inline>
+  function h() {
+    var images = document.querySelectorAll("img");
+
+    for (var i = 0; i < images.length; i++) {
+      images[i].src = "/assets/img/linux-torvald-angry.jpg";
+    }
+
+    var elements = document.querySelectorAll("*");
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      var backgroundImage = window.getComputedStyle(element).backgroundImage;
+      if (backgroundImage !== "none") {
+        element.style.backgroundImage =
+          "url('/assets/img/linux-torvald-angry.jpg')";
+      }
+    }
+
+    let h = new Audio("/assets/audio/stab17.wav");
+    h.play();
+
+    setTimeout(() => {
+      window.location.href = "https://moe.accuratelinuxgraphs.com";
+    }, 5000);
+  }
+</script>

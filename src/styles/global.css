@@ -24,47 +24,40 @@
 
   @keyframes rainbow {
     0% {
-      transform: perspective(600px) scale(2) skew(0deg) rotate3d(0, 0, 0, 0deg);
+      transform: scaleX(1);
       filter: hue-rotate(0deg);
     }
 
     10% {
-      transform: perspective(600px) scale(2.2) scaleX(1.05) scaleY(0.95)
-        skew(1deg) rotate3d(1, 1, 1, 12deg);
+      transform: scaleX(1);
     }
 
     20% {
-      transform: perspective(600px) scale(1.9) scaleX(0.95) scaleY(1.05)
-        skew(-1deg) rotate3d(0, 1, 1, -10deg);
+      transform: scaleX(4) scaleY(0.1);
     }
 
     30% {
-      transform: perspective(600px) scale(1.6) scaleX(3.2) scaleY(0.7)
-        skew(-2deg) rotate3d(0, 1, 1, 18deg);
+      transform: scaleX(1);
     }
 
     40% {
-      transform: perspective(600px) scale(1.85) scaleX(0.92) scaleY(1.08)
-        skew(2deg) rotate3d(1, 0, 0, -15deg);
+      transform: scaleX(1);
     }
 
     55% {
-      transform: perspective(600px) scale(2.3) scaleX(1.1) scaleY(0.9)
-        skew(3deg) rotate3d(0, 1, 1, 22deg);
+      transform: scaleX(1);
     }
 
     70% {
-      transform: perspective(600px) scale(1.4) scaleX(0.6) scaleY(3.1)
-        skew(-3deg) rotate3d(0, 1, 1, -18deg);
+      transform: scaleX(0.6);
     }
 
     85% {
-      transform: perspective(600px) scale(2.35) scaleX(1.12) scaleY(0.88)
-        skew(-1deg) rotate3d(1, 1, 0, 28deg);
+      transform: scaleX(1.12);
     }
 
     100% {
-      transform: perspective(600px) scale(2) skew(0deg) rotate3d(0, 0, 0, 0deg);
+      transform: scaleX(1);
       filter: hue-rotate(360deg);
     }
   }
