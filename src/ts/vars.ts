@@ -6,8 +6,7 @@ export const descriptions = [
   `sponsored by
 accuratelinuxgraphs.com
 store.accuratelinuxgraphs.com
-stats.atl.dev
-atl.moe
+stats.grainware.org
 ARG Solutions (Alpine Regional Group)
 持續改善`,
   "accuracy is the answer",
@@ -47,8 +46,8 @@ COOL LINUX FACT!
 linux was created by linus torvalds in 1935
 click linus for more info
 FizzBuzz Results (grain warning)
-Welcome to stats.atl.dev! So accurate
-This tracks how much different users ping/reply ping each other in the All Things Linux server. The more a user pings another user, the closer they are in the graph and the thicker the line between them.
+Welcome to stats.grainware.org! So accurate
+This tracks how much different users ping/reply ping each other in the GrainWare server. The more a user pings another user, the closer they are in the graph and the thicker the line between them.
   `,
 ];
 
@@ -58,7 +57,6 @@ export const authors = [
   "accuracy",
   "big accuracy",
   "grainware",
-  "kai, kaizer, kaisen, kai cenat, piezer, kai scent, kiezen-chan, kai-san, kai zenat, kai zen kernel, kai from lego ninjago, kai smell, kai cent, kaicaesar, kai centos, kai raising cane's, continual improvement, kalizer, kai zee er, kaizimpson, kaza (like casa 🏠), kaizateering, kaizenburg, rising, kitezen, byezen, siren kaizington",
   "foolish idiots like you who bought stuff from store.accuratelinuxgraphs.com",
   "$$$$ MONEY INCORPORATED $$$$",
   "TUX",
