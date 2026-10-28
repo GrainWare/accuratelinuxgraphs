@@ -166,5 +166,9 @@
   {
     "graphImgUrl": "/assets/graphs/liunuxpercompany.avif",
     "caption": "liunux per company"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/vibed.avif",
+    "caption": "historical vibes"
   }
 ]
