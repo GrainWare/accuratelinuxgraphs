@@ -170,5 +170,10 @@
   {
     "graphImgUrl": "/assets/graphs/vibed.avif",
     "caption": "historical vibes"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/grainperdistro.avif",
+    "caption": "grain per distro"
   }
+]
 ]
