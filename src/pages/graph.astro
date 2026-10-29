@@ -1,24 +1,15 @@
 ---
-import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
-
-// generate random data
-const randomData = (n: number) => {
-  const data = [];
-  for (let i = 0; i < n; i++) {
-    data.push({
-      something: Math.random() * 100,
-      somethingElse: Math.random() * 100,
-    });
-  }
-  return data;
-};
-const data = randomData(100);
 ---
 
 <Layout>
-  <iframe
-    src="https://stats.atl.dev"
-    class="w-full h-256 animate-ping-weird"
-    title="Stats"></iframe>
+  <div class="flex h-screen">
+    <h1 class="m-auto animate-ping-weird text-2xl max-w-1/3">
+      this page is now blank because the founder of the hoster of stats.atl.dev
+      (all things linux) which used to be in an iframe here got pedophile
+      allegations and got shut down due to the allegations drama
+      <br /><br />
+      go to stats.grainware.org if you want accuracy
+    </h1>
+  </div>
 </Layout>

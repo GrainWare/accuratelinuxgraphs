@@ -174,5 +174,21 @@
   {
     "graphImgUrl": "/assets/graphs/grainperdistro.avif",
     "caption": "grain per distro"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/untitled.avif",
+    "caption": "untitled"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/distrousers.avif",
+    "caption": "distro users in 2034"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/distroswagness-revision-3.avif",
+    "caption": "distro swagness v3"
+  },
+  {
+    "graphImgUrl": "/assets/graphs/anim.mp4",
+    "caption": "accuracy per linux kernel version our second fancy animated graph"
   }
 ]
