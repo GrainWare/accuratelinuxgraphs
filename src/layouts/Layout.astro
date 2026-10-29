@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import "../styles/index.scss";
 import { descriptions, authors } from "../ts/vars.ts";
 import graphsData from "../data/graphs.json";
 import Markov from "../ts/markov";
@@ -16,7 +16,7 @@ const markovText = markov.generate(500);
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/assets/ico/grain.png" />
     <meta name="description" content={markovText} />
@@ -34,115 +34,11 @@ const markovText = markov.generate(500);
       property="og:image"
       content="https://accuratelinuxgraphs.com/assets/ico/grain.png"
     />
-
-    <title>{markovText}</title>
+    <title>accuratelinuxgraphs.com</title>
   </head>
-  <body
-    class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
-  >
-    <slot />
+  <body>
+    <div style="background:rgba(0,0,0,0.35)">
+      <slot />
+    </div>
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    background-image: url("../assets/img/tux.avif");
-    background-size: 100px;
-    background-repeat: repeat;
-    background-attachment: fixed;
-    cursor: url("../assets/svg/accuracy_cursor.svg"), auto;
-    overflow-x: hidden;
-  }
-</style>
-
-<script>
-  // Run on page load to check advanced settings cookies and apply them
-  document.addEventListener("DOMContentLoaded", () => {
-    // Helper to get cookie value
-    const getCookieValue = (name: string) => {
-      const match = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith(`${name}=`));
-      return match ? match.split("=")[1] : null;
-    };
-
-    // Check if advanced settings are enabled
-    const advancedEnabled = getCookieValue("toggleAdvanced") === "true";
-
-    if (advancedEnabled) {
-      // Check and apply animation settings
-      const animationsDisabled = getCookieValue("toggleAnimations") === "true";
-      if (animationsDisabled) {
-        // Disable all animations except background animation
-        document.body.classList.add("animations-none");
-        document.body.style.cursor =
-          "url('/assets/svg/middlefinger.svg'), auto";
-        console.log("Animations disabled due to user preference");
-      }
-
-      // Check and apply grain mode
-      const grainModeEnabled = getCookieValue("toggleGrain") === "true";
-      if (grainModeEnabled) {
-        applyGrainMode();
-        console.log("Grain mode activated");
-      }
-
-      // Check and apply accuracy mode
-      const accuracyModeEnabled = getCookieValue("toggleAccuracy") === "true";
-      if (accuracyModeEnabled) {
-        applyAccuracyMode();
-        console.log("Accuracy mode activated");
-      }
-    }
-  });
-
-  function applyAccuracyMode() {
-    document.body.classList.add("animate-true-widen");
-  }
-
-  function applyGrainMode() {
-    const walker = document.createTreeWalker(
-      document.body,
-      NodeFilter.SHOW_TEXT,
-      null,
-    );
-    const textNodes = [];
-    let node;
-    while ((node = walker.nextNode())) {
-      textNodes.push(node);
-    }
-    textNodes.forEach((textNode) => {
-      if (textNode.nodeValue) {
-        let text = textNode.nodeValue;
-        text = text.replace(/accuracy/gi, (match) => {
-          if (match === match.toUpperCase()) return "GRAIN";
-          if (
-            match ===
-            match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
-          )
-            return "Grain";
-          return "grain";
-        });
-        text = text.replace(/accurate/gi, (match) => {
-          if (match === match.toUpperCase()) return "GRAIN";
-          if (
-            match ===
-            match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
-          )
-            return "Grain";
-          return "grain";
-        });
-        textNode.nodeValue = text;
-      }
-    });
-    document.title = document.title.replace(/accuracy|accurate/gi, "grain");
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === "childList") applyGrainMode();
-      });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-</script>

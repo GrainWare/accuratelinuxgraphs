@@ -1,0 +1,87 @@
+@use "graphs";
+@use "keyframes";
+@use "colors";
+@use "header";
+
+html,
+body {
+  margin: 0;
+  background: url("../assets/img/tux.avif");
+  background-size: 100px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  cursor: url("../assets/svg/accuracy_cursor.svg"), auto;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  animation: move 60s linear infinite;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.side-text {
+  position: fixed;
+  background-color: #3434348f;
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(2) scaleY(0.5);
+
+  width: 1ch;
+  height: fit-content;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+  text-align: center;
+  letter-spacing: 0.1ch;
+  text-orientation: upright;
+  writing-mode: vertical-lr;
+}
+
+.side-text:hover {
+  padding-right: 1.7ch;
+  color: #b655dd;
+
+  text-orientation: sideways-right;
+  writing-mode: sideways-lr;
+
+  animation: vibrate2x 2s infinite linear;
+}
+
+.side-text p {
+  margin: 0;
+  padding: 0;
+}
+
+.cool-fact {
+  background: colors.$grain-border;
+  margin: auto;
+  margin-top: 20px;
+  border: 2px solid black;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 16px;
+  font-size: 24px;
+}
+
+.cool-fact h3 {
+  font-weight: 700;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0px;
+}

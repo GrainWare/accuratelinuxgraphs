@@ -1,0 +1,110 @@
+@use "keyframes";
+@use "colors";
+
+header {
+  text-align: center;
+  padding-block: 32px;
+
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: colors.$grain-text;
+
+    a {
+      color: colors.$grain-text;
+      text-decoration: none;
+    }
+
+    p:hover {
+      text-decoration: underline;
+      animation: vibrate 1s infinite linear;
+    }
+  }
+
+  .fps {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    animation: rainbow 2s infinite linear;
+    color: oklch(80.8% 0.114 19.571);
+  }
+
+  .yoursource-ad {
+    font-size: 18px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    height: 100px;
+
+    a {
+      animation: widen 10s cubic-bezier(0.79, 0.14, 0.15, 0.86) alternate
+        infinite;
+      width: fit-content;
+      height: fit-content;
+      color: colors.$grain-highlight;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+  }
+
+  .strip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .grain-icon {
+      width: 256px;
+      height: 64px;
+    }
+
+    .accuracy-data {
+      font-size: 14px;
+      color: oklch(70.7% 0.022 261.325);
+      transform: scaleZ(4);
+      animation: vibrate 1s linear infinite;
+
+      span {
+        font-weight: 700;
+        color: oklch(90.5% 0.182 98.111);
+      }
+    }
+
+    @media (width >= 1024px) {
+      .accuracy-data {
+        transform: scaleY(1.5);
+        animation: none;
+      }
+    }
+
+    .accurotate-button {
+      margin-top: 16px;
+      color: white;
+      background: colors.$grain-bg;
+      border: solid;
+      border-color: colors.$grain-border;
+      border-width: 8px;
+    }
+
+    .accurotate-button:hover {
+      background: darkred;
+    }
+
+    .invisible {
+      display: none;
+    }
+
+    .ad {
+      margin-top: 16px;
+      margin-trim: 16px;
+    }
+  }
+
+  @media (width >= 1024px) {
+    .strip {
+      flex-direction: row;
+    }
+  }
+}
