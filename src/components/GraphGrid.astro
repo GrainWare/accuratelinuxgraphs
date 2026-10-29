@@ -52,11 +52,17 @@ const graphsWithAccuracy = graphs.map((graph: any) => {
         };
       }) => (
         <div class="flex flex-col items-center justify-center bg-grain-panel p-4 rounded-lg shadow-lg">
-          <img
-            src={String(graph.graphImgUrl)}
-            alt={String(graph.caption)}
-            class="w-full h-auto border-graph"
-          />
+          {String(graph.graphImgUrl).includes("mp4") ? (
+            <video controls class="w-full h-auto border-graph">
+              <source src={String(graph.graphImgUrl)} type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              src={String(graph.graphImgUrl)}
+              alt={String(graph.caption)}
+              class="w-full h-auto border-graph"
+            />
+          )}
           <p class="text-center mt-4 text-white text-xl font-bold">
             {graph.caption}
           </p>
