@@ -43,8 +43,7 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
       const isEnabled = document.body.classList.contains("animate-rotate3d");
 
       if (isEnabled) {
-        document.body.classList.remove("animate-rotate3d");
-        document.body.classList.add("animate-move");
+        document.body.classList.remove("accurotate");
         button.textContent = "enable ACCUROTATE 3.0 technology";
 
         if (audio) {
@@ -54,13 +53,12 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
 
         if (credits) {
           credits.classList.add("invisible");
-          credits.classList.remove("animate-vibrate2x");
         }
       } else {
         document.body.style.cursor =
           "url('/assets/svg/middlefinger.svg'), auto";
-        document.body.classList.remove("animate-move");
-        document.body.classList.add("animate-rotate3d");
+        document.body.classList.add("accurotate");
+        button.textContent = "disable ACCUROTATE 3.0 technology";
 
         if (audio) {
           audio.play();
@@ -68,7 +66,6 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
 
         if (credits) {
           credits.classList.remove("invisible");
-          credits.classList.add("animate-vibrate2x");
         }
       }
     });
@@ -198,6 +195,10 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
 
     <a href="/graigshome"
       ><img src="/assets/img/ad4.avif" alt="Ad" class="ad" title="Ad" /></a
+    >
+
+    <a href="/makeyourowngraph"
+      ><img src="/assets/img/ad5.avif" alt="Ad" class="ad" title="Ad" /></a
     >
   </div>
 </header>
