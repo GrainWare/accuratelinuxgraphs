@@ -9,7 +9,6 @@ const markov = new Markov();
 await markov.load(trainingData);
 const markovText = markov.generate(10);
 
-// math equation to generate the accurate number of the day
 const x = new Date().getDate();
 const y = new Date().getSeconds();
 const z = new Date().getMilliseconds();
@@ -37,17 +36,15 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
   const credits = document.getElementById("credits");
 
   if (button) {
-    button.textContent = "enable ACCUROTATE 2.0 technology";
+    button.textContent = "enable ACCUROTATE 3.0 technology";
     button.removeAttribute("disabled");
 
     button.addEventListener("click", () => {
       const isEnabled = document.body.classList.contains("animate-rotate3d");
 
       if (isEnabled) {
-        // Disable the accurotate technology
-        document.body.classList.remove("animate-rotate3d");
-        document.body.classList.add("animate-move");
-        button.textContent = "enable ACCUROTATE 2.0 technology";
+        document.body.classList.remove("accurotate");
+        button.textContent = "enable ACCUROTATE 3.0 technology";
 
         if (audio) {
           audio.pause();
@@ -56,14 +53,12 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
 
         if (credits) {
           credits.classList.add("invisible");
-          credits.classList.remove("animate-vibrate2x");
         }
       } else {
-        // Enable the accurotate technology
         document.body.style.cursor =
           "url('/assets/svg/middlefinger.svg'), auto";
-        document.body.classList.remove("animate-move");
-        document.body.classList.add("animate-rotate3d");
+        document.body.classList.add("accurotate");
+        button.textContent = "disable ACCUROTATE 3.0 technology";
 
         if (audio) {
           audio.play();
@@ -71,7 +66,6 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
 
         if (credits) {
           credits.classList.remove("invisible");
-          credits.classList.add("animate-vibrate2x");
         }
       }
     });
@@ -96,7 +90,7 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
   document.addEventListener("DOMContentLoaded", () => {
     const fpsElement = document.getElementById("fps");
     if (!fpsElement) {
-      console.warn('Element with id "fps" not found');
+      console.warn("what the fuck");
       return;
     }
 
@@ -117,67 +111,35 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
   });
 </script>
 
-<script is:inline>
-  // if toggleNewAccuracySong cookie is true replace the source with /assets/audio/accuracycore-audiowarning.mp3
-  document.addEventListener("DOMContentLoaded", () => {
-    const getCookieValue = (name) => {
-      const match = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith(`${name}=`));
-      return match ? match.split("=")[1] : null;
-    };
-
-    const songElement = document.getElementById("song");
-    if (songElement) {
-      const toggleNewAccuracySong = getCookieValue("toggleNewAccuracySong");
-      if (toggleNewAccuracySong === "true") {
-        songElement.setAttribute(
-          "src",
-          "/assets/audio/accuracycore-audiowarning.mp3",
-        );
-        songElement.setAttribute("type", "audio/mpeg");
-        // Reload the audio element to pick up the new source
-        const audioElement = songElement.closest("audio");
-        if (audioElement) {
-          audioElement.load();
-        }
-      }
-    }
-  });
-</script>
-
-<header class="text-center text-white py-8">
-  <h1 class="text-3xl font-bold text-grain-text">
+<header>
+  <h1>
     <a href="/fizzbuzz" class="hover:underline hover:animate-vibrate2x"
       >accuratelinuxgraphs.com</a
     >
     <p class="hover:animate-vibrate2x">{markovText}</p>
-    <h2 class="text-4xl font-bold mb-2 animate-rainbow text-red-300" id="fps">
-    </h2>
+    <h2 class="fps" id="fps"></h2>
   </h1>
 
-  <p class="text-lg mt-2 animate-bounce">
+  <p class="yoursource-ad">
     YOUR source for the most ACCURATE linux graphs around.<br />
+    <a href="https://grainware.org/">Made Possible by GrainWare</a>
+    <br />
     <a
-      href="https://grainware.org/"
-      class="text-grain-highlight underline hover:text-2xl font-bold"
-      >Made Possible by GrainWare</a
+      href="#"
+      onclick="for (let i = 0; i < 10; i++) {window.open('/assets/audio/free-software-song.ogg',Math.random(),'width=600,height=300');}"
+      >click here man please i need this please please please</a
     >
   </p>
 
-  <div class="flex flex-col items-center lg:flex-row justify-center">
-    <a href="/graph"
+  <div class="strip">
+    <a href="https://discord.gg/xtgUm3fmst"
       ><img
-        id="site-icon"
+        class="grain-icon"
         src="/assets/ico/grain.png"
-        alt="Site Icon"
-        title="a project of the grain"
-        class="w-64 h-16"
+        alt="a project of the grain"
       /></a
     >
-    <p
-      class="text-sm text-gray-400 transform-[scaleZ(4)] animate-vibrate lg:animate-none lg:transform-[scaleY(4)]"
-    >
+    <p class="accuracy-data">
       Accurate Number: <span
         id="accurate-number"
         class="font-bold text-yellow-300">{accurateNumberStage3}</span
@@ -189,20 +151,11 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
       >
     </p>
 
-    <button
-      id="accuRotateBtn"
-      class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900"
-      disabled
-    >
+    <button id="accuRotateBtn" class="accurotate-button" disabled>
       enable js you idiot
     </button>
 
-    <audio
-      controls
-      autoplay
-      loop
-      class="mt-4 mx-auto block hover:animate-vibrate"
-    >
+    <audio controls autoplay loop>
       <source
         id="song"
         src="/assets/audio/free-software-song.ogg"
@@ -210,33 +163,6 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
       />
       Your browser does not support the audio element. Seek help.
     </audio>
-
-    <a href="https://store.accuratelinuxgraphs.com"
-      ><img
-        src="/assets/img/ad.avif"
-        alt="Ad"
-        class="w-64 h-16 mt-4 mx-auto"
-        title="Ad"
-      /></a
-    >
-
-    <a href="https://stats.grainware.org"
-      ><img
-        src="/assets/img/ad2.avif"
-        alt="Ad"
-        class="w-64 h-16 mt-4 mx-auto"
-        title="Ad"
-      /></a
-    >
-
-    <a href="https://accuracyrecords.bandcamp.com/"
-      ><img
-        src="/assets/img/ad3.avif"
-        alt="Ad"
-        class="w-64 h-16 mt-4 mx-auto"
-        title="Ad"
-      /></a
-    >
 
     <audio loop id="accuRotateAudio" class="hidden">
       <source
@@ -252,13 +178,27 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
         >Gobusto - Extreme Binary DnB</a
       >
     </p>
-    <hr class="animate-ping" />
   </div>
 
-  <a
-    href="/trailer"
-    class="mt-4 bg-grain-bg border-grain-border border-8 hover:bg-red-900 text-3xl"
-  >
-    Accuracy Trailer
-  </a>
+  <div class="strip">
+    <a href="https://store.accuratelinuxgraphs.com"
+      ><img src="/assets/img/ad.avif" alt="Ad" class="ad" title="Ad" /></a
+    >
+
+    <a href="https://stats.grainware.org"
+      ><img src="/assets/img/ad2.avif" alt="Ad" class="ad" title="Ad" /></a
+    >
+
+    <a href="https://accuracyrecords.bandcamp.com/"
+      ><img src="/assets/img/ad3.avif" alt="Ad" class="ad" title="Ad" /></a
+    >
+
+    <a href="/graigshome"
+      ><img src="/assets/img/ad4.avif" alt="Ad" class="ad" title="Ad" /></a
+    >
+
+    <a href="/makeyourowngraph"
+      ><img src="/assets/img/ad5.avif" alt="Ad" class="ad" title="Ad" /></a
+    >
+  </div>
 </header>

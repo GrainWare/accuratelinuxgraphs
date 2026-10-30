@@ -1,0 +1,176 @@
+---
+import { Image } from "astro:assets";
+import graphsData from "../data/graphs.json";
+
+function calculateAccuracy() {
+  const x = new Date().getDate();
+  const y = new Date().getSeconds();
+  const z = new Date().getMilliseconds();
+  const accurateNumberStage1 = (x * y) / z;
+  const accurateNumberStage2 =
+    accurateNumberStage1 % 1.785298349182997561289487198679829683916825689;
+  const accurateNumberStage3 = accurateNumberStage2 / 1000000000000000000;
+  let accuracyPercentage =
+    1.128943789237891598723789147928789152897267891237086812735653 *
+      100.5782384172874 +
+    Math.sin(accurateNumberStage2) * 10008.5782384172874;
+
+  accuracyPercentage = accuracyPercentage + Math.random() * 100000000;
+
+  if (Math.random() < 0.1) {
+    accuracyPercentage += 500000;
+  }
+
+  return {
+    value: Math.round(accuracyPercentage),
+    style: `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: bold;`,
+  };
+}
+
+const graphs = graphsData.map((graph: any) => {
+  const accuracy = calculateAccuracy();
+  return {
+    ...graph,
+    accuracy,
+  };
+});
+---
+
+
+<script is:inline>
+const curEnlarged = 0;
+
+function toggleEnlarge(filename) {
+    let element = document.getElementById(filename);
+    if (element?.classList.contains("graph-enlarged")) {
+        element?.classList.remove("graph-enlarged");
+        element?.classList.add("graph-image");
+
+
+        const audioElement = document.getElementById("enlarge_audio");
+        if (audioElement) {
+            audioElement.pause();
+            audioElement.remove();
+        }
+
+        const backdropElement = document.getElementById("enlarge_backdrop");
+        if (backdropElement) {
+            backdropElement.remove();
+        }
+    } else {
+        element?.classList.add("graph-enlarged");
+        element?.classList.remove("graph-image");
+
+        const audio = document.createElement("audio");
+        audio.src = `/assets/audio/01 - polar(ization).mp3`;
+        audio.id = `enlarge_audio`;
+        audio.loop = true;
+        document.body.appendChild(audio);
+        audio.play();
+
+        const backdrop = document.createElement("div");
+        backdrop.id = "enlarge_backdrop";
+        backdrop.className = "graph-enlarged-backdrop";
+        backdrop.onclick = ()=>{
+          // hide backdrop
+          const backdropEl = document.getElementById("enlarge_backdrop");
+          if (backdropEl) backdropEl.remove();
+
+          // un-enlarge all enlarged (hopefully just 1) graphs
+          const enlargedEls = document.getElementsByClassName("graph-enlarged");
+          for (let el of enlargedEls) {
+            el?.classList.remove("graph-enlarged");
+            el?.classList.add("graph-image");
+          }
+        };
+
+        const prevButton = document.createElement("button");
+        const nextButton = document.createElement("button");
+        prevButton.textContent = "<"
+        prevButton.onclick = () => {
+          event.preventDefault();
+          event.stopPropagation();
+          // get currently enlarged graph
+          const curEnlargedGraph = document.getElementsByClassName("graph-enlarged")[0];
+
+          // find prev graph
+          const prevGraph = curEnlargedGraph.parentElement.previousElementSibling?.getElementsByTagName("img")[0];
+          console.log("prevGraph", prevGraph);
+          if (!prevGraph) return;
+
+          // un-enlarge currently shown graph
+          curEnlargedGraph.classList.remove("graph-enlarged");
+          curEnlargedGraph.classList.add("graph-image");
+
+          // enlarge prev graph
+          prevGraph.classList.add("graph-enlarged");
+          prevGraph.classList.remove("graph-image");
+        }
+        nextButton.textContent = ">"
+        nextButton.onclick = () => {
+          event.preventDefault();
+          event.stopPropagation();
+          // get currently enlarged graph
+          const curEnlargedGraph = document.getElementsByClassName("graph-enlarged")[0];
+
+          // find next graph
+          const nextGraph = curEnlargedGraph.parentElement.nextElementSibling?.getElementsByClassName("graph-image")[0];
+          console.log("nextGraph", nextGraph);
+          if (!nextGraph) return;
+
+          // un-enlarge currently shown graph
+          curEnlargedGraph.classList.remove("graph-enlarged");
+          curEnlargedGraph.classList.add("graph-image");
+
+          // enlarge next graph
+          nextGraph.classList.add("graph-enlarged");
+          nextGraph.classList.remove("graph-image");
+        }
+
+        backdrop.appendChild(prevButton);
+        backdrop.appendChild(nextButton);
+        document.body.appendChild(backdrop);
+    }
+}
+</script>
+
+<div class="graphs">
+  {
+    graphs.map(
+      (graph: {
+        filename: string;
+        caption: string;
+        accuracy: {
+          style: string;
+          value: number;
+        };
+      }) => (
+        <div class="graph">
+          {String(graph.filename).includes("mp4") ? (
+            <video controls class="graph-image" id={graph.filename} data-eltype="graphgraph" onplay={`toggleEnlarge("${graph.filename}")`} onpause={`toggleEnlarge("${graph.filename}")`}>
+              <source
+                src={`/assets/graphs/${String(graph.filename)}`}
+                type="video/mp4"
+              />
+            </video>
+          ) : (
+            <img
+              src={`/assets/graphs/${String(graph.filename)}`}
+              alt={String(graph.caption)}
+              class="graph-image"
+              id={graph.filename}
+              data-eltype="graphgraph"
+              onclick={`toggleEnlarge("${graph.filename}")`}
+            />
+          )}
+          <p class="graph-caption">{graph.caption}</p>
+          <p class="graph-accuracy">
+            THIS GRAPH IS{" "} <!-- what the fuck astro formatter ?? -->
+            <span style={graph.accuracy.style}>{graph.accuracy.value}</span>%
+            accurate
+          </p>
+        </div>
+      ),
+    )
+  }
+</div>

@@ -1,9 +1,0 @@
-services:
-  accuratelinuxgraphs:
-    image: your-app-image:latest
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "4323:4321"

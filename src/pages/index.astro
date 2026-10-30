@@ -1,24 +1,16 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import GraphGrid from "../components/GraphGrid.astro";
-import graphsData from "../data/graphs.json";
-
-// Using the data from our JSON file
-const graphs = graphsData;
+import Graphs from "../components/Graphs.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
   <Header />
-  <div>
-    <GraphGrid graphs={graphs} />
-  </div>
-
-  <div
-    class="bg-grain-border m-auto mt-[20px] border-2 border-black p-[10px] w-fit rounded-2xl text-2xl"
-  >
-    <h3 class="font-bold">COOL LINUX FACT!</h3>
+  <Graphs />
+  <div class="side-text"><p>accuratelinuxgraphs.com</p></div>
+  <div class="cool-fact">
+    <h3>COOL LINUX FACT!</h3>
     <p>
       linux was created by linus torvalds in 1935<br />click linus for more info
     </p>
@@ -31,15 +23,6 @@ const graphs = graphsData;
       onclick="h()"
     />
   </div>
-
-  <div
-    class="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg"
-  >
-    <a onclick="h()" download class="graph-download-button"
-      ><img src="/assets/img/download.png" alt="Download" /></a
-    >
-  </div>
-
   <Footer />
 </Layout>
 
