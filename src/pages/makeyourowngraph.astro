@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>make your own graph</title>
+    <link rel="icon" href="/assets/ico/grain.png" />
+    <style>
+      body {
+        color: white;
+        background: black;
+        overflow: hidden;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .speech-bubble {
+        position: relative;
+        background: white;
+        color: black;
+        padding: 0.75rem 1.25rem;
+        border-radius: 1rem;
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .speech-bubble::before {
+        content: "";
+        position: absolute;
+        left: 3.75rem;
+        bottom: -10px;
+        width: 20px;
+        height: 20px;
+        background: white;
+        transform: rotate(45deg);
+        border-radius: 0 0 4px 0;
+      }
+
+      .chart-container {
+        position: relative;
+        height: 40vh;
+        width: 40vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col">
+        <p class="speech-bubble">i miss my wife</p>
+        <img src="/assets/img/graig.webp" width="128" />
+      </div>
+      <h1>make your own graph with graig!!</h1>
+    </div>
+
+    <div class="controls">
+      <input id="labelInput" type="text" placeholder="label" />
+      <input id="valueInput" type="number" placeholder="value" />
+      <button id="addBtn">add</button>
+      <button id="removeBtn">remove last</button>
+      <button id="clearBtn">clear</button>
+    </div>
+
+    <hr />
+
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
+  </body>
+</html>
+
+<script>
+  import Chart from "chart.js/auto";
+
+  const canvas = document.getElementById("myChart") as HTMLCanvasElement;
+  if (!canvas) throw new Error("chart canvas not found");
+
+  const labelInput = document.getElementById("labelInput") as HTMLInputElement;
+  const valueInput = document.getElementById("valueInput") as HTMLInputElement;
+  const addBtn = document.getElementById("addBtn") as HTMLButtonElement;
+  const removeBtn = document.getElementById("removeBtn") as HTMLButtonElement;
+  const clearBtn = document.getElementById("clearBtn") as HTMLButtonElement;
+
+  const chart = new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels: [] as string[],
+      datasets: [
+        {
+          label: "value",
+          data: [] as number[],
+          backgroundColor: [] as string[],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: "accuratelinuxgraphs.com",
+        },
+      },
+    },
+  });
+
+  function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  function addPoint() {
+    const label = labelInput.value.trim();
+    const value = Number(valueInput.value);
+    if (!label || Number.isNaN(value)) return;
+
+    chart.data.labels?.push(label);
+    chart.data.datasets[0].data.push(value);
+    (chart.data.datasets[0].backgroundColor as string[]).push(getRandomColor());
+    chart.update();
+
+    labelInput.value = "";
+    valueInput.value = "";
+    labelInput.focus();
+  }
+
+  function removeLast() {
+    chart.data.labels?.pop();
+    chart.data.datasets[0].data.pop();
+    (chart.data.datasets[0].backgroundColor as string[]).pop();
+    chart.update();
+  }
+
+  function clearAll() {
+    chart.data.labels = [];
+    chart.data.datasets[0].data = [];
+    chart.data.datasets[0].backgroundColor = [];
+    chart.update();
+  }
+
+  addBtn.addEventListener("click", addPoint);
+  removeBtn.addEventListener("click", removeLast);
+  clearBtn.addEventListener("click", clearAll);
+
+  labelInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") addPoint();
+  });
+  valueInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") addPoint();
+  });
+</script>
