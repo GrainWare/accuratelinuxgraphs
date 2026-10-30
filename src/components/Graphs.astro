@@ -114,7 +114,7 @@ function toggleEnlarge(filename) {
           const curEnlargedGraph = document.getElementsByClassName("graph-enlarged")[0];
 
           // find next graph
-          const nextGraph = curEnlargedGraph.parentElement.nextElementSibling?.getElementsByTagName("img")[0];
+          const nextGraph = curEnlargedGraph.parentElement.nextElementSibling?.getElementsByClassName("graph-image")[0];
           console.log("nextGraph", nextGraph);
           if (!nextGraph) return;
 
@@ -147,7 +147,7 @@ function toggleEnlarge(filename) {
       }) => (
         <div class="graph">
           {String(graph.filename).includes("mp4") ? (
-            <video controls class="graph-image" id={graph.filename} onplay={`toggleEnlarge("${graph.filename}")`} onpause={`toggleEnlarge("${graph.filename}")`}>
+            <video controls class="graph-image" id={graph.filename} data-eltype="graphgraph" onplay={`toggleEnlarge("${graph.filename}")`} onpause={`toggleEnlarge("${graph.filename}")`}>
               <source
                 src={`/assets/graphs/${String(graph.filename)}`}
                 type="video/mp4"
@@ -159,6 +159,7 @@ function toggleEnlarge(filename) {
               alt={String(graph.caption)}
               class="graph-image"
               id={graph.filename}
+              data-eltype="graphgraph"
               onclick={`toggleEnlarge("${graph.filename}")`}
             />
           )}
