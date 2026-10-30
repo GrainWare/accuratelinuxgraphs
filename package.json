@@ -15,9 +15,11 @@
     "astro": "^7.4.4",
     "graphology": "^0.26.0",
     "graphology-gexf": "^0.13.2",
+    "leaflet": "^1.9.4",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.22",
     "sass-embedded": "^1.107.0"
   }
 }
