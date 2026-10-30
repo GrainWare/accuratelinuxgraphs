@@ -19,6 +19,12 @@ header {
       text-decoration: underline;
       animation: vibrate 1s infinite linear;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      p:hover {
+        animation: none !important;
+      }
+    }
   }
 
   .fps {
@@ -27,6 +33,12 @@ header {
     margin-bottom: 8px;
     animation: rainbow 2s infinite linear;
     color: oklch(80.8% 0.114 19.571);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fps {
+      animation: none !important;
+    }
   }
 
   .yoursource-ad {
@@ -46,6 +58,12 @@ header {
       color: colors.$grain-highlight;
       text-decoration: underline;
       font-weight: 700;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      a {
+        animation: none !important;
+      }
     }
   }
 
@@ -69,6 +87,12 @@ header {
       span {
         font-weight: 700;
         color: oklch(90.5% 0.182 98.111);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .accuracy-data {
+        animation: none !important;
       }
     }
 

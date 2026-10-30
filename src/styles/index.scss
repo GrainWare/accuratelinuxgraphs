@@ -2,6 +2,7 @@
 @use "keyframes";
 @use "colors";
 @use "header";
+@use "footer";
 
 html,
 body {
@@ -25,6 +26,12 @@ body {
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none !important;
+  }
 }
 
 .side-text {
@@ -57,6 +64,12 @@ body {
   writing-mode: sideways-lr;
 
   animation: vibrate2x 2s infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-text:hover {
+    animation: none !important;
+  }
 }
 
 .side-text p {
