@@ -38,11 +38,14 @@ const graphs = graphsData.map((graph: any) => {
 
 
 <script is:inline>
+const curEnlarged = 0;
+
 function toggleEnlarge(filename) {
     let element = document.getElementById(filename);
     if (element?.classList.contains("graph-enlarged")) {
         element?.classList.remove("graph-enlarged");
-        element?.classList.add("graph-image")
+        element?.classList.add("graph-image");
+
 
         const audioElement = document.getElementById("enlarge_audio");
         if (audioElement) {
@@ -56,7 +59,7 @@ function toggleEnlarge(filename) {
         }
     } else {
         element?.classList.add("graph-enlarged");
-        element?.classList.remove("graph-image")
+        element?.classList.remove("graph-image");
 
         const audio = document.createElement("audio");
         audio.src = `/assets/audio/01 - polar(ization).mp3`;
@@ -68,6 +71,64 @@ function toggleEnlarge(filename) {
         const backdrop = document.createElement("div");
         backdrop.id = "enlarge_backdrop";
         backdrop.className = "graph-enlarged-backdrop";
+        backdrop.onclick = ()=>{
+          // hide backdrop
+          const backdropEl = document.getElementById("enlarge_backdrop");
+          if (backdropEl) backdropEl.remove();
+
+          // un-enlarge all enlarged (hopefully just 1) graphs
+          const enlargedEls = document.getElementsByClassName("graph-enlarged");
+          for (let el of enlargedEls) {
+            el?.classList.remove("graph-enlarged");
+            el?.classList.add("graph-image");
+          }
+        };
+
+        const prevButton = document.createElement("button");
+        const nextButton = document.createElement("button");
+        prevButton.textContent = "<"
+        prevButton.onclick = () => {
+          event.preventDefault();
+          event.stopPropagation();
+          // get currently enlarged graph
+          const curEnlargedGraph = document.getElementsByClassName("graph-enlarged")[0];
+
+          // find prev graph
+          const prevGraph = curEnlargedGraph.parentElement.previousElementSibling?.getElementsByTagName("img")[0];
+          console.log("prevGraph", prevGraph);
+          if (!prevGraph) return;
+
+          // un-enlarge currently shown graph
+          curEnlargedGraph.classList.remove("graph-enlarged");
+          curEnlargedGraph.classList.add("graph-image");
+
+          // enlarge prev graph
+          prevGraph.classList.add("graph-enlarged");
+          prevGraph.classList.remove("graph-image");
+        }
+        nextButton.textContent = ">"
+        nextButton.onclick = () => {
+          event.preventDefault();
+          event.stopPropagation();
+          // get currently enlarged graph
+          const curEnlargedGraph = document.getElementsByClassName("graph-enlarged")[0];
+
+          // find next graph
+          const nextGraph = curEnlargedGraph.parentElement.nextElementSibling?.getElementsByTagName("img")[0];
+          console.log("nextGraph", nextGraph);
+          if (!nextGraph) return;
+
+          // un-enlarge currently shown graph
+          curEnlargedGraph.classList.remove("graph-enlarged");
+          curEnlargedGraph.classList.add("graph-image");
+
+          // enlarge next graph
+          nextGraph.classList.add("graph-enlarged");
+          nextGraph.classList.remove("graph-image");
+        }
+
+        backdrop.appendChild(prevButton);
+        backdrop.appendChild(nextButton);
         document.body.appendChild(backdrop);
     }
 }

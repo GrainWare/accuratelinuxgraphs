@@ -53,9 +53,10 @@
   transform: translate(-50%, -50%);
   background: black;
   object-fit: cover;
-  max-width: 75%;
-  max-height: 75%;
-  z-index: 9999;
+  width: 56vw;
+  max-width: 80vw;
+  aspect-ratio: auto;
+  z-index: 9998;
 }
 
 .graph-enlarged-backdrop {
@@ -63,9 +64,24 @@
   inset: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  gap: 50%;
+  z-index: 9997;
+  background: #342f136c;
+  backdrop-filter: blur(12px);
+}
+
+.graph-enlarged-backdrop button {
+  // position: absolute;
+  // left: 4em;
   z-index: 9998;
-  background: black;
+  // width: 2em;
+  // height: 2em;
+}
+.graph-enlarged-backdrop button:last-child {
+  // position: absolute;
+  // right: 4em;
+  z-index: 9998;
 }
 
 .graph-caption {
