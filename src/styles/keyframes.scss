@@ -115,11 +115,13 @@
   20% {
     transform: scaleX(1.2) scaleY(0.5) rotate(-30deg);
     border-color: yellow;
+    border-style: dashed;
   }
 
   30% {
     transform: scaleX(0.7) scaleY(1.1) rotate(90deg) skew(-15deg);
     border-color: green;
+    border-style: dotted;
   }
 
   40% {
@@ -136,12 +138,23 @@
   80% {
     transform: scaleX(1.8) scaleY(0.7) rotate(540deg);
     margin-left: 20%;
+    border-style: inset;
   }
 
   100% {
     transform: scaleX(1) scaleY(1) rotate(1080deg);
     margin-left: 40%;
     border: 10px violet solid;
+  }
+}
+
+@keyframes squeezebounce {
+  0% {
+    transform: scaleX(0.8) scaleY(1.7);
+  }
+
+  100% {
+    transform: scaleX(1) scaleY(1);
   }
 }
 

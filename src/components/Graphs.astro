@@ -169,6 +169,12 @@ function toggleEnlarge(filename) {
             <span style={graph.accuracy.style}>{graph.accuracy.value}</span>%
             accurate
           </p>
+          <a class="download-button" href={`/assets/graphs/${String(graph.filename)}`} download="">
+            <img
+            srcset="/assets/img/download.png"
+            style={`animation-delay: -${Math.random() * 2}s;`}
+            />
+            </a>
         </div>
       ),
     )
