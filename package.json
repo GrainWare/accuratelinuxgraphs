@@ -12,7 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.4.4",
+    "astro": "^7.4.13",
     "chart.js": "^4.6.1",
     "graphology": "^0.26.0",
     "graphology-gexf": "^0.13.2",
@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.22",
-    "sass-embedded": "^1.107.0"
+    "sass-embedded": "^1.108.2"
   }
 }

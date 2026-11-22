@@ -33,17 +33,30 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
   const audio: HTMLAudioElement | null = document.getElementById(
     "accuRotateAudio",
   ) as HTMLAudioElement;
-  const credits = document.getElementById("credits");
+  // absolute garbage but i dont wnat to make another css class
+  let credit = document.createElement("div");
+  credit.style.position = "fixed";
+  credit.style.bottom = "0.5rem";
+  credit.style.left = "0.5rem";
+  credit.style.zIndex = "50";
+  credit.style.color = "white";
+  credit.style.fontSize = "1.25rem";
+  credit.style.display = "none";
+  credit.style.background = "black";
+  credit.innerHTML =
+    'Audio Credit: <a href="https://opengameart.org/content/extreme-binary-dnb" style="color: white; text-decoration: underline;">Gobusto - Extreme Binary DnB</a> (Remixed by accuratelinuxgraphs.com)';
+  document.documentElement.appendChild(credit);
 
   if (button) {
     button.textContent = "enable ACCUROTATE 3.0 technology";
     button.removeAttribute("disabled");
 
     button.addEventListener("click", () => {
-      const isEnabled = document.body.classList.contains("animate-rotate3d");
+      const isEnabled = document.body.classList.contains("accurotate");
 
       if (isEnabled) {
         document.body.classList.remove("accurotate");
+        document.body.style.cursor = "";
         button.textContent = "enable ACCUROTATE 3.0 technology";
 
         if (audio) {
@@ -51,9 +64,7 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
           audio.currentTime = 0;
         }
 
-        if (credits) {
-          credits.classList.add("invisible");
-        }
+        credit.style.display = "none";
       } else {
         document.body.style.cursor =
           "url('/assets/svg/middlefinger.svg'), auto";
@@ -64,9 +75,7 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
           audio.play();
         }
 
-        if (credits) {
-          credits.classList.remove("invisible");
-        }
+        credit.style.display = "block";
       }
     });
   } else {
@@ -113,42 +122,48 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
 
 <header>
   <h1>
-    <a href="/fizzbuzz" class="hover:underline hover:animate-vibrate2x"
-      >accuratelinuxgraphs.com</a
-    >
+    <a href="/fizzbuzz" class="hover:underline hover:animate-vibrate2x">
+      accuratelinuxgraphs.com
+    </a>
     <p class="hover:animate-vibrate2x">{markovText}</p>
     <h2 class="fps" id="fps"></h2>
   </h1>
 
   <p class="yoursource-ad">
-    YOUR source for the most ACCURATE linux graphs around.<br />
+    YOUR source for the most ACCURATE linux graphs around.
+    <br />
     <a href="https://grainware.org/">Made Possible by GrainWare</a>
     <br />
     <a
       href="#"
       onclick="for (let i = 0; i < 10; i++) {window.open('/assets/audio/free-software-song.ogg',Math.random(),'width=600,height=300');}"
-      >click here man please i need this please please please</a
     >
+      click here man please i need this please please please
+    </a>
   </p>
 
   <div class="strip">
-    <a href="https://discord.gg/xtgUm3fmst"
-      ><img
+    <a href="https://discord.gg/xtgUm3fmst">
+      <img
         class="grain-icon"
         src="/assets/ico/grain.png"
         alt="a project of the grain"
-      /></a
-    >
+      />
+    </a>
     <p class="accuracy-data">
-      Accurate Number: <span
-        id="accurate-number"
-        class="font-bold text-yellow-300">{accurateNumberStage3}</span
-      ><br />
-      Accuracy Percentage: <span
+      Accurate Number:{" "}
+      <span id="accurate-number" class="font-bold text-yellow-300">
+        {accurateNumberStage3}
+      </span>
+      <br />
+      Accuracy Percentage:{" "}
+      <span
         id="accuracy-percentage"
         style={accuracyStyle}
-        class="font-bold text-yellow-300">{accuracyPercentage}%</span
+        class="font-bold text-yellow-300"
       >
+        {accuracyPercentage}%
+      </span>
     </p>
 
     <button id="accuRotateBtn" class="accurotate-button" disabled>
@@ -166,39 +181,33 @@ let accuracyStyle = `color: hsl(${accuracyPercentage}, 100%, 50%); font-weight: 
 
     <audio loop id="accuRotateAudio" class="hidden">
       <source
-        src="/assets/audio/extremebinarydrumandbass.mp3"
-        type="audio/mp3"
+        src="/assets/audio/accurotate.ogg"
+        type="audio/ogg"
         id="accuRotateAudio2"
       />
       Your browser does not support the audio element. Seek help.
     </audio>
-    <p class="invisible" id="credits">
-      AccuRotate Audio Credit: <a
-        href="https://opengameart.org/content/extreme-binary-dnb"
-        >Gobusto - Extreme Binary DnB</a
-      >
-    </p>
   </div>
 
   <div class="strip">
-    <a href="https://store.accuratelinuxgraphs.com"
-      ><img src="/assets/img/ad.avif" alt="Ad" class="ad" title="Ad" /></a
-    >
+    <a href="https://store.accuratelinuxgraphs.com">
+      <img src="/assets/img/ad.avif" alt="Ad" class="ad" title="Ad" />
+    </a>
 
-    <a href="https://stats.grainware.org"
-      ><img src="/assets/img/ad2.avif" alt="Ad" class="ad" title="Ad" /></a
-    >
+    <a href="https://stats.grainware.org">
+      <img src="/assets/img/ad2.avif" alt="Ad" class="ad" title="Ad" />
+    </a>
 
-    <a href="https://accuracyrecords.bandcamp.com/"
-      ><img src="/assets/img/ad3.avif" alt="Ad" class="ad" title="Ad" /></a
-    >
+    <a href="https://accuracyrecords.bandcamp.com/">
+      <img src="/assets/img/ad3.avif" alt="Ad" class="ad" title="Ad" />
+    </a>
 
-    <a href="/graigshome"
-      ><img src="/assets/img/ad4.avif" alt="Ad" class="ad" title="Ad" /></a
-    >
+    <a href="/graigshome">
+      <img src="/assets/img/ad4.avif" alt="Ad" class="ad" title="Ad" />
+    </a>
 
-    <a href="/makeyourowngraph"
-      ><img src="/assets/img/ad5.avif" alt="Ad" class="ad" title="Ad" /></a
-    >
+    <a href="/makeyourowngraph">
+      <img src="/assets/img/ad5.avif" alt="Ad" class="ad" title="Ad" />
+    </a>
   </div>
 </header>

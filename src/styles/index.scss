@@ -19,7 +19,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: white;
   text-align: center;
   animation: move 60s linear infinite;
@@ -97,4 +96,30 @@ h1,
 h2,
 h3 {
   margin: 0px;
+}
+
+.poll {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  input {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  img {
+    display: block;
+    flex-shrink: 0;
+  }
 }

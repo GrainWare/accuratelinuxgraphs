@@ -7,12 +7,54 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
   <Header />
+  <div>
+    <h2>POLL!!!!!!!</h2>
+    <div class="poll">
+      <p>Is Accuratelinuxgraphs accurate?</p>
+      <input
+        type="radio"
+        name="accuracy"
+        value="0"
+        checked
+        style="display:none"
+      />
+      <label>
+        <input type="radio" name="acccuracy" value="1" />
+        <img src="/assets/ico/yup.png" height="32px" />
+        Yup!
+      </label>
+      <label>
+        <input type="radio" name="accuracy" value="2" />
+        <img src="/assets/ico/yesproblem.png" height="32px" />
+        Nope
+      </label>
+      <label>
+        <input type="radio" name="accuracy" value="3" />
+        <img src="/assets/ico/idea.png" height="32px" />
+        No But I can make it accurate
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="accuracy"
+          value="4"
+          onclick="new Audio('/assets/audio/hand.wav').play(); this.parentElement.remove(); document.querySelector('input[name=accuracy][value=\'0\']').checked = true; document.body.style.filter = 'grayscale(1)'; h2()"
+        />
+        <img src="fuckyouuuuuuuuuuuuu" height="32px" />
+        Option D
+      </label>
+    </div>
+  </div>
   <Graphs />
-  <div class="side-text"><p>accuratelinuxgraphs.com</p></div>
+  <div class="side-text">
+    <p>accuratelinuxgraphs.com</p>
+  </div>
   <div class="cool-fact">
     <h3>COOL LINUX FACT!</h3>
     <p>
-      linux was created by linus torvalds in 1935<br />click linus for more info
+      linux was created by linus torvalds in 1935
+      <br />
+      click linus for more info
     </p>
     <br />
     <img
@@ -50,5 +92,22 @@ import Layout from "../layouts/Layout.astro";
     setTimeout(() => {
       window.location.href = "https://moe.accuratelinuxgraphs.com";
     }, 5000);
+  }
+
+  function h2() {
+    var images = document.querySelectorAll("img");
+
+    for (var i = 0; i < images.length; i++) {
+      images[i].src = "/assets/img/hand.jpg";
+    }
+
+    var elements = document.querySelectorAll("*");
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      var backgroundImage = window.getComputedStyle(element).backgroundImage;
+      if (backgroundImage !== "none") {
+        element.style.backgroundImage = "url('/assets/img/hand.jpg')";
+      }
+    }
   }
 </script>

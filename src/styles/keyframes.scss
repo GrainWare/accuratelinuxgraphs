@@ -100,7 +100,7 @@
   }
 }
 
-@keyframes download-button-swag {
+@keyframes swag {
   0% {
     transform: scaleX(1) scaleY(1) rotate(0deg);
     margin-left: -60%;
@@ -119,30 +119,30 @@
   }
 
   30% {
-    transform: scaleX(0.7) scaleY(1.1) rotate(90deg) skew(-15deg);
+    transform: scaleX(0.7) scaleY(1.1) rotate(10deg) skew(-15deg);
     border-color: green;
     border-style: dotted;
   }
 
   40% {
-    transform: scaleX(1.5) scaleY(0.4) rotate(-120deg);
+    transform: scaleX(1.5) scaleY(0.4) rotate(-20deg);
     border-color: blue;
   }
 
   60% {
-    transform: scaleX(0.6) scaleY(1.8) rotate(180deg) skew(20deg);
+    transform: scaleX(0.6) scaleY(1.8) rotate(30deg) skew(20deg);
     border-color: indigo;
     margin-left: -20%;
   }
 
   80% {
-    transform: scaleX(1.8) scaleY(0.7) rotate(540deg);
+    transform: scaleX(1.8) scaleY(0.7) rotate(20deg);
     margin-left: 20%;
     border-style: inset;
   }
 
   100% {
-    transform: scaleX(1) scaleY(1) rotate(1080deg);
+    transform: scaleX(1) scaleY(1) rotate(-80deg);
     margin-left: 40%;
     border: 10px violet solid;
   }
@@ -151,10 +151,53 @@
 @keyframes squeezebounce {
   0% {
     transform: scaleX(0.8) scaleY(1.7);
+    margin-left: -60%;
+    border: 2px red solid;
+    border-style: groove;
+  }
+
+  10% {
+    transform: scaleX(0.4) scaleY(0.9) rotate(45deg) skew(10deg);
+    border-color: orange;
+    border-style: double;
+  }
+
+  20% {
+    transform: scaleX(1.2) scaleY(0.5) rotate(-30deg);
+    border-color: yellow;
+    border-style: dashed;
+  }
+
+  30% {
+    transform: scaleX(0.7) scaleY(1.1) rotate(10deg) skew(-15deg);
+    border-color: green;
+    border-style: dotted;
+  }
+
+  40% {
+    transform: scaleX(1.5) scaleY(0.4) rotate(-20deg);
+    border-color: blue;
+    border-style: outset;
+  }
+
+  60% {
+    transform: scaleX(0.6) scaleY(1.8) rotate(30deg) skew(20deg);
+    border-color: indigo;
+    margin-left: -20%;
+    border-style: groove;
+  }
+
+  80% {
+    transform: scaleX(1.8) scaleY(0.7) rotate(20deg);
+    margin-left: 20%;
+    border-style: inset;
   }
 
   100% {
     transform: scaleX(1) scaleY(1);
+    margin-left: 40%;
+    border: 10px violet solid;
+    border-style: dotted;
   }
 }
 
