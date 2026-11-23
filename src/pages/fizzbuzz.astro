@@ -1,0 +1,128 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<style>
+  .container {
+    height: 100vh;
+    width: 100vw;
+  }
+  .fizzbuzz {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .stupid {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<script is:inline>
+  function generateFizzbuzz() {
+    const inputNumber = document.getElementById("number").value;
+    const language = document.getElementById("language").value;
+
+    if ((inputNumber === "") | (inputNumber < 1)) {
+      document.getElementById("codeBlock").value = "input a god damn number";
+      return;
+    }
+
+    const fizzbuzzArray = [];
+    for (let i = 1; i <= inputNumber; i++) {
+      if (i % 15 === 0) {
+        fizzbuzzArray.push("FizzBuzz");
+      } else if (i % 3 === 0) {
+        fizzbuzzArray.push("Fizz");
+      } else if (i % 5 === 0) {
+        fizzbuzzArray.push("Buzz");
+      } else {
+        fizzbuzzArray.push(i.toString());
+      }
+    }
+
+    let fizzbuzzString = "";
+    if (language === "python") {
+      fizzbuzzString = fizzbuzzArray
+        .map((element) => `print('${element}')`)
+        .join("\n");
+    } else if (language === "rust") {
+      fizzbuzzString = `fn main() {\n${fizzbuzzArray.map((element) => `    println!("${element}");`).join("\n")}\n}`;
+    } else if (language === "sparc") {
+      const data = fizzbuzzArray
+        .map(
+          (element, i) =>
+            `s${i}:    .ascii  "${element}\\n"\nl${i} =   . - s${i}`,
+        )
+        .join("\n");
+      const text = fizzbuzzArray
+        .map(
+          (_, i) =>
+            `    mov     1, %o0\n    set     s${i}, %o1\n    mov     l${i}, %o2\n    mov     4, %g1\n    ta      0x6d`,
+        )
+        .join("\n\n");
+      fizzbuzzString = `    .section .rodata\n${data}\n\n    .text\n    .global _start\n_start:\n${text}\n\n    mov     0, %o0\n    mov     1, %g1\n    ta      0x6d`;
+    } else {
+      fizzbuzzString = "why";
+    }
+
+    document.getElementById("codeBlock").value = fizzbuzzString;
+  }
+
+  function downloadFizzbuzz() {
+    const code = document.getElementById("codeBlock").value;
+    const blob = new Blob([code], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "fizzbuzz.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+<Layout>
+  <div class="container">
+    <div class="fizzbuzz">
+      <h1>fizzbuz generator v50000000 epic gamer accuracy edition</h1>
+      <p>dramatic fizzbuzz music for fizzbuzz</p>
+      <audio controls loop>
+        <source id="song" src="/assets/audio/orwell.opus" type="audio/ogg" />
+        Your browser does not support the audio element. Seek help.
+      </audio>
+
+      <p>How many numbers would you like to generate?</p>
+      <input type="number" id="number" />
+      <p>What language?</p>
+      <select id="language">
+        <option value="python">Python</option>
+        <option value="rust">Rust</option>
+        <option value="sparc">SPARC Assembly</option>
+        <option value="nope">
+          There are no other languages. Good luck with your job search.
+        </option>
+      </select>
+      <div class="stupid">
+        <button onclick="generateFizzbuzz()">Generate</button>
+        <button onclick="downloadFizzbuzz()">Download</button>
+        <textarea id="codeBlock" class="code" rows="15" readonly>
+Code will appear here (formatting is broken but whatever, download is fine)
+        </textarea>
+      </div>
+
+      <h1>REVIEWS</h1>
+      <pre>
+this got me a job instantly
+- buyreviews.com
+
+this is incredibly swag
+- accuratelinuxgraphs.com
+
+the interviewer called me a <s>fucking idiot who should be
+banned from all things green</s> talented person
+- mobiek kevoard
+      </pre>
+    </div>
+  </div>
+</Layout>

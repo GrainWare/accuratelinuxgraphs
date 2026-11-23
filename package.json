@@ -12,8 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^11.1.14",
     "astro": "^7.4.13",
     "chart.js": "^4.6.1",
+    "fuse.js": "^7.5.0",
     "graphology": "^0.26.0",
     "graphology-gexf": "^0.13.2",
     "leaflet": "^1.9.4",

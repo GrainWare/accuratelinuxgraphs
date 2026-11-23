@@ -19,7 +19,12 @@ import Layout from "../layouts/Layout.astro";
         style="display:none"
       />
       <label>
-        <input type="radio" name="acccuracy" value="1" />
+        <input
+          type="radio"
+          name="acccuracy"
+          value="1"
+          onclick="window.location.href = '/field'"
+        />
         <img src="/assets/ico/yup.png" height="32px" />
         Yup!
       </label>
@@ -29,7 +34,12 @@ import Layout from "../layouts/Layout.astro";
         Nope
       </label>
       <label>
-        <input type="radio" name="accuracy" value="3" />
+        <input
+          type="radio"
+          name="accuracy"
+          value="3"
+          onclick="window.location.href = '/fuckyou'"
+        />
         <img src="/assets/ico/idea.png" height="32px" />
         No But I can make it accurate
       </label>
@@ -40,7 +50,7 @@ import Layout from "../layouts/Layout.astro";
           value="4"
           onclick="new Audio('/assets/audio/hand.wav').play(); this.parentElement.remove(); document.querySelector('input[name=accuracy][value=\'0\']').checked = true; document.body.style.filter = 'grayscale(1)'; h2()"
         />
-        <img src="fuckyouuuuuuuuuuuuu" height="32px" />
+        <img src="fuckyou" height="32px" />
         Option D
       </label>
     </div>
@@ -90,7 +100,7 @@ import Layout from "../layouts/Layout.astro";
     h.play();
 
     setTimeout(() => {
-      window.location.href = "https://moe.accuratelinuxgraphs.com";
+      window.location.href = "https://store.accuratelinuxgraphs.com";
     }, 5000);
   }
 
