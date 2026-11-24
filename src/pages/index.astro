@@ -75,8 +75,32 @@ import Layout from "../layouts/Layout.astro";
       onclick="h()"
     />
   </div>
+  <h1 style="font-family: 'Times New Roman', Times, serif;">Accurate Badges</h1>
+  <p>
+    We fully endorse each and every badge here and we definitely did not bulk
+    scrape them
+  </p>
+  <div class="88x31" id="88x31"></div>
   <Footer />
 </Layout>
+
+<script is:inline>
+  fetch("https://files.electron271.gay/pub/88x31/meta-alg.json", {
+    method: "GET",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      let div = document.getElementById("88x31");
+      for (let index = 0; index < json.length; index++) {
+        const element = json[index];
+        const img = document.createElement("img");
+        img.src = "https://files.electron271.gay/pub/88x31/" + element;
+        div.appendChild(img);
+      }
+    });
+</script>
 
 <script is:inline>
   function h() {
