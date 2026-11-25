@@ -19,15 +19,15 @@ export const GET: APIRoute = ({ params }) => {
     );
   }
 
-  const match = (graphsData as Array<{ graphImgUrl: string }>).find(
-    (item) => item.graphImgUrl.split("/").pop() === filename,
+  const match = (graphsData as Array<{ filename: string }>).find(
+    (item) => item.filename === filename,
   );
 
   if (match) {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: match.graphImgUrl,
+        Location: "/assets/graphs/" + match.filename,
         "Access-Control-Allow-Origin": "*",
       },
     });
@@ -36,15 +36,15 @@ export const GET: APIRoute = ({ params }) => {
   const fileName = filename.replace(/\.[^/.]+$/, "");
   const graphsNewKey = graphsData.map((item) => ({
     ...item,
-    filename:
-      item.graphImgUrl
+    searchName:
+      item.filename
         .split("/")
         .pop()
         ?.replace(/\.[^/.]+$/, "") || "",
   }));
 
   const fuse = new Fuse(graphsNewKey, {
-    keys: ["filename"],
+    keys: ["searchName"],
     includeScore: true,
   });
 
@@ -52,13 +52,12 @@ export const GET: APIRoute = ({ params }) => {
 
   if (fuzzyResults.length > 0) {
     const matchedImage = fuzzyResults[0].item as {
-      graphImgUrl: string;
       filename: string;
     };
     return new Response(null, {
       status: 302,
       headers: {
-        Location: matchedImage.graphImgUrl,
+        Location: "/assets/graphs/" + matchedImage.filename,
         "Access-Control-Allow-Origin": "*",
       },
     });

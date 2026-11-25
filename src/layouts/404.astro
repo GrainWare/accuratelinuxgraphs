@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import "../styles/index.scss";
 ---
 
 <!doctype html>
@@ -22,9 +22,7 @@ import "../styles/global.css";
 
     <title>what</title>
   </head>
-  <body
-    class="animate-move text-white text-center bg-grain-bg flex-col items-center justify-center"
-  >
+  <body>
     <slot />
   </body>
 </html>
@@ -33,11 +31,11 @@ import "../styles/global.css";
   html,
   body {
     margin: 0;
-    background-image: url("../assets/img/404.png");
+    background-image: url("/assets/img/404.png");
     background-size: 500px;
     background-repeat: repeat;
     background-attachment: fixed;
-    cursor: url("../assets/svg/middlefinger.svg"), auto;
+    cursor: url("/assets/svg/middlefinger.svg"), auto;
     overflow-x: hidden;
   }
 </style>

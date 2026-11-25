@@ -1,151 +1,170 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-// generate random data
-const randomData = (n: number) => {
-  const data = [];
-  for (let i = 0; i < n; i++) {
-    data.push({
-      something: Math.random() * 100,
-      somethingElse: Math.random() * 100,
-    });
-  }
-  return data;
-};
-const data = randomData(100);
 ---
 
-<script>
-  // cookies for each:
-  // - toggleAdvanced
-  // - toggleAnimations
-  // - toggleGrain
-  // - toggleAccuracy
-  // - toggleNewAccuracySong
-
-  // check if toggleAdvanced is set, if so, enable the other two
-  if (document.cookie.includes("toggleAdvanced=true")) {
-    (document.getElementById("toggleAnimations") as HTMLInputElement).disabled =
-      false;
-    (document.getElementById("toggleGrain") as HTMLInputElement).disabled =
-      false;
-    (document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
-      false;
-    (
-      document.getElementById("toggleNewAccuracySong") as HTMLInputElement
-    ).disabled = false;
-  } else {
-    (document.getElementById("toggleAnimations") as HTMLInputElement).disabled =
-      true;
-    (document.getElementById("toggleGrain") as HTMLInputElement).disabled =
-      true;
-    (document.getElementById("toggleAccuracy") as HTMLInputElement).disabled =
-      true;
-    (
-      document.getElementById("toggleNewAccuracySong") as HTMLInputElement
-    ).disabled = true;
-  }
-
-  // adjust all checkboxes accordingly to the current cookie state
-  const toggleAdvanced = document.getElementById(
-    "toggleAdvanced",
-  ) as HTMLInputElement;
-  const toggleAnimations = document.getElementById(
-    "toggleAnimations",
-  ) as HTMLInputElement;
-  const toggleGrain = document.getElementById(
-    "toggleGrain",
-  ) as HTMLInputElement;
-  const toggleAccuracy = document.getElementById(
-    "toggleAccuracy",
-  ) as HTMLInputElement;
-  const toggleNewAccuracySong = document.getElementById(
-    "toggleNewAccuracySong",
-  ) as HTMLInputElement;
-  for (const checkbox of [
-    toggleAdvanced,
-    toggleAnimations,
-    toggleGrain,
-    toggleAccuracy,
-    toggleNewAccuracySong,
-  ]) {
-    const cookieValue = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith(`${checkbox.id}=`))
-      ?.split("=")[1];
-    if (cookieValue === "true") {
-      checkbox.checked = true;
-    } else {
-      checkbox.checked = false;
+<Layout>
+  <style>
+    a {
+      color: white;
     }
-  }
 
-  // set cookie on change
-  for (const checkbox of [
-    toggleAdvanced,
-    toggleAnimations,
-    toggleGrain,
-    toggleAccuracy,
-    toggleNewAccuracySong,
-  ]) {
-    checkbox.addEventListener("change", () => {
-      document.cookie = `${checkbox.id}=${checkbox.checked}; path=/; max-age=31536000`;
-      if (checkbox.id === "toggleAdvanced") {
-        (
-          document.getElementById("toggleAnimations") as HTMLInputElement
-        ).disabled = !checkbox.checked;
-        (document.getElementById("toggleGrain") as HTMLInputElement).disabled =
-          !checkbox.checked;
-        (
-          document.getElementById("toggleAccuracy") as HTMLInputElement
-        ).disabled = !checkbox.checked;
-        (
-          document.getElementById("toggleNewAccuracySong") as HTMLInputElement
-        ).disabled = !checkbox.checked;
+    a:hover {
+      color: #e5e100;
+    }
+
+    .settings_outer {
+      height: 88vh;
+      display: flex;
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      /* padding-top: 10em; */
+    }
+
+    .settings_inner {
+      transform: scaleX(1.56235787);
+      border-radius: 13.28235787%;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(17px);
+      gap: 0.5em;
+      width: fit-content;
+      padding: 1em 1.5em;
+      height: 20em;
+      background-color: rgba(80, 69, 18, 0.634);
+      border: 2px dashed #e5e100;
+    }
+
+    span {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5em;
+      padding-bottom: 0.4em;
+      border-bottom: 1px solid white;
+    }
+
+    label {
+      user-select: none;
+      text-shadow: 0 0 8px #fff;
+    }
+    input {
+      background-color: blue;
+    }
+
+    label:hover,
+    input:hover {
+      color: #bca532;
+      cursor: pointer;
+      text-shadow: 0 0 10px #fffb00;
+    }
+  </style>
+  <script is:inline>
+    const defaultSettings = {
+      animation: true,
+      superGrainMode: false,
+      ultraAccurateTechnology: false,
+      accuracySong2: false,
+    };
+
+    function toggleSetting(settingName) {
+      // get the currently stored setting value
+      const curValue = localStorage.getItem(`settings_${settingName}`);
+
+      // is it set? if not, set it to the default value
+      if (!curValue) {
+        // default settings
+
+        localStorage.setItem(
+          `settings_${settingName}`,
+          defaultSettings[settingName]
+        );
+        return;
+      }
+
+      // flip setting value
+      localStorage.setItem(
+        `settings_${settingName}`,
+        curValue === "true" ? false : true
+      );
+      console.log(
+        `changed ${settingName} from ${curValue} to ${curValue === "true" ? false : true}`
+      );
+    }
+
+    // onload
+    document.addEventListener("DOMContentLoaded", () => {
+      // set initial settings
+      for (settingName in defaultSettings) {
+        // only set if its unset
+        if (!localStorage.getItem(`settings_${settingName}`))
+          localStorage.setItem(
+            `settings_${settingName}`,
+            defaultSettings[settingName]
+          );
+
+        // make the checkboxes reflect stored settings
+        const cbEl = document.querySelector(`[data-setting="${settingName}"]`);
+
+        if (cbEl)
+          cbEl.checked =
+            localStorage.getItem(`settings_${settingName}`) === "true";
       }
     });
-  }
-</script>
+  </script>
 
-<Layout>
-  <p>advanced accuracy settings</p>
-  <div class="bg-grain-bg">
-    <input type="checkbox" id="toggleAdvanced" />
-    <label for="toggleAdvanced"
-      >Enable Advanced Settings (No settings on this page will work without
-      this). All settings on this page are at your own risk and you should be
-      careful.</label
-    >
-    <hr />
-    <input type="checkbox" id="toggleAnimations" disabled />
-    <label for="toggleAnimations"
-      >Disable Animations (Reduces Accuracy Significantly)</label
-    >
+  <div class="settings_outer">
+    <a href="/">⬅ return ⬅</a>
+    <h2>advanced settings</h2>
     <p>
-      If you do not truly NEED to disable animations, please don't. We worked
-      hard on them and they are part of the experience. To help reinforce this
-      your cursor will be changed to a middle finger.
+      WARNING: modifying these settings may affect accuracy levels!<br /> positive
+      or negative effect? we dont know yet. <i>we simply do NOT know...</i>
     </p>
-    <hr />
-    <input type="checkbox" id="toggleGrain" disabled />
-    <label for="toggleGrain">Enable Super Grain Mode</label>
-    <hr />
-    <input type="checkbox" id="toggleAccuracy" disabled />
-    <label for="toggleAccuracy"
-      >Enable Ultra Accurate Technology (Epilepsy Warning)</label
-    >
-    <hr />
-    <input type="checkbox" id="toggleNewAccuracySong" />
-    <label for="toggleNewAccuracySong">Enable New Accuracy Song</label>
+    <div class="settings_inner">
+      <noscript>all this stuff requires javascript to be enabled :P</noscript>
+      <span>
+        <label for="toggleAnimations">animation</label>
+        <input
+          type="checkbox"
+          id="toggleAnimations"
+          data-setting="animation"
+          onclick="toggleSetting('animation')"
+        />
+      </span>
+      <span>
+        <label for="toggleSGM">SUPER GRAIN MODE</label>
+        <input
+          type="checkbox"
+          id="toggleSGM"
+          data-setting="superGrainMode"
+          onclick="toggleSetting('superGrainMode')"
+          disabled=""
+        />
+      </span>
+      <span>
+        <label for="toggleUAT">Ultra Accurate Technology</label>
+        <input
+          type="checkbox"
+          id="toggleUAT"
+          data-setting="ultraAccurateTechnology"
+          onclick="toggleSetting('ultraAccurateTechnology')"
+          disabled=""
+        />
+      </span>
+      <span>
+        <label for="toggleAS2">accuracy song 2</label>
+        <input
+          type="checkbox"
+          id="toggleAS2"
+          data-setting="accuracySong2"
+          onclick="toggleSetting('accuracySong2')"
+          disabled=""
+        />
+      </span>
+    </div>
   </div>
-  <p>
-    Past this line ignore any further debug information. Under penalty of your
-    accuracy being reduced 46.27128518888888̅%
-  </p>
-  <hr />
-  <p class="text-green-500">DEBUG: {JSON.stringify(data)}</p>
-  <p class="text-red-500">
-    DEBUG: InAccuracy Engine Successfully Loaded All Accuracy Reduced Somewhere
-    Around The Middle Percentage
-  </p>
+  <div class="side-text">
+    <p>accuratelinuxgraphs.com</p>
+  </div>
 </Layout>

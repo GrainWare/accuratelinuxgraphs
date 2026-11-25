@@ -1,0 +1,325 @@
+---
+import "leaflet/dist/leaflet.css";
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Graig's Personal Website</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 247, 0),
+          rgba(80, 150, 230, 0.6)
+        );
+        background-size: cover;
+      }
+
+      header {
+        text-align: center;
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: 5.75rem;
+        line-height: 1;
+        color: #e6394d;
+        letter-spacing: -2px;
+        text-shadow: 0 8px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 span {
+        display: block;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: normal;
+      }
+
+      p.header-text {
+        max-width: 800px;
+        margin: 2rem auto 1.5rem auto;
+        font-size: 1.7em;
+        line-height: 1.4;
+        color: #e6394d;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 5rem;
+      }
+
+      section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(60vh - var(--navHeight));
+      }
+
+      .section-title {
+        font-size: 3.25em;
+        text-align: left;
+        color: #e94d7a;
+        margin-bottom: 1rem;
+      }
+
+      .facts-container {
+        display: grid;
+        gap: 16px;
+      }
+
+      .fact-card {
+        background-color: rgba(250, 238, 254, 0.9);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.2);
+      }
+
+      .fact-card:hover {
+        animation: float infinite;
+        transform-origin: center bottom;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotateZ(-3deg);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-8px) rotateZ(4.6deg);
+          opacity: 0.75;
+        }
+        90% {
+          transform: translateY(2px) rotateZ(-2.3deg);
+        }
+      }
+
+      h2.fact-title {
+        font-size: 1.75rem;
+        margin-bottom: 0.6em;
+        color: #e94d7a;
+      }
+
+      h2.fact-title::after {
+        content: "·";
+        display: inline-block;
+        margin-left: 0.4em;
+        font-weight: bold;
+      }
+
+      p.fact-description {
+        line-height: 1.38;
+        max-width: 50ch;
+        text-align: center;
+      }
+
+      #map {
+        height: 512px;
+      }
+
+      .about {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <script>
+      import L from "leaflet";
+
+      const map = L.map("map").setView([47.6038, -122.3395], 13);
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      L.marker([47.6038, -122.3395])
+        .addTo(map)
+        .bindPopup(
+          "<strong>My Home in Washington State</strong><br>I live in this house with my 5 children and my 12 grandchildren and my 2 dogs and my 1 cat and my 1 wonderful wife Cynthia who I love and cherish.",
+        )
+        .openPopup();
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header id="hero" style="--navHeight: 2rem;">
+        <h1>Graig<span> of Washington State</span></h1>
+        <p class="header-text">
+          Welcome to my website, My name is graig I was born January 1st, 1990.
+        </p>
+        <h2><i>7,341.4 lives</i> changed for the better.</h2>
+        <br />
+        <h2><i>10 years</i> of service.</h2>
+        <br />
+        <h2><b><i>65 WPM</i></b> typing speed.</h2>
+        <h1>I am Graig. The best person on planet earth.</h1>
+      </header>
+
+      <section class="about">
+        <div class="section-title">ABOUT GRAIG</div>
+        <div class="facts-container">
+          <article class="fact-card">
+            <h2 class="fact-title">When I was 6 my parents divorced</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I was raised by my mom and stepdad. My mom is a retired
+              schoolteacher and my stepdad a retired military officer.
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">The tylenol incident</h2>
+            <p class="fact-description" style="--radius:4px;">
+              Once I went to school with a tylenol and got arrested for bringing
+              drugs to school. This is the catalyst for my completely healthy
+              (Fuck you, Cynthia) use of Meth
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">My name used to be Graham</h2>
+            <p class="fact-description" style="--radius:4px;">It's true</p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">
+              I served in the US Navy for 10 years starting in 2003
+            </h2>
+            <p class="fact-description" style="--radius:4px;">
+              I fought in Iraq and Afghistan.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about">
+        <div class="section-title">FORMER NAMES!!!</div>
+        <div class="facts-container">
+          <article class="fact-card">
+            <h2 class="fact-title">
+              I used to go under these really cool names
+            </h2>
+            <p class="fact-description" style="--radius:4px;">Graham</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about">
+        <div class="section-title">More about Me</div>
+        <div class="facts-container">
+          <article class="fact-card">
+            <h2 class="fact-title">Beloved Singer and Song-Writer</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I am beloved world-wide as a singer and song-writer, my most
+              famous global hit being titled "Smart City".
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">Philosopher</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I am a philosopher who have changed 7,341.4 lives for the better.
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">Wikia Writer</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I once wrote for Wikia where I wrote the entire wiki page on
+              Slackware in 40 minutes. My writing speed is 65 words per minute.
+              You should all be proud of me.
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">I fucking hate daves</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I believe in the overthrow of all daves.
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">Hippie</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I am a hippie, after I got dishonorably discharged from the
+              military I decided to become one.
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">Favorite Color</h2>
+            <p class="fact-description" style="--radius:4px;">
+              My favorite color is Purple. This is why this site is both blue
+              and red. Because bluered = Purple
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">Pregnancy Stance</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I do not support Male Pregnancy
+            </p>
+          </article>
+          <article class="fact-card">
+            <p class="fact-description" style="--radius:4px;">
+              Everyone should know by now that the internet is slowly becoming
+              unrecognizable. You probably don't even remember what a normal day
+              looks like. Your social media feeds are curated by algorithms that
+              would make a viking jealous. The color purple is now a threat.
+              Talking about it is a crime. We should all be terrified of the
+              simple act of blinking. The real threat isn't AI taking over. It's
+              you staring at a screen for 8 hours straight. Your eyes will thank
+              you.
+            </p>
+          </article>
+          <article class="fact-card">
+            <h2 class="fact-title">Other Fun Facts</h2>
+            <p class="fact-description" style="--radius:4px;">
+              I post whilst being held at gunpoint. I am a gooner as a result of
+              my enlightning. You are why we suffer.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <h1>Why I scream so much</h1>
+      <h2>
+        My blood pressure is 139/89, which is why I shout more. I have no plans
+        to address this.
+      </h2>
+      <hr /><br />
+      <hr /><br />
+      <hr /><br />
+      <hr /><br />
+      <hr /><br />
+      <h1>Employment status</h1>
+      <h2>I am drunk and unimployed. Please hire me.</h2>
+
+      <div id="map"></div>
+
+      <h1>IMPORANT NOTE! I AM NOW DIVORCED!</h1>
+      <h2>
+        As of 2026/9/3 My bitch wife Cynthia divorced me because "I shouldn't
+        smoke meth around my children". Please send a letter to my house if you
+        are interested My children and wife and grandchildren and dogs and cat
+        and money have moved away to someWoke Liberal country like Croatia or
+        something I don't fucking know
+      </h2>
+
+      <footer style="text-align:center; padding-top:3rem;">
+        <p>
+          Graig's Website &copy; All Rights Reserved<br /><small
+            >This site was last updated November 16, 2023.</small
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

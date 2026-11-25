@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>hand</title>
+    <link rel="icon" href="/assets/img/hand.jpg" />
+    <style>
+      body {
+        overflow: hidden;
+      }
+
+      img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: fill;
+        cursor: url("../assets/svg/enlarge.svg"), auto !important;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="/assets/img/hand.jpg" onclick="play()" id="hand" />
+    <audio autoplay id="audioPlayer" onended="next()">
+      <source src="/assets/audio/serpinski.opus" type="audio/ogg" />
+    </audio>
+  </body>
+</html>
+
+<script is:inline>
+  let audioPlayer = document.getElementById("audioPlayer");
+
+  function play() {
+    audioPlayer.load();
+    audioPlayer.play();
+  }
+
+  function next() {
+    audioPlayer.remove();
+    let image = document.getElementById("hand");
+    image.remove();
+
+    document.location = "/hand2";
+  }
+</script>

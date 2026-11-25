@@ -1,9 +1,9 @@
 services:
   accuratelinuxgraphs:
-    image: your-app-image:latest
+    image: accuratelinuxgraphs:latest
     restart: unless-stopped
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Containerfile
     ports:
       - "4323:4321"

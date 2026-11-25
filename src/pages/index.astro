@@ -1,26 +1,68 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import GraphGrid from "../components/GraphGrid.astro";
-import graphsData from "../data/graphs.json";
-
-// Using the data from our JSON file
-const graphs = graphsData;
+import Graphs from "../components/Graphs.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
   <Header />
   <div>
-    <GraphGrid graphs={graphs} />
+    <h2>POLL!!!!!!!</h2>
+    <div class="poll">
+      <p>Is Accuratelinuxgraphs accurate?</p>
+      <label>
+        <input
+          type="radio"
+          name="accuracy"
+          value="1"
+          onclick="clearSelections(); window.location.href = '/field'"
+        />
+        <img src="/assets/ico/yup.png" height="32px" />
+        Yup!
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="accuracy"
+          value="2"
+          onclick="clearSelections()"
+        />
+        <img src="/assets/ico/yesproblem.png" height="32px" />
+        Nope
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="accuracy"
+          value="3"
+          onclick="clearSelections(); window.location.href = '/fuckyou'"
+        />
+        <img src="/assets/ico/idea.png" height="32px" />
+        No But I can make it accurate
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="accuracy"
+          value="4"
+          onclick="new Audio('/assets/audio/hand.wav').play(); this.parentElement.remove(); document.body.style.filter = 'grayscale(1)'; clearSelections(); h2()"
+        />
+        <img src="fuckyou" height="32px" />
+        Option D
+      </label>
+    </div>
   </div>
-
-  <div
-    class="bg-grain-border m-auto mt-[20px] border-2 border-black p-[10px] w-fit rounded-2xl text-2xl"
-  >
-    <h3 class="font-bold">COOL LINUX FACT!</h3>
+  <Graphs />
+  <div class="side-text">
+    <p>accuratelinuxgraphs.com</p>
+  </div>
+  <div class="cool-fact">
+    <h3>COOL LINUX FACT!</h3>
     <p>
-      linux was created by linus torvalds in 1935<br />click linus for more info
+      linux was created by linus torvalds in 1935
+      <br />
+      click linus for more info
     </p>
     <br />
     <img
@@ -31,19 +73,52 @@ const graphs = graphsData;
       onclick="h()"
     />
   </div>
-
-  <div
-    class="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg"
-  >
-    <a onclick="h()" download class="graph-download-button"
-      ><img src="/assets/img/download.png" alt="Download" /></a
-    >
-  </div>
-
+  <h1 style="font-family: 'Times New Roman', Times, serif;">Accurate Badges</h1>
+  <p>
+    We fully endorse each and every badge here and we definitely did not bulk
+    scrape them
+  </p>
+  <small>
+    (email me (at) electron271 (dot) gay to get a badge removed if its bad or
+    you dont want it here)
+  </small>
+  <div class="badges" id="badges"></div>
   <Footer />
 </Layout>
 
 <script is:inline>
+  fetch("https://files.electron271.gay/pub/88x31/meta-alg.json", {
+    method: "GET",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(async function (json) {
+      let div = document.getElementById("badges");
+      for (let index = 0; index < json.length; index++) {
+        const element = json[index];
+        const img = document.createElement("img");
+        img.src = "https://files.electron271.gay/pub/88x31/" + element;
+        img.classList.add("badge");
+        img.onclick = function () {
+          this.style.animation = "accurotate 30s infinite linear";
+        };
+        div.appendChild(img);
+        await new Promise((r) => setTimeout(r, 100));
+      }
+    });
+</script>
+
+<script is:inline>
+  function clearSelections() {
+    const selectedOptions = document.querySelectorAll(
+      "input[name=accuracy]:checked",
+    );
+    selectedOptions.forEach((option) => {
+      option.checked = false;
+    });
+  }
+
   function h() {
     var images = document.querySelectorAll("img");
 
@@ -65,7 +140,24 @@ const graphs = graphsData;
     h.play();
 
     setTimeout(() => {
-      window.location.href = "https://moe.accuratelinuxgraphs.com";
+      window.location.href = "https://store.accuratelinuxgraphs.com";
     }, 5000);
+  }
+
+  function h2() {
+    var images = document.querySelectorAll("img");
+
+    for (var i = 0; i < images.length; i++) {
+      images[i].src = "/assets/img/hand.jpg";
+    }
+
+    var elements = document.querySelectorAll("*");
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      var backgroundImage = window.getComputedStyle(element).backgroundImage;
+      if (backgroundImage !== "none") {
+        element.style.backgroundImage = "url('/assets/img/hand.jpg')";
+      }
+    }
   }
 </script>

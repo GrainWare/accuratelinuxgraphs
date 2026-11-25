@@ -1,0 +1,49 @@
+@use "keyframes";
+@use "colors";
+
+.footer {
+  text-align: center;
+  padding-block: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: colors.$grain-bg;
+
+  .footer-bullshit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      margin-top: 16px;
+      color: white;
+      background: colors.$grain-bg;
+      border: solid;
+      border-color: colors.$grain-border;
+      border-width: 8px;
+    }
+
+    button:hover {
+      background: darkred;
+    }
+
+    a img {
+      width: 256px;
+      height: 256px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+  }
+
+  @media (width >= 64rem /* 1024px */) {
+    .footer-bullshit {
+      flex-direction: row;
+    }
+  }
+}
