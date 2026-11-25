@@ -141,7 +141,7 @@ h3 {
 }
 
 .badge {
-  animation: fadein 1s cubic-bezier(0.17, 0.67, 0.49, 0.97);
+  animation: fadein 1.5s cubic-bezier(0.17, 0.67, 0.49, 0.97);
   height: 31px;
 }
 
@@ -150,12 +150,12 @@ h3 {
     opacity: 0%;
     transform: translateX(4000px) translateY(-4000px) rotate3d(1, 1, 2, 900deg)
       scale(8);
-    filter: hue-rotate(360deg) contrast(500) brightness(500) saturate(500);
+    filter: hue-rotate(360deg) contrast(10) brightness(10) saturate(10);
   }
 
   100% {
     opacity: 100%;
     transform: translateX(0) translateY(0) rotate3d(1, 1, 1, 0deg) scale(1);
-    filter: hue-rotate(0deg) contrast(500) brightness(500) saturate(500);
+    filter: hue-rotate(0deg) contrast(1) brightness(1) saturate(1);
   }
 }
