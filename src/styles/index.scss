@@ -22,7 +22,8 @@ body {
   color: white;
   text-align: center;
   animation: move 60s linear infinite;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
@@ -140,20 +141,21 @@ h3 {
 }
 
 .badge {
-  animation: fadein 1s linear;
+  animation: fadein 1s ease-out;
   height: 31px;
 }
 
 @keyframes fadein {
   0% {
     opacity: 0%;
-    transform: rotate3d(1, 1, 2, 900deg) scale(4);
+    transform: translateX(4000px) translateY(-4000px) rotate3d(1, 1, 2, 900deg)
+      scale(8);
     filter: hue-rotate(360deg) contrast(500) brightness(500) saturate(500);
   }
 
   100% {
     opacity: 100%;
-    transform: rotate3d(1, 1, 1, 0deg) scale(1);
+    transform: translateX(0) translateY(0) rotate3d(1, 1, 1, 0deg) scale(1);
     filter: hue-rotate(0deg) contrast(500) brightness(500) saturate(500);
   }
 }
