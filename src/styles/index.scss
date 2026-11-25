@@ -132,3 +132,28 @@ h3 {
 .noanim {
   cursor: url("../assets/svg/middlefinger.svg"), auto !important;
 }
+
+.badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 88px);
+  justify-content: center;
+}
+
+.badge {
+  animation: fadein 1s linear;
+  height: 31px;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0%;
+    transform: rotate3d(1, 1, 2, 900deg) scale(4);
+    filter: hue-rotate(360deg) contrast(500) brightness(500) saturate(500);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: rotate3d(1, 1, 1, 0deg) scale(1);
+    filter: hue-rotate(0deg) contrast(500) brightness(500) saturate(500);
+  }
+}

@@ -11,25 +11,23 @@ import Layout from "../layouts/Layout.astro";
     <h2>POLL!!!!!!!</h2>
     <div class="poll">
       <p>Is Accuratelinuxgraphs accurate?</p>
-      <input
-        type="radio"
-        name="accuracy"
-        value="0"
-        checked
-        style="display:none"
-      />
       <label>
         <input
           type="radio"
-          name="acccuracy"
+          name="accuracy"
           value="1"
-          onclick="window.location.href = '/field'"
+          onclick="clearSelections(); window.location.href = '/field'"
         />
         <img src="/assets/ico/yup.png" height="32px" />
         Yup!
       </label>
       <label>
-        <input type="radio" name="accuracy" value="2" />
+        <input
+          type="radio"
+          name="accuracy"
+          value="2"
+          onclick="clearSelections()"
+        />
         <img src="/assets/ico/yesproblem.png" height="32px" />
         Nope
       </label>
@@ -38,7 +36,7 @@ import Layout from "../layouts/Layout.astro";
           type="radio"
           name="accuracy"
           value="3"
-          onclick="window.location.href = '/fuckyou'"
+          onclick="clearSelections(); window.location.href = '/fuckyou'"
         />
         <img src="/assets/ico/idea.png" height="32px" />
         No But I can make it accurate
@@ -48,7 +46,7 @@ import Layout from "../layouts/Layout.astro";
           type="radio"
           name="accuracy"
           value="4"
-          onclick="new Audio('/assets/audio/hand.wav').play(); this.parentElement.remove(); document.querySelector('input[name=accuracy][value=\'0\']').checked = true; document.body.style.filter = 'grayscale(1)'; h2()"
+          onclick="new Audio('/assets/audio/hand.wav').play(); this.parentElement.remove(); document.body.style.filter = 'grayscale(1)'; clearSelections(); h2()"
         />
         <img src="fuckyou" height="32px" />
         Option D
@@ -80,7 +78,7 @@ import Layout from "../layouts/Layout.astro";
     We fully endorse each and every badge here and we definitely did not bulk
     scrape them
   </p>
-  <div class="88x31" id="88x31"></div>
+  <div class="badges" id="badges"></div>
   <Footer />
 </Layout>
 
@@ -91,18 +89,32 @@ import Layout from "../layouts/Layout.astro";
     .then(function (response) {
       return response.json();
     })
-    .then(function (json) {
-      let div = document.getElementById("88x31");
+    .then(async function (json) {
+      let div = document.getElementById("badges");
       for (let index = 0; index < json.length; index++) {
         const element = json[index];
         const img = document.createElement("img");
         img.src = "https://files.electron271.gay/pub/88x31/" + element;
+        img.classList.add("badge");
+        img.onclick = function () {
+          this.style.animation = "accurotate 30s infinite linear";
+        };
         div.appendChild(img);
+        await new Promise((r) => setTimeout(r, 100));
       }
     });
 </script>
 
 <script is:inline>
+  function clearSelections() {
+    const selectedOptions = document.querySelectorAll(
+      "input[name=accuracy]:checked",
+    );
+    selectedOptions.forEach((option) => {
+      option.checked = false;
+    });
+  }
+
   function h() {
     var images = document.querySelectorAll("img");
 
