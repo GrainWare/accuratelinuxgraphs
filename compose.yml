@@ -1,0 +1,9 @@
+services:
+  accuratelinuxgraphs:
+    image: accuratelinuxgraphs:latest
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Containerfile
+    ports:
+      - "4323:4321"
