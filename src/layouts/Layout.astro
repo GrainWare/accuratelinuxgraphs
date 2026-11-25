@@ -35,6 +35,16 @@ const markovText = markov.generate(500);
       content="https://accuratelinuxgraphs.com/assets/ico/grain.png"
     />
     <title>accuratelinuxgraphs.com</title>
+    <script is:inline>
+      // apply global settings
+
+      // onload
+      document.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("settings_animation") === "false") {
+          document.body.classList.add("noanim");
+        }
+      });
+    </script>
   </head>
   <body>
     <div style="background:rgba(0,0,0,0.35)">

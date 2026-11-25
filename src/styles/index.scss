@@ -22,8 +22,7 @@ body {
   color: white;
   text-align: center;
   animation: move 60s linear infinite;
-  font-family:
-    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
@@ -122,4 +121,14 @@ h3 {
     display: block;
     flex-shrink: 0;
   }
+}
+
+.noanim * {
+  animation: none !important;
+  transition: none !important;
+  // transform: none !important; // breaks some stuff
+}
+
+.noanim {
+  cursor: url("../assets/svg/middlefinger.svg"), auto !important;
 }
