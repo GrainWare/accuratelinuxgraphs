@@ -1,0 +1,39 @@
+---
+import graphsData from "../data/graphs.json";
+import type { GraphData } from "../ts/models";
+
+const authors: Array<string> = [];
+const graphsData_deduped: Array<GraphData> = [];
+graphsData.forEach((graph: GraphData) => {
+  // omit graph by authorName if we already added it, or it is empty
+  if (authors.includes(graph.authorName) || graph.authorName === "") return;
+
+  graphsData_deduped.push(graph);
+  authors.push(graph.authorName);
+});
+---
+
+<ul class="graphcredits">
+  {
+    // fill list with graph authors, linking to their site if applicable
+    graphsData_deduped.map((graph: GraphData) => {
+      return graph.authorSite === "" ? (
+        <li>{graph.authorName}</li>
+      ) : (
+        <li>
+          <a href={graph.authorSite}>{graph.authorName}</a>
+        </li>
+      );
+    })
+  }
+  <p><i>... and other anonymous authors</i></p>
+</ul>
+
+<style>
+  a {
+    color: white;
+  }
+  a:visited {
+    color: white;
+  }
+</style>
