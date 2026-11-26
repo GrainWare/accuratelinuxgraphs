@@ -80,6 +80,12 @@ const graphs = graphsData.map((graph: any) => {
           el?.classList.remove("graph-enlarged");
           el?.classList.add("graph-image");
         }
+
+        // stop music
+        const audioEl = document.getElementById("enlarge_audio");
+        if (audioEl) {
+          audioEl.remove()
+        }
       };
 
       const prevButton = document.createElement("button");
