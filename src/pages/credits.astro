@@ -1,3 +1,7 @@
+---
+import GraphCredits from "../components/GraphCredits.astro";
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,6 +13,7 @@
   </head>
   <body>
     <div class="container">
+      <a href="/">⬅ return ⬅</a>
       <h1>accuracy credits</h1>
       <h2>developers</h2>
       <ul>
@@ -42,17 +47,14 @@
       </ul>
 
       <h2>graphs</h2>
-      <ul>
-        <li>userbyte</li>
-        <li>electron271</li>
-        <li>haie</li>
-        <li>doclic</li>
-        <li>blendy</li>
-        <li>bikolyn</li>
-        <li>sqt_</li>
-        <li>generic_name</li>
-        <li>...and probably more people im forgetting</li>
-      </ul>
+      <GraphCredits />
+      <sub
+        >if you helped out and would like to be credited:<br /> you can contact <a
+          href="https://electron271.gay/">electron271</a
+        >, <a href="https://userbyte.xyz/">userbyte</a>, or submit a PR on the <a
+          href="https://github.com/GrainWare/accuratelinuxgraphs">repo</a
+        ></sub
+      >
     </div>
   </body>
 </html>
@@ -62,9 +64,16 @@
     background: black;
     color: white;
     font-family: monospace;
+    font-size: 1.15em;
   }
 
   .container {
     margin: 8px;
+  }
+  a {
+    color: white;
+  }
+  a:visited {
+    color: white;
   }
 </style>

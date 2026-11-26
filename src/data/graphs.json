@@ -1,206 +1,308 @@
 [
   {
     "filename": "distroswagness.avif",
+    "authorName": "userbyte",
+    "authorSite": "https://userbyte.xyz/",
     "caption": "distro swagness graph"
   },
   {
     "filename": "osbloat.avif",
-    "caption": "os bloat graph"
+    "caption": "os bloat graph",
+    "authorName": "electron271",
+    "authorSite": "https://electron271.gay/"
   },
   {
     "filename": "ramusage.avif",
-    "caption": "ram usage graph"
+    "caption": "ram usage graph",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "linus.avif",
-    "caption": "linus torvalds graph"
+    "caption": "linus torvalds graph",
+    "authorName": "electron271",
+    "authorSite": "https://electron271.gay/"
   },
   {
     "filename": "row2.avif",
-    "caption": "row 2 graph, people to this day wonder what that means"
+    "caption": "row 2 graph, people to this day wonder what that means",
+    "authorName": "doclic",
+    "authorSite": "https://doclic.eu/"
   },
   {
     "filename": "ubuntu.avif",
-    "caption": "ubuntu graph"
+    "caption": "ubuntu graph",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "marketshare.avif",
-    "caption": "market share graph"
+    "caption": "market share graph",
+    "authorName": "electron271",
+    "authorSite": "https://electron271.gay/"
   },
   {
     "filename": "marketshareprojected.avif",
-    "caption": "market share projected graph"
+    "caption": "market share projected graph",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "rms.avif",
-    "caption": "ricahrd stallman graph"
+    "caption": "ricahrd stallman graph",
+    "authorName": "doclic",
+    "authorSite": "https://doclic.eu/"
   },
   {
     "filename": "arch.avif",
-    "caption": "arch (not loinux) graph"
+    "caption": "arch (not loinux) graph",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "aod.avif",
-    "caption": "linux/distro (International system unit)"
+    "caption": "linux/distro (International system unit)",
+    "authorName": "doomed-neko",
+    "authorSite": ""
   },
   {
     "filename": "accuracy.avif",
-    "caption": "linux accuracy graph"
+    "caption": "linux accuracy graph",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "distro-difficult.avif",
-    "caption": "linux ditro easy to hurd"
+    "caption": "linux ditro easy to hurd",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "usage.avif",
-    "caption": "usag of linux in plaftorms"
+    "caption": "usag of linux in plaftorms",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "money.avif",
-    "caption": "money"
+    "caption": "money",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "openbsdbloat.avif",
-    "caption": "openbsd bloat"
+    "caption": "openbsd bloat",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "wayland.avif",
-    "caption": "wayland"
+    "caption": "wayland",
+    "authorName": "userbyte",
+    "authorSite": "https://userbyte.xyz/"
   },
   {
     "filename": "linuxdevelopment.avif",
-    "caption": "linux development"
+    "caption": "linux development",
+    "authorName": "electron271",
+    "authorSite": "https://electron271.gay/"
   },
   {
     "filename": "gamijng.avif",
-    "caption": "gamijng"
+    "caption": "gamijng",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "mobilead.avif",
-    "caption": "mobile users rejoice"
+    "caption": "mobile users rejoice",
+    "authorName": "electron271",
+    "authorSite": "https://electron271.gay/"
   },
   {
     "filename": "yearofthelinuxdesktop.avif",
-    "caption": "yeaæææææææææææææææææa"
+    "caption": "yeaæææææææææææææææææa",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "tuxcolors.avif",
-    "caption": "tux color graph\nthis is the first fancy animated graph"
+    "caption": "tux color graph\nthis is the first fancy animated graph",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "accperyear.avif",
-    "caption": "accuracy per year"
+    "caption": "accuracy per year",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "revision-speed.avif",
-    "caption": "linuxers average linuxing speed"
+    "caption": "linuxers average linuxing speed",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "distroswagness-modern.avif",
-    "caption": "distro swagness v2"
+    "caption": "distro swagness v2",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "accuratelinuxgraphs.avif",
-    "caption": "accurate linux graphs is back"
+    "caption": "accurate linux graphs is back",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "linux.avif",
-    "caption": "linux"
+    "caption": "linux",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "buy.avif",
-    "caption": "BUY"
+    "caption": "BUY",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "XYZ.avif",
-    "caption": "XYZ"
+    "caption": "XYZ",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "LINUXPERLINUX.avif",
-    "caption": "LINUXPERLINUX"
+    "caption": "LINUXPERLINUX",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "bloatperhour.avif",
-    "caption": "bloat per hour"
+    "caption": "bloat per hour",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "compilerpercompiler.avif",
-    "caption": "compiler per compiler"
+    "caption": "compiler per compiler",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "fedrorusers.avif",
-    "caption": "fedror users"
+    "caption": "fedror users",
+    "authorName": "userbyte",
+    "authorSite": "https://userbyte.xyz/"
   },
   {
     "filename": "graphs.avif",
-    "caption": "accuracy of all time"
+    "caption": "accuracy of all time",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "contributions.avif",
-    "caption": "contbrituions to the linus kernel"
+    "caption": "contbrituions to the linus kernel",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "CREATOR OF.avif",
-    "caption": "Sponsored by ACCURACY HEAVY INDUSTRY. GET YOUR METAL MACHINED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST MACHINISTS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST METAL IN THE WORLD. WE HAVE THE BEST METAL MACHINED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST MACHINISTS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST METAL IN THE WORLD."
+    "caption": "Sponsored by ACCURACY HEAVY INDUSTRY. GET YOUR METAL MACHINED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST MACHINISTS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST METAL IN THE WORLD. WE HAVE THE BEST METAL MACHINED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST MACHINISTS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST METAL IN THE WORLD.",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "SPONSORED BY ACCURATELINUXGRAPHS.COM SPACE EXPLORATION.avif",
-    "caption": "Sponsored by ACCURATELINUXGRAPHS.COM SPACE EXPLORATION. GET YOUR SPACE EXPLORED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST SPACE EXPLORERS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST SPACE IN THE WORLD. WE HAVE THE BEST SPACE EXPLORED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST SPACE EXPLORERS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST SPACE IN THE WORLD."
+    "caption": "Sponsored by ACCURATELINUXGRAPHS.COM SPACE EXPLORATION. GET YOUR SPACE EXPLORED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST SPACE EXPLORERS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST SPACE IN THE WORLD. WE HAVE THE BEST SPACE EXPLORED TO THE TIGHTEST TOLERANCES POSSIBLE. WE HAVE THE BEST SPACE EXPLORERS IN THE WORLD. WE HAVE THE BEST MACHINES IN THE WORLD. WE HAVE THE BEST SPACE IN THE WORLD.",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "sfotware.avif",
-    "caption": "sfotware"
+    "caption": "sfotware",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "markov.avif",
-    "caption": "markov graph (AVIF 100% ACCURACY 8192x8192 800KB SUPER ACCURACY (ACCURATE 5000302789698231475)) "
+    "caption": "markov graph (AVIF 100% ACCURACY 8192x8192 800KB SUPER ACCURACY (ACCURATE 5000302789698231475)) ",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "pixelspergraph.avif",
-    "caption": "pixels per graph (AVIF 100% ACCURACY 88x55 4.5KB SUPER ACCURACY (ACCURATE 5000302)) "
+    "caption": "pixels per graph (AVIF 100% ACCURACY 88x55 4.5KB SUPER ACCURACY (ACCURATE 5000302)) ",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "marketshare2.avif",
-    "caption": "market share graph v2"
+    "caption": "market share graph v2",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "liunuxpercompany.avif",
-    "caption": "liunux per company"
+    "caption": "liunux per company",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "vibed.avif",
-    "caption": "historical vibes"
+    "caption": "historical vibes",
+    "authorName": "userbyte",
+    "authorSite": "https://userbyte.xyz/"
   },
   {
     "filename": "grainperdistro.avif",
-    "caption": "grain per distro"
+    "caption": "grain per distro",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "untitled.avif",
-    "caption": "untitled"
+    "caption": "untitled",
+    "authorName": "generic_name_",
+    "authorSite": ""
   },
   {
     "filename": "distrousers.avif",
-    "caption": "distro users in 2034"
+    "caption": "distro users in 2034",
+    "authorName": "sqt_",
+    "authorSite": ""
   },
   {
     "filename": "distroswagness-revision-3.avif",
-    "caption": "distro swagness v3"
+    "caption": "distro swagness v3",
+    "authorName": "bikolyn",
+    "authorSite": ""
   },
   {
     "filename": "anim.mp4",
-    "caption": "accuracy per linux kernel version our second fancy animated graph"
+    "caption": "accuracy per linux kernel version our second fancy animated graph",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "omarchy.avif",
-    "caption": "omarch linux users per time"
+    "caption": "omarch linux users per time",
+    "authorName": "",
+    "authorSite": ""
   },
   {
     "filename": "masochism.avif",
-    "caption": "masochism per os"
+    "caption": "masochism per os",
+    "authorName": "bontboss",
+    "authorSite": "https://bontboss.com/"
   },
   {
     "filename": "grainfactor.avif",
-    "caption": "grain factor"
+    "caption": "grain factor",
+    "authorName": "rainbowcoalition",
+    "authorSite": ""
   }
 ]
