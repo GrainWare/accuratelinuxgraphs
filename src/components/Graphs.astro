@@ -94,8 +94,8 @@ const graphs = graphsData.map((graph: any) => {
 
         // find prev graph
         const prevGraph =
-          curEnlargedGraph.parentElement.previousElementSibling?.getElementsByTagName(
-            "img",
+          curEnlargedGraph.parentElement.previousElementSibling?.getElementsByClassName(
+            "graph-image",
           )[0];
         console.log("prevGraph", prevGraph);
         if (!prevGraph) return;
