@@ -16,7 +16,8 @@
     align-items: center;
     justify-content: center;
 
-    button {
+    button,
+    .linkbutton {
       margin-top: 16px;
       color: white;
       background: colors.$grain-bg;
@@ -25,8 +26,13 @@
       border-width: 8px;
     }
 
-    button:hover {
+    button:hover,
+    .linkbutton:hover {
       background: darkred;
+    }
+    .linkbutton {
+      padding: 0.2em 0.7em;
+      text-decoration: none;
     }
 
     a img {
