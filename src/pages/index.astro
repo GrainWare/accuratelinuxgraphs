@@ -112,7 +112,7 @@ import Layout from "../layouts/Layout.astro";
 <script is:inline>
   function clearSelections() {
     const selectedOptions = document.querySelectorAll(
-      "input[name=accuracy]:checked",
+      "input[name=accuracy]:checked"
     );
     selectedOptions.forEach((option) => {
       option.checked = false;
@@ -160,4 +160,99 @@ import Layout from "../layouts/Layout.astro";
       }
     }
   }
+
+  function applyUltraAccurateTechnlogy() {
+    document.body.classList.add("ultra_accurate_technology");
+  }
+
+  function applySuperGrainMode() {
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      null
+    );
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) {
+      textNodes.push(node);
+    }
+    textNodes.forEach((textNode) => {
+      if (textNode.nodeValue) {
+        let text = textNode.nodeValue;
+        text = text.replace(/accuracy/gi, (match) => {
+          if (match === match.toUpperCase()) return "GRAIN";
+          if (
+            match ===
+            match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+          )
+            return "Grain";
+          return "grain";
+        });
+        text = text.replace(/accurate/gi, (match) => {
+          if (match === match.toUpperCase()) return "GRAIN";
+          if (
+            match ===
+            match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+          )
+            return "Grain";
+          return "grain";
+        });
+        textNode.nodeValue = text;
+      }
+    });
+    // document.title = document.title.replace(/accuracy|accurate/gi, "grain");
+    // const observer = new MutationObserver((mutations) => {
+    //   mutations.forEach((mutation) => {
+    //     if (mutation.type === "childList") applySuperGrainMode();
+    //   });
+    // });
+    // observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  function applyAccuracySong2() {
+    const songElement = document.getElementById("song");
+    if (!songElement) {
+      console.error("could not enable accuracy song 2");
+      return;
+    }
+
+    songElement.setAttribute(
+      "src",
+      "/assets/audio/accuracycore-audiowarning.mp3"
+    );
+    songElement.setAttribute("type", "audio/mpeg");
+
+    // reload the audio element to pick up the new source
+    const audioElement = songElement.closest("audio");
+    if (audioElement) {
+      audioElement.load();
+    }
+  }
+
+  function applySettings() {
+    // animation settings is respected globally, so not needed for this page specifically
+    // ...
+
+    // check super grain mode setting
+    if (localStorage.getItem("settings_superGrainMode") === "true") {
+      // console.log("enabling super grain mode");
+      applySuperGrainMode();
+      // console.log("super grain mode is currently broken wompwomp");
+    }
+    // check ultra accurate technology setting
+    if (localStorage.getItem("settings_ultraAccurateTechnology") === "true") {
+      console.log("enabling ultra accurate technology");
+      applyUltraAccurateTechnlogy();
+    }
+    // check accuracy song 2 setting
+    if (localStorage.getItem("settings_accuracySong2") === "true") {
+      console.log("enabling accuracy song 2");
+      applyAccuracySong2();
+    }
+  }
+
+  // onload
+  document.addEventListener("DOMContentLoaded", () => {
+    applySettings();
+  });
 </script>

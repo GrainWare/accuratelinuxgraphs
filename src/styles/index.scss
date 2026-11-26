@@ -22,8 +22,7 @@ body {
   color: white;
   text-align: center;
   animation: move 60s linear infinite;
-  font-family:
-    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
@@ -141,6 +140,10 @@ h3 {
   cursor: url("../assets/svg/middlefinger.svg"), auto !important;
 }
 
+.ultra_accurate_technology {
+  animation: vibrate2x 60s linear infinite;
+}
+
 .badges {
   display: grid;
   grid-template-columns: repeat(auto-fill, 88px);
@@ -152,7 +155,7 @@ h3 {
 }
 
 @keyframes fadein {
-  0% { 
+  0% {
     height: 0px;
     opacity: 0%;
     transform: translateX(4000px) translateY(-4000px) rotate3d(1, 1, 2, 900deg)
