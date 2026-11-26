@@ -84,7 +84,8 @@ const graphs = graphsData.map((graph: any) => {
 
       const prevButton = document.createElement("button");
       const nextButton = document.createElement("button");
-      prevButton.textContent = "<";
+      const prevIcon = document.createElement("img");
+      const nextIcon = document.createElement("img");
       prevButton.onclick = () => {
         event.preventDefault();
         event.stopPropagation();
@@ -108,7 +109,6 @@ const graphs = graphsData.map((graph: any) => {
         prevGraph.classList.add("graph-enlarged");
         prevGraph.classList.remove("graph-image");
       };
-      nextButton.textContent = ">";
       nextButton.onclick = () => {
         event.preventDefault();
         event.stopPropagation();
@@ -132,6 +132,10 @@ const graphs = graphsData.map((graph: any) => {
         nextGraph.classList.add("graph-enlarged");
         nextGraph.classList.remove("graph-image");
       };
+      prevIcon.src = "/assets/svg/circle-chevron-left.svg";
+      nextIcon.src = "/assets/svg/circle-chevron-right.svg";
+      prevButton.appendChild(prevIcon);
+      nextButton.appendChild(nextIcon);
 
       backdrop.appendChild(prevButton);
       backdrop.appendChild(nextButton);
